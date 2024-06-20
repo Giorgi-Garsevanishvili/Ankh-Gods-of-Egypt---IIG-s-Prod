@@ -1,12 +1,25 @@
 body {
-  margin: 0px;
+  margin: 0px; 
+  padding: 0px;
+  height: 100%;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-container {
-  height: 105px;
+  height: 100px;
   padding-left: 35px;
   padding-right: 35px;
-
   display: flex;
   justify-content: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -25,7 +38,8 @@ body {
   justify-content: start;
 }
 
-.left-title {
+.left-title,
+.left-title-footer {
   display: flex;
   flex-direction: row;
   color: gray;
@@ -38,7 +52,7 @@ body {
 }
 
 .header-middle {
-  margin-top: 5px;
+  margin-top: 2px;
   background-color: black;
   display: flex;
   flex-direction: row;
@@ -56,10 +70,36 @@ body {
   justify-content: end;
   height: 40px;
   width: 30%;
-  
 }
 
 .horus-eye {
   width: 60px;
   cursor: pointer;
+}
+
+.options-box {
+  padding: 5%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 100%;
+  width: 75%;
+  border: 1px solid rgb(213, 213, 213);
+  border-radius: 200px;
+  box-shadow: rgba(240, 191, 86, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.footer-container {
+  background-color: black;
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(150, 127, 71, 0.17) 0px -23px 25px 0px inset, rgba(67, 55, 26, 0.15) 0px -36px 30px 0px inset, rgba(36, 30, 20, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  
+}
+
+.left-title-footer {
+  width: 250px;
+  height: 10px;
+  margin-left: 20px;
 }
