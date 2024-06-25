@@ -89,7 +89,17 @@ body {
   border: 1px solid rgb(213, 213, 213);
   border-radius: 200px;
   box-shadow: rgba(240, 191, 86, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  transition: 0.7s;
 }
+
+.options-box-active {
+  background-image: url("../images/ancient-egypt-egyptian-hieroglyphs-seamless-pattern-antique-elements-symbols-papyrus-historical-traditional-background-pyramids-graphic-decor-textile-wrapping-paper-wallpaper-vector-texture.avif");
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: 0.7s;
+}
+
+
+
 
 .footer-container {
   background-color: black;
@@ -134,18 +144,20 @@ body {
   justify-content: center; 
   z-index: 1;
 }
+
 .js-hover-icon.hover-active {
- opacity: 0.7;
+ opacity: 0.9;
+ transition: 0.8s;
 }
 
 .js-hover-icon {
-  width: 350px;
-  height: 350px;
+  width: 70px;
+  height: 70px;
   background-color: transparent;
   border-radius: 100%;
   border: none;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 300px;
   margin-left: 15px;
   opacity: 0;
   transition: 0.8s;
@@ -154,13 +166,32 @@ body {
 .button-title {
   font-family: "Macondo", cursive;
   font-size: 22px;
-  font-weight:bold;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 20px;
-  margin-top: 30px;
+  width: 130px;
+  height: 50px;
+  margin-top: 15px;
   margin-left: 10px;
   cursor: default;
+  color: rgb(138, 65, 20); /* Default color for button titles */
+  opacity: 1; 
+  border-radius: 20px;
+  border: 1.5px solid rgb(95, 82, 10);
+  background-color: rgb(255, 229, 195);
+  transition: color 0.8s, opacity 0.8s;
+}
+
+.button-title:hover,
+.button-title.non-hovered-text {
+  color: rgb(100, 100, 100); /* Color for non-hovered titles */
+  opacity: 0.2;
+  transition: color 0.8s, opacity 0.8s;
+}
+
+
+.non-hovered {
+  opacity: 0.1;
+  transition: 0.8s;
 }
