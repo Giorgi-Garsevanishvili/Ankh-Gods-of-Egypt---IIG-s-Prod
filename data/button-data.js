@@ -7,11 +7,11 @@ export const buttonList = [
 {
   id: '3v989dsfvhsd7rvsdr',
   image: './images/buttons/anubis.png',
-  text: 'Action Board'
+  text: 'God`s Board'
 },
 {
   id: '098sd9v8fsd7vsd9fv',
   image: './images/buttons/papyrus.png',
-  text: 'Action Board'
+  text: 'Rule Book'
 }
 ];
