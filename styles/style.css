@@ -78,9 +78,12 @@ body {
 }
 
 .options-box {
-  padding: 5%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4%;
+  margin-top: 25px;
+  margin-bottom: 25px;
   height: 100%;
   width: 75%;
   border: 1px solid rgb(213, 213, 213);
@@ -102,4 +105,62 @@ body {
   width: 250px;
   height: 10px;
   margin-left: 20px;
+}
+
+.option-action-board {
+ margin: 30px 85px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+
+.action-board-button,
+.action-board-icon {
+ width: 150px;
+ height: 150px;
+ background-color: transparent;
+ border-radius: 100%;
+ border: none;
+ cursor: pointer;
+ z-index: 10000;
+}
+
+.hover-box {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  z-index: 1;
+}
+.js-hover-icon.hover-active {
+ opacity: 0.7;
+}
+
+.js-hover-icon {
+  width: 350px;
+  height: 350px;
+  background-color: transparent;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: 15px;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.button-title {
+  font-family: "Macondo", cursive;
+  font-size: 22px;
+  font-weight:bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 20px;
+  margin-top: 30px;
+  margin-left: 10px;
+  cursor: default;
 }
