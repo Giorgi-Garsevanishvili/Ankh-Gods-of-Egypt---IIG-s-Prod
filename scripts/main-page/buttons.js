@@ -6,11 +6,11 @@ function renderButtonList () {
   let buttonListHTML = '';
 
 buttonList.forEach((button) => {
-  buttonListHTML += `<div class="option-action-board">
+  buttonListHTML += `<a href="${button.url}" class="option-action-board">
       <div class="hover-box"><img class="js-hover-icon js-hover-icon-${button.id}" src="./images/buttons/crown.png" alt="" data-id="${button.id}"></div>
       <button class="action-board-button" data-id="${button.id}"><img class="action-board-icon" src="${button.image}" alt=""></button>
       <div class="title button-title"><p>${button.text}</p></div>
-    </div>`;
+    </a>`;
       
 });
 

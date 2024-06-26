@@ -138,6 +138,7 @@ body {
  flex-direction: column;
  justify-content: center;
  align-items: center;
+ text-decoration: none;
 }
 
 
@@ -220,8 +221,8 @@ body {
   font-family: "Macondo", cursive;
   font-size: 25px;
   background-image: linear-gradient(rgb(162, 130, 72), rgb(59, 51, 42));
-  height: 50px;
-  width: 250px;
+  height: 45px;
+  width: 245px;
   border-radius: 10px;
   border: none;
   color: wheat;
@@ -230,15 +231,17 @@ body {
   transition: 0.5s;
   margin: 5px;
   padding: 10px;
+  text-decoration: none;
 }
 
 .scenarios:hover {
-  height: 55px;
-  width: 255px;
+  height: 50px;
+  width: 250px;
   background-image: linear-gradient(rgb(59, 51, 42), rgb(162, 130, 72));
   color: rgb(254, 221, 184);
   box-shadow: rgba(150, 127, 71, 0.17) 0px -23px 25px 0px inset, rgba(67, 55, 26, 0.15) 0px -36px 30px 0px inset, rgba(36, 30, 20, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   transition: 0.5s;
+  text-decoration: none;
 }
 
 .small-button-icon {
