@@ -14,7 +14,7 @@ buttonList.forEach((button) => {
       
 });
 
-document.querySelector('.options-box-js').innerHTML = buttonListHTML;
+document.querySelector('.options-container').innerHTML = buttonListHTML;
 }
 
 document.querySelectorAll('.action-board-button').forEach(button => {
