@@ -20,6 +20,7 @@ body {
 
 .options-container {
   display: flex;
+  flex-direction: row;
   position:absolute;
   margin-bottom: 80px;
 }
@@ -89,6 +90,7 @@ body {
 
 .options-box {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 4%;
@@ -247,4 +249,113 @@ body {
 .small-button-icon {
   height: 40px;
   margin: 20px;
+}
+
+/*media queries*/
+
+@media (max-width: 575.98px) {
+
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+  }
+
+  .header-right,
+  .header-left {
+    visibility: hidden;
+  }
+
+  .options-box{
+    height: 500px;
+  }
+
+  .option-action-board {
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 20px;
+   }
+   
+   
+   .action-board-button,
+   .action-board-icon {
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+   }
+
+   .scenarios {
+    height: 20px;
+    width: 200px;
+   }
+
+   .small-button-icon {
+    height: 20px;
+    margin: 5px;
+   }
+}
+
+/* Small devices (phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 1000px) {
+
+  .option-action-board {
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 20px;
+   }
+
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+  }
+
+ 
+  .options-box{
+    height: 450px;
+    width: 300px;
+  }
+
+  .option-action-board {
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+   }
+   
+   
+   .action-board-button,
+   .action-board-icon {
+    width: 70px;
+    height: 70px;
+    background-color: transparent;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+   }
+
+   .scenarios {
+    height: 10px;
+    width: 200px;
+   }
+
+   .small-button-icon {
+    height: 20px;
+    margin: 5px;
+   }
 }
