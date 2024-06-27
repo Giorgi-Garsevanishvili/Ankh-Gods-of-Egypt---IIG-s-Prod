@@ -1,0 +1,14 @@
+.arrow-button {
+  background-color: transparent;
+  border: none;
+}
+
+.main {
+  flex-direction: row;
+}
+
+.actions-board {
+  background-color: aqua;
+  height: 350px;
+  width: 65%;
+}

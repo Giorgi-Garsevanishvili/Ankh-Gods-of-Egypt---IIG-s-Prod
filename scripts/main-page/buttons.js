@@ -7,7 +7,7 @@ function renderButtonList () {
 
 buttonList.forEach((button) => {
   buttonListHTML += `<a href="${button.url}" class="option-action-board">
-      <div class="hover-box"><img class="js-hover-icon js-hover-icon-${button.id}" src="./images/buttons/crown.png" alt="" data-id="${button.id}"></div>
+      <div class="hover-box"><img class="js-hover-icon js-hover-icon-${button.id}" alt="" data-id="${button.id}"></div>
       <button class="action-board-button" data-id="${button.id}"><img class="action-board-icon" src="${button.image}" alt=""></button>
       <div class="title button-title"><p>${button.text}</p></div>
     </a>`;
