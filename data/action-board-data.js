@@ -1,4 +1,4 @@
-export const actionBoarData = [
+export const actionBoardData = [
   {
     title: 'MOVE FIGURES',
     icon: 'img'
@@ -13,6 +13,6 @@ export const actionBoarData = [
   },
   {
     title: 'UNLOCK ANKH POWER',
-    icon: 'img'
+    icon: './images/action-board/ankh.png'
   }
 ];

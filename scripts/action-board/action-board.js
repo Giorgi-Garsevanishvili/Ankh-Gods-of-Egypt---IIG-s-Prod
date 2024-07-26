@@ -1,20 +1,30 @@
-import { actionBoarData } from "../../data/action-board-data"
+import { actionBoardData } from "../../data/action-board-data.js"
 
 renderActionBoard();
 
-function renderActionBoard () {
-  let actionBoarHTML = '';
+export function renderActionBoard () {
+  let actionBoardHTML = '';
 
-  actionBoarData.forEach((item) => {
-    actionBoarHTML +=  `
+  actionBoardData.forEach((item) => {
+    actionBoardHTML +=  `
       <div class="figures">
-        <div>
-          <button>action</button>
+        <div class="title"><h5>${item.title}</h5></div>
+        <div class="icon-items">
+        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button-last"><img class="icon-button-style" src="${item.icon}" alt=""></button>
         </div>
       </div>
     `;
   });
+
+  document.querySelector('.action-square').innerHTML = actionBoardHTML;
 }
 
 
-document.querySelector('.action-square').innerHTML = actionBoarHTML;
+
+
