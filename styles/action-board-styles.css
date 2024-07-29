@@ -22,10 +22,20 @@
   align-items: center;
 }
 
+.title {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-left: 20px;
+  margin-bottom: 20x;
+  margin-top: 20px;
+}
+
 .actions-board {
-  background-color: aqua;
-  height: 350px;
-  width: 600px;
+  background-color:rgb(60, 42, 16);
+  height: 500px;
+  width: 900px;
+  margin-bottom: 30px;
 }
 
 .page-title {
@@ -44,23 +54,37 @@
 
 .icon-button,
 .icon-button-last {
-  margin-left: 50px;
-  height: 10px;
-  width: 10px;
-  background-color: transparent;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 10px;
+  height: 55px;
+  width: 55px;
+  background-color: black;
+  border: 10px yellow;
+  border-radius: 50%;
   border: none;
+  cursor: pointer;
 }
 
 .icon-items {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  height: 10px;
-  width: 10px;
+  margin-top: 20px;
+  height: 15px;
+  width: 15px;
+  margin-left: 35px;
 }
 
 .icon-button-style {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
 }
+
+.icon-button-play {
+  height: 20px;
+  width: 20px;
+  margin-left: 20px;
+}
+
