@@ -11,31 +11,34 @@ export function renderActionBoard () {
         <div class="title-image"></div>
         <div class="title"><h5>${item.title}</h5></div>
         <div class="icon-items">
-        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+
+        <button class="icon-button icon-button-${item.styleLink}"><img class="icon-button-style" src="${item.icon}" alt=""></button>
 
         <img class="icon-button-play" src="./images/action-board/play.png" alt="">
 
-        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button icon-button-${item.styleLink}"><img class="icon-button-style" src="${item.icon}" alt=""></button>
 
         <img class="icon-button-play" src="./images/action-board/play.png" alt="">
 
-        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
-
-        <img class="icon-button-play" src="./images/action-board/play.png" alt="">
-        
-        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
-
-        <img class="icon-button-play" src="./images/action-board/play.png" alt="">
-
-        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
-
-        <img class="icon-button-play" src="./images/action-board/play.png" alt="">
-
-        <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button icon-button-${item.styleLink}"><img class="icon-button-style" src="${item.icon}" alt=""></button>
 
         <img class="icon-button-play" src="./images/action-board/play.png" alt="">
         
-        <button class="icon-button-last"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+        <button class="icon-button icon-button-${item.styleLink}"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+
+        <img class="icon-button-play" src="./images/action-board/play.png" alt="">
+
+        <button class="icon-button icon-button-${item.styleLink}"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+
+        <img class="icon-button-play" src="./images/action-board/play.png" alt="">
+
+        <button class="icon-button icon-button-${item.styleLink}"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+
+        <img class="icon-button-play" src="./images/action-board/play.png" alt="">
+        
+        <button class="icon-button icon-button-${item.styleLink} icon-button-last last-${item.styleLink}"><img class="icon-button-style" src="${item.icon}" alt=""></button>
+
+        <img class="icon-button-play" src="./images/action-board/play.png" alt="">
         </div>
       </div>
     `;

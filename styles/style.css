@@ -43,6 +43,7 @@ body {
   flex-direction: row;
   height: 60px;
   width: 30%;
+  text-decoration: none;
 }
 
 .left-image {
@@ -59,7 +60,9 @@ body {
   font-weight: bold;
   align-items: center;
   margin-left: 5px;
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .header-middle {
