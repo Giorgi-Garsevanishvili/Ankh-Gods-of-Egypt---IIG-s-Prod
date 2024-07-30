@@ -38,11 +38,12 @@ body {
 }
 
 .header-left {
-  margin-top: 18px;
+  margin-top: 15px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   height: 30px;
-  width: 30%;
+  width: 30px;
   text-decoration: none;
 }
 
@@ -72,7 +73,8 @@ body {
   flex-direction: row;
   justify-content: center;
   height: 50px;
-  width: 40%;
+  margin-left: 40%;
+  margin-right: 40%;
   border-radius: 20px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
@@ -83,12 +85,12 @@ body {
   flex-direction: row;
   justify-content: end;
   height: 40px;
-  width: 30%;
 }
 
 .horus-eye {
   width: 30px;
   height: 20px;
+  margin-right: -50px;
   cursor: pointer;
 }
 

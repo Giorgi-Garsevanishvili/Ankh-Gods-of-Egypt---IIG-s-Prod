@@ -76,6 +76,18 @@
   cursor: default;
 }
 
+.header-right {
+  margin-left: 5%; 
+}
+
+.header-middle {
+  margin-left: 36%;
+  margin-right: 36%;
+}
+
+.header-left {
+  margin-left: -6%;
+}
 
 .icon-button-style {
   height: 30px;
@@ -266,6 +278,7 @@
 .event-button-first {
   background-color: rgb(242, 228, 190);
   border: 3px solid goldenrod;
+  opacity: 1;
 }
 
 .event-button-camel {
@@ -296,3 +309,6 @@
 }
 
 
+.on {
+  opacity: 1;
+}

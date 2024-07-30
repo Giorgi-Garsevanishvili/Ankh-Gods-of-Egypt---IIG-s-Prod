@@ -28,7 +28,8 @@ export const EventBoardData = [
     styleLink: {
       primary: 'first',
       secondary: ''
-    }
+    },
+    id: 1
   },
   {
     icon: './images/action-board/pyramid.png',
