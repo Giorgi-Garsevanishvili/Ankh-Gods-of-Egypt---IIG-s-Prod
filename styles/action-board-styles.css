@@ -1,7 +1,31 @@
 .arrow-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: transparent;
   border: none;
-  margin: 20px;
+  margin: 35px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: rgb(253, 213, 183);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.5s;
+}
+
+.arrow-button:hover {
+  opacity: 1;
+  height: 80px;
+  width: 80px;
+  transition: 0.5s;
+  border: 2px solid rgb(20, 19, 19);
+}
+
+
+
+.arrow-button-style {
+  height: 70px;
 }
 
 .main {
@@ -47,6 +71,7 @@
   border: 1px solid goldenrod;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  cursor: default;
 }
 
 
