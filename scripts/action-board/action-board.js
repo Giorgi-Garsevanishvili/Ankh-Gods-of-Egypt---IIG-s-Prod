@@ -3,7 +3,11 @@ import { actionBoardData } from "../../data/action-board-data.js"
 renderActionBoard();
 
 export function renderActionBoard () {
+  let boardHTML = document.querySelector('.action-square');
   let actionBoardHTML = '';
+  let eventBoardHTML = `
+    <div class="hello">Hello</Div>
+  `;
 
   actionBoardData.forEach((item) => {
     actionBoardHTML +=  `
@@ -44,9 +48,28 @@ export function renderActionBoard () {
     `;
   });
 
-  document.querySelector('.action-square').innerHTML = actionBoardHTML;
-}
+ boardHTML.innerHTML = actionBoardHTML;
 
+  const buttons = document.querySelectorAll('.next-button, .prev-button');
+  
+  function toggleBoard () {
+    if (boardHTML.innerHTML.includes('figures')) {
+      boardHTML.innerHTML = eventBoardHTML;
+      document.querySelector('.page-title').innerHTML = 'Event Board'
+    }
+    
+    else if (boardHTML.innerHTML.includes('Hello')) {
+      boardHTML.innerHTML = actionBoardHTML;
+      document.querySelector('.page-title').innerHTML = 'Action Board'
+    }
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      toggleBoard();
+    })
+  })
+}
 
 
 
