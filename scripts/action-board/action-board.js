@@ -8,6 +8,7 @@ export function renderActionBoard () {
   actionBoardData.forEach((item) => {
     actionBoardHTML +=  `
       <div class="figures">
+        <div class="title-image"></div>
         <div class="title"><h5>${item.title}</h5></div>
         <div class="icon-items">
         <button class="icon-button"><img class="icon-button-style" src="${item.icon}" alt=""></button>
