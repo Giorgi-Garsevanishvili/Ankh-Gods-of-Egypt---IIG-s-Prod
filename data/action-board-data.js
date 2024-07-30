@@ -21,3 +21,139 @@ export const actionBoardData = [
 
   }
 ];
+
+export const EventBoardData = [
+  {
+    icon: './images/action-board/ship.png',
+    styleLink: {
+      primary: 'first',
+      secondary: ''
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/fan.png',
+    styleLink: {
+      primary: 'fan',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/camel.png',
+    styleLink: {
+      primary: 'camel',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/fan.png',
+    styleLink: {
+      primary: 'fan',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/camel.png',
+    styleLink: {
+      primary: 'camel',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/fan.png',
+    styleLink: {
+      primary: 'fan',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/camel.png',
+    styleLink: {
+      primary: 'camel',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/fan.png',
+    styleLink: {
+      primary: 'fan',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/pyramid.png',
+    styleLink: {
+      primary: 'pyramid',
+      secondary: 'middle'
+    }
+  },
+  {
+    icon: './images/action-board/fan.png',
+    styleLink: {
+      primary: 'fan',
+      secondary: 'last'
+    }
+  }
+]

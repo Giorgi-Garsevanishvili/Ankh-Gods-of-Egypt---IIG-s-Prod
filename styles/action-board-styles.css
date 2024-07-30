@@ -29,9 +29,10 @@
 }
 
 .main {
+  display: flex;
   flex-direction: column;
   margin: 0px;
-  justify-content: unset;
+  justify-content: center;
 }
 
 .main-top {
@@ -41,10 +42,10 @@
 
 .main-middle {
   margin-top: 0px;
-  margin-bottom: 3%;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
 }
 
@@ -53,7 +54,8 @@
   justify-content: start;
   align-items: start;
   margin-left: 20px;
-  margin-top: 20px;
+  margin-top: 50px;
+  height: 40px;
 }
 
 
@@ -62,11 +64,11 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 0, 0);
-  margin-left: -355px;
-  margin-top: 55px;
+  margin-top: 8px;
+  margin-bottom: 0px;
   font-size: 20px;
   width: 200px;
-  height: 30px;
+  height: 25px;
   color: rgb(217, 190, 128);
   border: 1px solid goldenrod;
   border-top-left-radius: 10px;
@@ -76,8 +78,8 @@
 
 
 .icon-button-style {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
 }
 
 .icon-button-play {
@@ -91,7 +93,7 @@
   margin: 3px 3px;
   background-color:rgb(60, 42, 16);
   border: 2px solid rgb(131, 77, 8);
-  height: 130px;
+  height: 95px;
   width: 610px;
 }
 
@@ -105,6 +107,7 @@
 
 .action-board {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -112,7 +115,8 @@
 .title {
   display: flex; 
   color: white;
-  margin-top: -10px;
+  margin-top: -20px;
+  font-size: 12px;
 }
 
 
@@ -124,8 +128,9 @@
 }
 
 .title-image {
-  height: 15px;
+  height: 10px;
   width: 100%;
+  margin-bottom: 5px;
   background-image: url(../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg);
   opacity: 0.3;
   border: 2px solid black;
@@ -134,12 +139,12 @@
 
 .icon-button:hover {
   opacity: 1;
-  border: 5px solid goldenrod;
+  border: 4px solid goldenrod;
 }
 
 .icon-button-last:hover {
   opacity: 1;
-  border: 4px solid goldenrod;
+  border: 5px solid goldenrod;
 }
 
 .icon-button,
@@ -148,11 +153,11 @@
   align-items: center;
   justify-content: center;
   padding: 0px;
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   margin-top: -10px;
   margin-right: 7px;
-  margin-left: 7px;
+  margin-left: 15px;
   border-radius: 50%;
   cursor: pointer;
   opacity: 0.3;
@@ -165,10 +170,10 @@
 }
 
 .icon-button-last {
-  height: 62px;
-  width: 62px;
+  height: 55px;
+  width: 55px;
   background-color: rgb(255, 255, 255);
-  border: 5px solid rgb(240, 140, 82);
+  border: 3px solid rgb(240, 140, 82);
   margin-bottom: 4px;
   transition: 0.5s;
 }
@@ -184,33 +189,110 @@
 }
 
 .icon-button-MF {
-  border: 4px solid rgb(20, 33, 155);
+  border: 2px solid rgb(20, 33, 155);
 }
 
 .icon-button-SF {
-  border: 4px solid rgb(167, 8, 8);
+  border: 2px solid rgb(167, 8, 8);
 }
 
 .icon-button-GF {
-  border: 4px solid rgb(22, 92, 47);
+  border: 2px solid rgb(22, 92, 47);
 }
 
 .icon-button-UAP {
-  border: 4px solid rgb(240, 140, 82);
+  border: 2px solid rgb(240, 140, 82);
 }
 
 .down-arrow-section {
   border: 1px solid rgb(246, 221, 156);
   margin-left: 10px;
   width: 80px;
-  height: 555px;
+  height: 420px;
   background-color: rgb(58, 39, 6);
 }
 
-.hello {
-  width: 200px;
-  height: 200px;
-  background-color: aqua;
+
+.action-board-container,
+.event-board-container {
+  display: none;
+}
+
+.action-board-container {
+  display: flex;
+  flex-direction: column; 
+}
+
+.event-board-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 45px;
+  padding-top: 10px;
+  background-color: rgb(158, 148, 136);
+  width: 600px;
+  height: 280px;
+  border: 2px solid rgb(117, 66, 4);
+  border-radius: 160px;
+}
+
+.hidden {
+  display: none;
+}
+
+.event-button {
+  padding: 10px;
+  margin: 12px 18px;
+  margin-top: 10px;
+  border-radius: 50%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: 0.5s;
+}
+
+.event-button:hover {
+  opacity: 1;
+  padding: 12px;
+  transition: 0.5s;
+  
+}
+
+.event-button-first {
+  background-color: rgb(242, 228, 190);
+  border: 3px solid goldenrod;
+}
+
+.event-button-camel {
+  border: 3px solid rgb(16, 29, 145);
+}
+
+.event-button-fan {
+  border: 3px solid rgb(148, 7, 7);
+}
+
+.event-button-pyramid {
+  border: 3px solid gold;
+}
+
+.icon-button-play-event {
+  height: 15px;
+}
+
+.arrow-last {
+  display: none;
+}
+
+.icon-button-play-UAP,
+.icon-button-play-MF,
+.icon-button-play-SF,
+.icon-button-play-GF {
+  display: none;
 }
 
 
