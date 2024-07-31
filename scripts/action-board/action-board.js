@@ -1,6 +1,7 @@
 import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
 
 let activeButtonIndex = 0; 
+let activeActionButtonIndices = {};
 
 function renderActionBoard() {
   let boardHTML = document.querySelector('.board-html');
@@ -26,7 +27,7 @@ function renderActionBoard() {
           <div class="title-image"></div>
           <div class="title"><h5>${item.title}</h5></div>
           <div class="icon-items">
-            ${[...Array(6)].map(() => `
+            ${[...Array(item.amount)].map(() => `
               <button class="icon-button icon-button-${item.styleLink}" data-id="${item.id}">
                 <img class="icon-button-style" src="${item.icon}" alt="">
               </button>
@@ -49,6 +50,48 @@ function renderActionBoard() {
 
   const buttons = document.querySelectorAll('.next-button, .prev-button');
   const eventButtons = document.querySelectorAll('.event-button');
+
+  function getActionButtonsByClass(pattern) {
+    return document.querySelectorAll(`.icon-button-${pattern}`);
+  }
+
+  function switchToNextActiontButton(pattern) {
+    const actionButtons = getActionButtonsByClass(pattern);
+    const totalButtons = actionButtons.length;
+
+    if (totalButtons === 0) {
+      console.log('No action buttons available');
+      return;
+    }
+
+    // Initialize the active index for this pattern if not already done
+    if (!(pattern in activeActionButtonIndices)) {
+        activeActionButtonIndices[pattern] = 0;
+   }
+
+    let currentIndex = activeActionButtonIndices[pattern];
+
+    // Remove 'active' class from the current button
+    actionButtons[currentIndex].classList.remove('on');
+    
+    // Update the index of the active button
+    currentIndex = (currentIndex + 1) % totalButtons; 
+    
+    // Add 'active' class to the new active button
+    actionButtons[currentIndex].classList.add('on');
+    
+    // Update the button's ID to manage 'disabled' state correctly
+    actionButtons.forEach((button, index) => {
+      button.disabled = (index !== currentIndex);
+    });
+
+    activeActionButtonIndices[pattern] = currentIndex
+
+    console.log(currentIndex);
+    if (currentIndex ===  0) {
+      alert(`Current Action Row Reset!`)
+    }
+  }
 
   function switchToNextButton() {
     const totalButtons = eventButtons.length;
@@ -106,6 +149,26 @@ function renderActionBoard() {
   // Add event listener for button switching
   eventButtons.forEach(button => {
     button.addEventListener('click', switchToNextButton);
+  });
+
+actionBoardData.forEach((item) => {
+  const actionButtons = getActionButtonsByClass(item.styleLink);
+  if (actionButtons.length > 0) {
+    if (!(item.styleLink in activeActionButtonIndices)) {
+      activeActionButtonIndices[item.styleLink] = 0;
+    }
+
+    let currentIndex = activeActionButtonIndices[item.styleLink];
+    actionButtons[currentIndex].classList.add('on');
+    actionButtons.forEach((button, index) => {
+      button.disabled = (index !== currentIndex);
+    });
+
+     // Add event listener for button switching
+  actionButtons.forEach(button => {
+    button.addEventListener('click', () => switchToNextActiontButton(item.styleLink));
+      });
+    }
   });
 }
 

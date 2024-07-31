@@ -3,26 +3,30 @@ export const actionBoardData = [
     title: 'MOVE FIGURES',
     icon: './images/action-board/giza.png',
     styleLink: "MF",
-    id: 0
+    id: 0,
+    amount: 6
     
   },
   {
     title: 'SUMMON FIGURES',
     icon: './images/action-board/man.png',
     styleLink: "SF",
-    id: 1
+    id: 1,
+    amount: 6
   },
   {
     title: 'GAIN FOLLOWERS',
     icon: './images/action-board/pharaoh.png',
     styleLink: "GF",
-    id: 2
+    id: 2,
+    amount: 6
   },
   {
     title: 'UNLOCK ANKH POWER',
     icon: './images/action-board/ankh.png',
     styleLink: "UAP",
-    id: 3
+    id: 3,
+    amount: 5
   }
 ];
 

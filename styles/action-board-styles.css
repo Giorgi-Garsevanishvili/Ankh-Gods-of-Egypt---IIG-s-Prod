@@ -145,8 +145,8 @@
 .icon-items {
   display: flex;
   align-items: center;
-  margin-left: 5px;
-  margin-bottom: 10px
+  margin-left: 6px;
+  margin-bottom: 7px
 }
 
 .title-image {
@@ -192,8 +192,8 @@
 }
 
 .icon-button-last {
-  height: 55px;
-  width: 55px;
+  height: 62px;
+  width: 62px;
   background-color: rgb(255, 255, 255);
   border: 3px solid rgb(240, 140, 82);
   margin-bottom: 4px;
@@ -224,6 +224,13 @@
 
 .icon-button-UAP {
   border: 2px solid rgb(240, 140, 82);
+  height: 58px;
+  width: 58px;
+}
+
+.last-UAP {
+  height: 62px;
+  width: 62px;
 }
 
 .down-arrow-section {
