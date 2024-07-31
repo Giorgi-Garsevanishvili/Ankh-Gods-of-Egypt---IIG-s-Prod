@@ -1,5 +1,6 @@
 import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
 
+
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
 
@@ -173,3 +174,5 @@ actionBoardData.forEach((item) => {
 }
 
 renderActionBoard();
+
+

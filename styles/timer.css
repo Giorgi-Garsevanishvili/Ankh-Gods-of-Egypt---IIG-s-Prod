@@ -1,0 +1,85 @@
+.timer-title {
+  color: rgb(255, 255, 255);
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: default;
+}
+
+.time-css {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  margin-top: 0px;
+  height: 45px;
+  margin-bottom: 5px;
+  color: wheat;
+  cursor: default;
+}
+
+.timer-box {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(58, 35, 19);
+  margin-top: 1px;
+  margin-bottom: 1px;
+  width: 109px;
+  height: 114px;
+  border-radius: 7px;
+  border: 1px solid rgb(240, 205, 131);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.start-css,
+.stop-css,
+.reset-css {
+  font-size: 11px;
+  font-weight: bold;
+  width: 45px;
+  height: 25px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: 0.2s;
+  border: 1px solid goldenrod;
+}
+
+.start-css:hover,
+.stop-css:hover,
+.reset-css:hover {
+  border: 2px solid rgb(209, 178, 3);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.2s;
+  padding: 2px;
+}
+
+.start-css {
+  color: wheat;
+  background-color: green;
+}
+
+.stop-css {
+  color: wheat;
+  background-color: green;
+}
+
+.reset-css {
+  color: rgb(231, 219, 198);
+  background-color: rgb(108, 28, 28);
+}
+
+.start-css:active,
+.stop-css:active,
+.reset-css:active {
+  transition: 0.5;
+  opacity: 0.2;
+}
+
+.start-active-css {
+  background-color: red;
+  color: white;
+}

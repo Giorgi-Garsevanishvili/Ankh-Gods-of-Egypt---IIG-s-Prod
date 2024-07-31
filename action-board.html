@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/action-board-styles.css">
+  <link rel="stylesheet" href="./styles/arrow-section.css">
+  <link rel="stylesheet" href="./styles/timer.css">
   <title>Actions Board</title>
 </head>
 <body>
@@ -36,7 +38,34 @@
     <div class="main-middle">
       <button class="arrow-button prev-button" ><img class="arrow-button-style" src="./images/left-arrow.png" alt=""></button>
       <div class="board-html"></div>
-      <div class="down-arrow-section"></div>
+      <div class="down-arrow-section">
+        <div class="arrow-container">
+          <div class="arrow-container-title">Settings</div>
+          <div class="player-selector">
+            <div class="player-amount" >Player Amount</div>
+            <select class="player-selector-style" name="player" id="player">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="actions-count">
+            <div class="actions-count-title">Actions count</div>
+            <div class="actions-counter-monitor"></div>
+          </div>
+          <div class="timer-box">
+            <div class="timer-title">Timer</div>
+            <div class="timer time-css"></div>
+            <div class="buttons buttons-css">
+              <button class="js-start-timer start-css">Start</button>
+              <button class="js-stop-timer stop-css">Stop</button>
+              <button class="js-reset-timer reset-css">Reset</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <button class="arrow-button next-button" ><img class="arrow-button-style" src="./images/right-arrow.png" alt=""></button>
     </div>
 
@@ -64,5 +93,6 @@
   
   
   <script type="module" src="./scripts/action-board/action-board.js"></script>
+  <script type="module" src="./scripts/timer.js"></script>
 </body>
 </html>
