@@ -3,6 +3,7 @@ import { actionBoardData, EventBoardData } from "../../data/action-board-data.js
 
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
+let actionCount = 3;
 
 function renderActionBoard() {
   let boardHTML = document.querySelector('.board-html');
@@ -167,12 +168,65 @@ actionBoardData.forEach((item) => {
 
      // Add event listener for button switching
   actionButtons.forEach(button => {
-    button.addEventListener('click', () => switchToNextActiontButton(item.styleLink));
+    button.addEventListener('click', () => {
+      
+
+      if (item.styleLink === 'MF') {
+        if (actionCount === 2 || actionCount === 1) {
+          renderActionCount();
+          switchToNextActiontButton(item.styleLink);
+        } else {
+          alert('none');
+          actionCount = 2;
+        }
+      }
+  
+      if (item.styleLink === 'SF') {
+        if (actionCount === 2 || actionCount === 1) {
+          renderActionCount();
+          switchToNextActiontButton(item.styleLink);
+        } else {
+          alert('none');
+          actionCount = 2;
+        }
+      }
+  
+      if (item.styleLink === 'GF') {
+        if (actionCount === 2 || actionCount === 1) {
+          renderActionCount();
+          switchToNextActiontButton(item.styleLink);
+        } else {
+          alert('none');
+          actionCount = 2;
+        }
+      }
+  
+      if (item.styleLink === 'UAP') {
+        if (actionCount === 2 || actionCount === 1) {
+          renderActionCount(2);
+          switchToNextActiontButton(item.styleLink);
+        } else {
+          alert('none');
+          
+          actionCount = 2;
+        }
+      }
+      
+    });
       });
     }
   });
 }
 
+function renderActionCount (amount) {
+  if (actionCount > 0 && actionCount <=5){
+    actionCount --- amount;
+  } else {
+    alert('no more actions')
+    actionCount = 2;
+  }
+  document.querySelector('.actions-counter-monitor').innerHTML = actionCount;
+}
+
+renderActionCount();
 renderActionBoard();
-
-

@@ -83,9 +83,13 @@
   padding-top: 3px;
 }
 .actions-counter-monitor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 10px;
-  width: 70px;
-  height: 70px;
+  font-size: 40px;
+  width: 65px;
+  height: 65px;
   background-color: black;
   border-radius: 20px;
   border: 2px solid snow;
