@@ -192,31 +192,40 @@ actionBoardData.forEach((item) => {
           sfCount = 1;
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-          console.log(sfCount);
-          console.log(actionCount);
         } else if (sfCount === 1 && actionCount < 2) {
+          alert('In this round you already used this move, please try another!');
+        } else if (gfCount === 1) {
+          ResetActionCount();
+          alert('In this round you can`t use this action anymore, please try another!');
+        } else if (actionCount < 1){
+          ResetActionCount();
+        }
+      }
+  
+      if (item.styleLink === 'GF') {
+        if (actionCount === 2 || sfCount === 1 && actionCount > 0) {
+          gfCount = 1;
+          renderActionCount();
+          switchToNextActiontButton(item.styleLink);
+        } else if (actionCount === 2 || mfCount === 1 && actionCount > 0) {
+          gfCount = 1;
+          renderActionCount();
+          switchToNextActiontButton(item.styleLink);
+        } else if (gfCount === 1 && actionCount < 2) {
           alert('In this round you already used this move, please try another!');
         } 
       }
   
-      if (item.styleLink === 'GF') {
-        if (actionCount === 2 || actionCount === 1) {
-          renderActionCount();
-          switchToNextActiontButton(item.styleLink);
-        } else {
-          alert('none');
-        }
-      }
-  
       if (item.styleLink === 'UAP') {
-        if (actionCount <=2 ) {
+        if (actionCount <=2 && actionCount > 0) {
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
           alert('No more action for you in this round!');
           alert('Action Count Reset! Next Player Turn')
-          actionCount = 2;
-          displayActionCount();
-        } 
+          ResetActionCount();
+        } else {
+          alert('no more actions')
+        }
       }
       
     });
@@ -225,18 +234,24 @@ actionBoardData.forEach((item) => {
   });
 }
 
+function ResetActionCount (){
+  actionCount = 2;
+  displayActionCount();
+}
+
 function displayActionCount () {
   document.querySelector('.actions-counter-monitor').innerHTML = actionCount;
 }
 
 function renderActionCount (amount) {
-  if (actionCount > 0 && actionCount <=5){
+  if (actionCount > 0 && actionCount <=3){
     actionCount --- amount;
   } else if (actionCount === 0) {
     alert('no more actions')
   }
 
   displayActionCount();
+
 
   
 }
