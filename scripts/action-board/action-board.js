@@ -4,8 +4,13 @@ import { actionBoardData, EventBoardData } from "../../data/action-board-data.js
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
 let actionCount = 3;
+let mfCount;
+let sfCount;
+let gfCount;
+let uapCount;
 
 function renderActionBoard() {
+  
   let boardHTML = document.querySelector('.board-html');
   let actionBoardHTML = '';
   let eventBoardHTML = '';
@@ -169,28 +174,29 @@ actionBoardData.forEach((item) => {
      // Add event listener for button switching
   actionButtons.forEach(button => {
     button.addEventListener('click', () => {
-      let mfCount = '';
-      let sfCount = '';
-      let gfCount = '';
-      let uapCount = '';
 
       if (item.styleLink === 'MF') {
         if (actionCount === 2) {
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
+          mfCount = 1;
         } else if (actionCount === 1) {
-          alert('In this round you already used this move, please try another!');
-        } 
+          alert('In this round you can`t use this action anymore, please try another!');
+        } else if (actionCount === 0) {
+          alert('No more action')
+        }
       }
   
       if (item.styleLink === 'SF') {
-        if (actionCount === 2 || actionCount === 1 ) {
+        if (actionCount === 2 || mfCount === 1 && actionCount > 0) {
+          sfCount = 1;
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-          sfCount = 1;
-        } else if (mfCount === 1  || actionCount === 1) {
+          console.log(sfCount);
+          console.log(actionCount);
+        } else if (sfCount === 1 && actionCount < 2) {
           alert('In this round you already used this move, please try another!');
-        }
+        } 
       }
   
       if (item.styleLink === 'GF') {
@@ -203,12 +209,14 @@ actionBoardData.forEach((item) => {
       }
   
       if (item.styleLink === 'UAP') {
-        if (actionCount === 2) {
+        if (actionCount <=2 ) {
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-        } else if (actionCount === 1) {
-          alert('In this round you already used this move, please try another!');
-        }
+          alert('No more action for you in this round!');
+          alert('Action Count Reset! Next Player Turn')
+          actionCount = 2;
+          displayActionCount();
+        } 
       }
       
     });
@@ -217,16 +225,20 @@ actionBoardData.forEach((item) => {
   });
 }
 
+function displayActionCount () {
+  document.querySelector('.actions-counter-monitor').innerHTML = actionCount;
+}
+
 function renderActionCount (amount) {
   if (actionCount > 0 && actionCount <=5){
     actionCount --- amount;
-  } else {
+  } else if (actionCount === 0) {
     alert('no more actions')
-    return;
-    actionCount = 2;
-    
   }
-  document.querySelector('.actions-counter-monitor').innerHTML = actionCount;
+
+  displayActionCount();
+
+  
 }
 
 renderActionCount();
