@@ -169,25 +169,27 @@ actionBoardData.forEach((item) => {
      // Add event listener for button switching
   actionButtons.forEach(button => {
     button.addEventListener('click', () => {
-      
+      let mfCount = '';
+      let sfCount = '';
+      let gfCount = '';
+      let uapCount = '';
 
       if (item.styleLink === 'MF') {
-        if (actionCount === 2 || actionCount === 1) {
+        if (actionCount === 2) {
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-        } else {
-          alert('none');
-          actionCount = 2;
-        }
+        } else if (actionCount === 1) {
+          alert('In this round you already used this move, please try another!');
+        } 
       }
   
       if (item.styleLink === 'SF') {
-        if (actionCount === 2 || actionCount === 1) {
+        if (actionCount === 2 || actionCount === 1 ) {
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-        } else {
-          alert('none');
-          actionCount = 2;
+          sfCount = 1;
+        } else if (mfCount === 1  || actionCount === 1) {
+          alert('In this round you already used this move, please try another!');
         }
       }
   
@@ -197,18 +199,15 @@ actionBoardData.forEach((item) => {
           switchToNextActiontButton(item.styleLink);
         } else {
           alert('none');
-          actionCount = 2;
         }
       }
   
       if (item.styleLink === 'UAP') {
-        if (actionCount === 2 || actionCount === 1) {
-          renderActionCount(2);
+        if (actionCount === 2) {
+          renderActionCount();
           switchToNextActiontButton(item.styleLink);
-        } else {
-          alert('none');
-          
-          actionCount = 2;
+        } else if (actionCount === 1) {
+          alert('In this round you already used this move, please try another!');
         }
       }
       
@@ -223,7 +222,9 @@ function renderActionCount (amount) {
     actionCount --- amount;
   } else {
     alert('no more actions')
+    return;
     actionCount = 2;
+    
   }
   document.querySelector('.actions-counter-monitor').innerHTML = actionCount;
 }
