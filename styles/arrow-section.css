@@ -86,11 +86,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 7px;
   font-size: 40px;
   width: 65px;
   height: 65px;
   background-color: black;
   border-radius: 20px;
   border: 2px solid snow;
+}
+
+.action-count-reset {
+  width: 70px;
+  height: 20px;
+  margin-top: 7px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  padding: 2px;
+  border: 1px solid wheat;
+  background-color: brown;
+  color: white;
+  transition: 0.5s;
+}
+
+.action-count-reset:hover {
+  background-color: wheat;
+  color: brown;
+  border: 1px solid black;
+}
+
+.opacity {
+  opacity: 1;
 }

@@ -1,13 +1,18 @@
 import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
 
 
+// function PlayerAmount (){
+//   let playerAmount = document.querySelector('.player-selector-style')
+//   if (){}
+// }
+
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
 let actionCount = 3;
 let mfCount;
 let sfCount;
 let gfCount;
-let uapCount;
+
 
 function renderActionBoard() {
   
@@ -58,13 +63,20 @@ function renderActionBoard() {
   const buttons = document.querySelectorAll('.next-button, .prev-button');
   const eventButtons = document.querySelectorAll('.event-button');
 
+  function checkActionCount(){
+    if (actionCount === 0) {
+      alert('Your Action Registered!')
+      ResetActionCount();
+    }
+  }
+
   function getActionButtonsByClass(pattern) {
     return document.querySelectorAll(`.icon-button-${pattern}`);
   }
 
   function switchToNextActiontButton(pattern) {
     const actionButtons = getActionButtonsByClass(pattern);
-    const totalButtons = actionButtons.length;
+    const totalButtons = actionButtons.length - 1;
 
     if (totalButtons === 0) {
       console.log('No action buttons available');
@@ -96,6 +108,9 @@ function renderActionBoard() {
 
     console.log(currentIndex);
     if (currentIndex ===  0) {
+      actionButtons[currentIndex + totalButtons].classList.add('opacity')
+      setTimeout(() => {actionButtons[currentIndex + totalButtons].classList.remove('opacity')}, 4000 );
+      ResetActionCount();
       alert(`Current Action Row Reset!`)
     }
   }
@@ -182,8 +197,9 @@ actionBoardData.forEach((item) => {
           mfCount = 1;
         } else if (actionCount === 1) {
           alert('In this round you can`t use this action anymore, please try another!');
-        } else if (actionCount === 0) {
-          alert('No more action')
+        } else  {
+          alert ('Action Count Reset! Next Player!');
+          ResetActionCount();
         }
       }
   
@@ -192,14 +208,12 @@ actionBoardData.forEach((item) => {
           sfCount = 1;
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-        } else if (sfCount === 1 && actionCount < 2) {
+          checkActionCount();
+        } else if (sfCount === 1 && actionCount === 2 && actionCount > 0) {
           alert('In this round you already used this move, please try another!');
-        } else if (gfCount === 1) {
-          ResetActionCount();
+        } else if (sfCount === 1 || actionCount === 1) {
           alert('In this round you can`t use this action anymore, please try another!');
-        } else if (actionCount < 1){
-          ResetActionCount();
-        }
+        } 
       }
   
       if (item.styleLink === 'GF') {
@@ -207,21 +221,23 @@ actionBoardData.forEach((item) => {
           gfCount = 1;
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
+          checkActionCount();
         } else if (actionCount === 2 || mfCount === 1 && actionCount > 0) {
           gfCount = 1;
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-        } else if (gfCount === 1 && actionCount < 2) {
+        } else if (gfCount === 1 && actionCount < 2 && actionCount > 0) {
           alert('In this round you already used this move, please try another!');
-        } 
+        } else {
+          ResetActionCount();
+        }
       }
   
       if (item.styleLink === 'UAP') {
         if (actionCount <=2 && actionCount > 0) {
           renderActionCount();
           switchToNextActiontButton(item.styleLink);
-          alert('No more action for you in this round!');
-          alert('Action Count Reset! Next Player Turn')
+          alert('Your action Registered!')
           ResetActionCount();
         } else {
           alert('no more actions')
@@ -235,8 +251,13 @@ actionBoardData.forEach((item) => {
 }
 
 function ResetActionCount (){
+  mfCount = 0;
+  sfCount = 0;
+  gfCount = 0;
   actionCount = 2;
+  document.querySelector('.action-count-reset').classList.add('hidden')
   displayActionCount();
+  alert('Action Count Reset! Next Playet Please!')
 }
 
 function displayActionCount () {
@@ -248,13 +269,27 @@ function renderActionCount (amount) {
     actionCount --- amount;
   } else if (actionCount === 0) {
     alert('no more actions')
+    ResetActionCount();
   }
 
+  if (actionCount <2) {
+    document.querySelector('.action-count-reset').classList.remove('hidden')
+  }
+
+
   displayActionCount();
-
-
-  
 }
+
+
+
+document.querySelector('.action-count-reset').addEventListener('click', () => {
+  if (actionCount === 2) {
+    return
+  } else {
+  ResetActionCount();
+  }
+})
+
 
 renderActionCount();
 renderActionBoard();
