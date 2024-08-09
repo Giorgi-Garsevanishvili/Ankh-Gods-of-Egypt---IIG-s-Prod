@@ -1,10 +1,6 @@
 import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
 
 
-// function PlayerAmount (){
-//   let playerAmount = document.querySelector('.player-selector-style')
-//   if (){}
-// }
 
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
@@ -12,6 +8,37 @@ let actionCount = 3;
 let mfCount;
 let sfCount;
 let gfCount;
+
+
+
+const defaultAmounts = actionBoardData.map(item => item.amount);
+
+const playerSelect = document.querySelector('#player');
+
+playerSelect.addEventListener('change', () => {
+  const selectedValue = parseInt(playerSelect.value, 10);
+
+  actionBoardData.forEach((item, index) => {
+
+    item.amount = defaultAmounts[index];
+
+    if (selectedValue === 4) {
+      document.querySelector('.figures').classList.add('width');
+      document.querySelector('.width').classList.remove('figures');
+      renderActionBoard();
+      item.amount -- ; 
+    } else if (selectedValue === 3) {
+      item.amount -= 2; 
+    } else if (selectedValue === 2) {
+      item.amount -= 3; 
+    } else if (selectedValue === 5) {
+      item.amount = defaultAmounts[index];
+    }
+  
+  });
+  renderActionBoard();
+});
+
 
 
 function renderActionBoard() {
