@@ -6,56 +6,85 @@ let actionCount = 3;
 let mfCount;
 let sfCount;
 let gfCount;
+let renderedD = true;
+let renderedB;
 
-let startingBoard = `
-<div class="start-board">Choose player amount to display the board!<div>
-<div class="rules"></div>
-`;
+const defaultBoard = document.querySelector('.board-html');
+const actionCountReset = document.querySelector('.action-count-reset');
+const boardSwitchers = document.querySelectorAll('.next-button, .prev-button');
 
-document.querySelector('.board-html').innerHTML += startingBoard;
-document.querySelectorAll('.next-button, .prev-button').forEach((button) => {
-  button.classList.add('hidden');
-});
+playerAmountChoose();
+mainReset();
 
-const defaultAmounts = actionBoardData.map(item => item.amount);
-const playerSelect = document.querySelector('#player');
+function defaultBoardRender (){
 
-playerSelect.addEventListener('change', () => {
-  const selectedValue = parseInt(playerSelect.value, 10);
+  renderedD = true;
+  renderedB = false;
 
-  actionBoardData.forEach((item, index) => {
-    item.amount = defaultAmounts[index];
+  console.log(renderedB);
+  console.log(renderedD);
 
-    if (selectedValue === 3) {
-      item.amount--;
-    } else if (selectedValue === 4) {
-      item.amount -= 2;
-    } else if (selectedValue === 5) {
-      item.amount -= 3;
-    } else if (selectedValue === 2) {
-      item.amount = defaultAmounts[index];
-    } 
+  let startingBoard = `
+  <div class="start-board">Choose player amount to display the board!<div>
+  <div class="rules"></div>
+  `;
+
+  
+
+  
+  defaultBoard.innerHTML += startingBoard;
+  boardSwitchers.forEach((button) => {
+    button.classList.add('hidden');
   });
-  if (selectedValue === 0) {
-    document.querySelector('.action-board-container').classList.add('hidden');
-    document.querySelectorAll('.next-button, .prev-button').forEach((button) => {
-      button.classList.add('hidden');
+}
+
+function playerAmountChoose (){
+  const defaultAmounts = actionBoardData.map(item => item.amount);
+  const playerSelect = document.querySelector('#player');
+ 
+
+  playerSelect.addEventListener('change', () => {
+    const selectedValue = parseInt(playerSelect.value, 10);
+    const boardContainer = document.querySelector('.action-board-container');
+
+    actionBoardData.forEach((item, index) => {
+      item.amount = defaultAmounts[index];
+
+      if (selectedValue === 3) {
+        item.amount--;
+      } else if (selectedValue === 4) {
+        item.amount -= 2;
+      } else if (selectedValue === 5) {
+        item.amount -= 3;
+      } else if (selectedValue === 2) {
+        item.amount = defaultAmounts[index];
+      } 
     });
-    document.querySelector('.board-html').innerHTML += startingBoard;
-  } else {
-    document.querySelectorAll('.next-button, .prev-button').forEach((button) => {
-      button.classList.remove('hidden');
-    });
 
-    
-
-    renderActionBoard();
-  }
-     
-});
-
+    if (selectedValue === 0) {
+      boardContainer.classList.add('hidden');
+      boardSwitchers.forEach((button) => {
+        button.classList.add('hidden');
+      });
+      defaultBoardRender();
+    } else {
+      boardSwitchers.forEach((button) => {
+        button.classList.remove('hidden');
+      });
+      renderActionBoard();
+    }
+  });
+ defaultBoardRender(); 
+}
 
 function renderActionBoard() {
+
+  renderedD = false;
+  renderedB = true;
+
+  console.log(renderedB);
+  console.log(renderedD);
+
   let boardHTML = document.querySelector('.board-html');
   let actionBoardHTML = '';
   let eventBoardHTML = '';
@@ -102,6 +131,7 @@ function renderActionBoard() {
 
   attachEventListeners();
   displayActionCount();
+  mainReset();
 }
 
 function checkActionCount() {
@@ -293,7 +323,7 @@ function ResetActionCount (){
   sfCount = 0;
   gfCount = 0;
   actionCount = 2;
-  document.querySelector('.action-count-reset').classList.add('hidden')
+  actionCountReset.classList.add('hidden')
   displayActionCount();
   alert('Action Count Reset! Next Playet Please!')
 }
@@ -318,9 +348,34 @@ function renderActionCount (amount) {
   displayActionCount();
 }
 
+function mainReset () {
+  const reset = document.querySelector('.reset');
+  
+  reset.addEventListener('click', () => {
+    activeButtonIndex = 0; 
+    activeActionButtonIndices = {};
+    actionCount = 2;
+    mfCount;
+    sfCount;
+    gfCount;
+    actionCountReset.classList.add('hidden')
+    displayActionCount();
+    
+
+    if (renderedB = true && renderedD === false) {
+
+      document.querySelector('.action-board-container').classList.add('hidden');
+      boardSwitchers.forEach((button) => {
+        button.classList.add('hidden');
+      });
+      defaultBoardRender();
+    } 
+  })
+}
 
 
-document.querySelector('.action-count-reset').addEventListener('click', () => {
+
+actionCountReset.addEventListener('click', () => {
   if (actionCount === 2) {
     return
   } else {
