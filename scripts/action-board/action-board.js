@@ -7,9 +7,15 @@ let mfCount;
 let sfCount;
 let gfCount;
 
-let startingBoard = `<div class="start-board">Choose player amount to display the board!<div>`
+let startingBoard = `
+<div class="start-board">Choose player amount to display the board!<div>
+<div class="rules"></div>
+`;
 
 document.querySelector('.board-html').innerHTML += startingBoard;
+document.querySelectorAll('.next-button, .prev-button').forEach((button) => {
+  button.classList.add('hidden');
+});
 
 const defaultAmounts = actionBoardData.map(item => item.amount);
 const playerSelect = document.querySelector('#player');
@@ -32,8 +38,17 @@ playerSelect.addEventListener('change', () => {
   });
   if (selectedValue === 0) {
     document.querySelector('.action-board-container').classList.add('hidden');
+    document.querySelectorAll('.next-button, .prev-button').forEach((button) => {
+      button.classList.add('hidden');
+    });
     document.querySelector('.board-html').innerHTML += startingBoard;
   } else {
+    document.querySelectorAll('.next-button, .prev-button').forEach((button) => {
+      button.classList.remove('hidden');
+    });
+
+    
+
     renderActionBoard();
   }
      
