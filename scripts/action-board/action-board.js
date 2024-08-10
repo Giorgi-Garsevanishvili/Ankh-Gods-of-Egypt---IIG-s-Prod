@@ -1,7 +1,5 @@
 import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
 
-
-
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
 let actionCount = 3;
@@ -9,40 +7,40 @@ let mfCount;
 let sfCount;
 let gfCount;
 
+let startingBoard = `<div class="start-board">Choose player amount to display the board!<div>`
 
+document.querySelector('.board-html').innerHTML += startingBoard;
 
 const defaultAmounts = actionBoardData.map(item => item.amount);
-
 const playerSelect = document.querySelector('#player');
 
 playerSelect.addEventListener('change', () => {
   const selectedValue = parseInt(playerSelect.value, 10);
 
   actionBoardData.forEach((item, index) => {
-
     item.amount = defaultAmounts[index];
 
-    if (selectedValue === 4) {
-      document.querySelector('.figures').classList.add('width');
-      document.querySelector('.width').classList.remove('figures');
-      renderActionBoard();
-      item.amount -- ; 
-    } else if (selectedValue === 3) {
-      item.amount -= 2; 
-    } else if (selectedValue === 2) {
-      item.amount -= 3; 
+    if (selectedValue === 3) {
+      item.amount--;
+    } else if (selectedValue === 4) {
+      item.amount -= 2;
     } else if (selectedValue === 5) {
+      item.amount -= 3;
+    } else if (selectedValue === 2) {
       item.amount = defaultAmounts[index];
-    }
-  
+    } 
   });
-  renderActionBoard();
+  if (selectedValue === 0) {
+    document.querySelector('.action-board-container').classList.add('hidden');
+    document.querySelector('.board-html').innerHTML += startingBoard;
+  } else {
+    renderActionBoard();
+  }
+     
 });
 
 
-
 function renderActionBoard() {
-  
   let boardHTML = document.querySelector('.board-html');
   let actionBoardHTML = '';
   let eventBoardHTML = '';
@@ -87,192 +85,190 @@ function renderActionBoard() {
   <div class="event-board-container hidden">${eventBoardHTML}</div>
   `;
 
+  attachEventListeners();
+  displayActionCount();
+}
+
+function checkActionCount() {
+  if (actionCount === 0) {
+    alert('Your Action Registered!');
+    ResetActionCount();
+  }
+}
+
+function getActionButtonsByClass(pattern) {
+  return document.querySelectorAll(`.icon-button-${pattern}`);
+}
+
+function switchToNextActiontButton(pattern) {
+  const actionButtons = getActionButtonsByClass(pattern);
+  const totalButtons = actionButtons.length - 1;
+
+  if (totalButtons === 0) {
+    console.log('No action buttons available');
+    return;
+  }
+
+  if (!(pattern in activeActionButtonIndices)) {
+    activeActionButtonIndices[pattern] = 0;
+  }
+
+  let currentIndex = activeActionButtonIndices[pattern];
+
+  actionButtons[currentIndex].classList.remove('on');
+
+  currentIndex = (currentIndex + 1) % totalButtons;
+
+  actionButtons[currentIndex].classList.add('on');
+
+  actionButtons.forEach((button, index) => {
+    button.disabled = (index !== currentIndex);
+  });
+
+  activeActionButtonIndices[pattern] = currentIndex;
+
+  if (currentIndex === 0) {
+    actionButtons[currentIndex + totalButtons].classList.add('opacity');
+    setTimeout(() => {
+      actionButtons[currentIndex + totalButtons].classList.remove('opacity');
+    }, 4000);
+    ResetActionCount();
+    alert('Current Action Row Reset!');
+  }
+}
+
+function handleActionButtonClick(styleLink) {
+  if (styleLink === 'MF') {
+    if (actionCount === 2) {
+      renderActionCount();
+      switchToNextActiontButton(styleLink);
+      mfCount = 1;
+    } else if (actionCount === 1) {
+      alert('In this round you can’t use this action anymore, please try another!');
+    } else {
+      alert('Action Count Reset! Next Player!');
+      ResetActionCount();
+    }
+  }
+
+  if (styleLink === 'SF') {
+    if (actionCount === 2 || (mfCount === 1 && actionCount > 0)) {
+      sfCount = 1;
+      renderActionCount();
+      switchToNextActiontButton(styleLink);
+      checkActionCount();
+    } else if (sfCount === 1 && actionCount === 2 && actionCount > 0) {
+      alert('In this round you already used this move, please try another!');
+    } else if (sfCount === 1 || actionCount === 1) {
+      alert('In this round you can’t use this action anymore, please try another!');
+    }
+  }
+
+  if (styleLink === 'GF') {
+    if (actionCount === 2 || (sfCount === 1 && actionCount > 0)) {
+      gfCount = 1;
+      renderActionCount();
+      switchToNextActiontButton(styleLink);
+      checkActionCount();
+    } else if (actionCount === 2 || (mfCount === 1 && actionCount > 0)) {
+      gfCount = 1;
+      renderActionCount();
+      switchToNextActiontButton(styleLink);
+    } else if (gfCount === 1 && actionCount < 2 && actionCount > 0) {
+      alert('In this round you already used this move, please try another!');
+    } else {
+      ResetActionCount();
+    }
+  }
+
+  if (styleLink === 'UAP') {
+    if (actionCount <= 2 && actionCount > 0) {
+      renderActionCount();
+      switchToNextActiontButton(styleLink);
+      alert('Your action Registered!');
+      ResetActionCount();
+    } else {
+      alert('No more actions');
+    }
+  }
+}
+
+function switchToNextButton() {
+  const eventButtons = document.querySelectorAll('.event-button');
+  const totalButtons = eventButtons.length;
+
+  eventButtons[activeButtonIndex].classList.remove('on');
+
+  activeButtonIndex = (activeButtonIndex + 1) % totalButtons;
+
+  eventButtons[activeButtonIndex].classList.add('on');
+
+  eventButtons.forEach((button, index) => {
+    button.disabled = (index !== activeButtonIndex);
+  });
+
+  if (activeButtonIndex === totalButtons - 1) {
+    alert('END OF THE MATCH');
+  }
+}
+
+function toggleBoard() {
+  const actionBoardContainer = document.querySelector('.action-board-container');
+  const eventBoardContainer = document.querySelector('.event-board-container');
+  const downArrowSection = document.querySelector('.down-arrow-section');
+
+  if (actionBoardContainer.classList.contains('hidden')) {
+    actionBoardContainer.classList.remove('hidden');
+    eventBoardContainer.classList.add('hidden');
+    downArrowSection.classList.remove('hidden');
+    document.querySelector('.page-title').textContent = 'Action Board';
+  } else {
+    actionBoardContainer.classList.add('hidden');
+    eventBoardContainer.classList.remove('hidden');
+    downArrowSection.classList.add('hidden');
+    document.querySelector('.page-title').textContent = 'Event Board';
+  }
+}
+
+function attachEventListeners() {
   const buttons = document.querySelectorAll('.next-button, .prev-button');
   const eventButtons = document.querySelectorAll('.event-button');
 
-  function checkActionCount(){
-    if (actionCount === 0) {
-      alert('Your Action Registered!')
-      ResetActionCount();
-    }
-  }
-
-  function getActionButtonsByClass(pattern) {
-    return document.querySelectorAll(`.icon-button-${pattern}`);
-  }
-
-  function switchToNextActiontButton(pattern) {
-    const actionButtons = getActionButtonsByClass(pattern);
-    const totalButtons = actionButtons.length - 1;
-
-    if (totalButtons === 0) {
-      console.log('No action buttons available');
-      return;
-    }
-
-    // Initialize the active index for this pattern if not already done
-    if (!(pattern in activeActionButtonIndices)) {
-        activeActionButtonIndices[pattern] = 0;
-   }
-
-    let currentIndex = activeActionButtonIndices[pattern];
-
-    // Remove 'active' class from the current button
-    actionButtons[currentIndex].classList.remove('on');
-    
-    // Update the index of the active button
-    currentIndex = (currentIndex + 1) % totalButtons; 
-    
-    // Add 'active' class to the new active button
-    actionButtons[currentIndex].classList.add('on');
-    
-    // Update the button's ID to manage 'disabled' state correctly
-    actionButtons.forEach((button, index) => {
-      button.disabled = (index !== currentIndex);
-    });
-
-    activeActionButtonIndices[pattern] = currentIndex
-
-    console.log(currentIndex);
-    if (currentIndex ===  0) {
-      actionButtons[currentIndex + totalButtons].classList.add('opacity')
-      setTimeout(() => {actionButtons[currentIndex + totalButtons].classList.remove('opacity')}, 4000 );
-      ResetActionCount();
-      alert(`Current Action Row Reset!`)
-    }
-  }
-
-  function switchToNextButton() {
-    const totalButtons = eventButtons.length;
-    
-    // Remove 'active' class from the current button
-    eventButtons[activeButtonIndex].classList.remove('on');
-    
-    // Update the index of the active button
-    activeButtonIndex = (activeButtonIndex + 1) % totalButtons; 
-    
-    // Add 'active' class to the new active button
-    eventButtons[activeButtonIndex].classList.add('on');
-    
-    // Update the button's ID to manage 'disabled' state correctly
-    eventButtons.forEach((button, index) => {
-      button.disabled = (index !== activeButtonIndex);
-
-      console.log(activeButtonIndex);
-      console.log(totalButtons);
-    });
-
-    if (activeButtonIndex === totalButtons - 1 ) {
-      alert('END OF THE MATCH')
-    }
-  }
-
-  function toggleBoard() {
-    const actionBoardContainer = document.querySelector('.action-board-container');
-    const eventBoardContainer = document.querySelector('.event-board-container');
-    const downArrowSection = document.querySelector('.down-arrow-section');
-    
-    if (actionBoardContainer.classList.contains('hidden')) {
-      actionBoardContainer.classList.remove('hidden');
-      eventBoardContainer.classList.add('hidden');
-      downArrowSection.classList.remove('hidden');
-      document.querySelector('.page-title').textContent = 'Action Board';
-    } else {
-      actionBoardContainer.classList.add('hidden');
-      eventBoardContainer.classList.remove('hidden');
-      downArrowSection.classList.add('hidden');
-      document.querySelector('.page-title').textContent = 'Event Board';
-    }
-  }
-
   buttons.forEach(button => button.addEventListener('click', toggleBoard));
 
-  // Initialize the first button as active
   if (eventButtons.length > 0) {
     eventButtons[activeButtonIndex].classList.add('on');
     eventButtons.forEach((button, index) => {
       button.disabled = (index !== activeButtonIndex);
     });
   }
- 
-  // Add event listener for button switching
+
   eventButtons.forEach(button => {
     button.addEventListener('click', switchToNextButton);
   });
 
-actionBoardData.forEach((item) => {
-  const actionButtons = getActionButtonsByClass(item.styleLink);
-  if (actionButtons.length > 0) {
-    if (!(item.styleLink in activeActionButtonIndices)) {
-      activeActionButtonIndices[item.styleLink] = 0;
-    }
+  actionBoardData.forEach((item) => {
+    const actionButtons = getActionButtonsByClass(item.styleLink);
+    if (actionButtons.length > 0) {
+      if (!(item.styleLink in activeActionButtonIndices)) {
+        activeActionButtonIndices[item.styleLink] = 0;
+      }
 
-    let currentIndex = activeActionButtonIndices[item.styleLink];
-    actionButtons[currentIndex].classList.add('on');
-    actionButtons.forEach((button, index) => {
-      button.disabled = (index !== currentIndex);
-    });
-
-     // Add event listener for button switching
-  actionButtons.forEach(button => {
-    button.addEventListener('click', () => {
-
-      if (item.styleLink === 'MF') {
-        if (actionCount === 2) {
-          renderActionCount();
-          switchToNextActiontButton(item.styleLink);
-          mfCount = 1;
-        } else if (actionCount === 1) {
-          alert('In this round you can`t use this action anymore, please try another!');
-        } else  {
-          alert ('Action Count Reset! Next Player!');
-          ResetActionCount();
-        }
-      }
-  
-      if (item.styleLink === 'SF') {
-        if (actionCount === 2 || mfCount === 1 && actionCount > 0) {
-          sfCount = 1;
-          renderActionCount();
-          switchToNextActiontButton(item.styleLink);
-          checkActionCount();
-        } else if (sfCount === 1 && actionCount === 2 && actionCount > 0) {
-          alert('In this round you already used this move, please try another!');
-        } else if (sfCount === 1 || actionCount === 1) {
-          alert('In this round you can`t use this action anymore, please try another!');
-        } 
-      }
-  
-      if (item.styleLink === 'GF') {
-        if (actionCount === 2 || sfCount === 1 && actionCount > 0) {
-          gfCount = 1;
-          renderActionCount();
-          switchToNextActiontButton(item.styleLink);
-          checkActionCount();
-        } else if (actionCount === 2 || mfCount === 1 && actionCount > 0) {
-          gfCount = 1;
-          renderActionCount();
-          switchToNextActiontButton(item.styleLink);
-        } else if (gfCount === 1 && actionCount < 2 && actionCount > 0) {
-          alert('In this round you already used this move, please try another!');
-        } else {
-          ResetActionCount();
-        }
-      }
-  
-      if (item.styleLink === 'UAP') {
-        if (actionCount <=2 && actionCount > 0) {
-          renderActionCount();
-          switchToNextActiontButton(item.styleLink);
-          alert('Your action Registered!')
-          ResetActionCount();
-        } else {
-          alert('no more actions')
-        }
-      }
-      
-    });
+      let currentIndex = activeActionButtonIndices[item.styleLink];
+      actionButtons[currentIndex].classList.add('on');
+      actionButtons.forEach((button, index) => {
+        button.disabled = (index !== currentIndex);
       });
+
+      actionButtons.forEach(button => {
+        button.addEventListener('click', () => handleActionButtonClick(item.styleLink));
+      });
+    }
+  });
+
+  document.querySelector('.action-count-reset').addEventListener('click', () => {
+    if (actionCount !== 2) {
+      ResetActionCount();
     }
   });
 }
@@ -319,4 +315,4 @@ document.querySelector('.action-count-reset').addEventListener('click', () => {
 
 
 renderActionCount();
-renderActionBoard();
+displayActionCount();

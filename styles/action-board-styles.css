@@ -125,7 +125,7 @@
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  background-image: url(../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg);
+  background-image: url('../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg');
 }
 
 .action-board {
@@ -154,7 +154,7 @@
   height: 10px;
   width: 100%;
   margin-bottom: 5px;
-  background-image: url(../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg);
+  background-image: url('../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg');
   opacity: 0.3;
   border: 2px solid black;
   width: 606px;
@@ -375,3 +375,16 @@
   transition: 0.5s;
 }
 
+.start-board {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  align-items: center;
+  margin-right: 5px;
+  height: 150px;
+  width: 610px;
+  background-color: rgb(165, 142, 56);
+  color: white;
+  border: 2px solid black;
+  border-radius: 70px;
+}
