@@ -14,6 +14,8 @@ let gfCount;
 let renderedD = true;
 let renderedB;
 
+
+
 const downArrowSection = document.querySelector('.down-arrow-section');
 const mainResetButton = document.querySelector('.reset');
 const undoButton = document.querySelector('.undo');
@@ -421,10 +423,12 @@ function undoLastAction() {
   activeButtonIndex = lastAction.activeButtonIndex;
   activeActionButtonIndices = lastAction.activeActionButtonIndices;
 
-  switchToNextActiontButton(lastAction.styleLink);
+  
 
   renderActionBoard();
   displayActionCount();
+
+ 
   
 }
 
