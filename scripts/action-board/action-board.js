@@ -9,6 +9,12 @@ let gfCount;
 let renderedD = true;
 let renderedB;
 
+
+const actionBoardContainer = document.querySelector('.action-board-container');
+const eventBoardContainer = document.querySelector('.event-board-container');
+const downArrowSection = document.querySelector('.down-arrow-section');
+const mainResetButton = document.querySelector('.reset');
+const undoButton = document.querySelector('.undo');
 const defaultBoard = document.querySelector('.board-html');
 const actionCountReset = document.querySelector('.action-count-reset');
 const boardSwitchers = document.querySelectorAll('.next-button, .prev-button');
@@ -17,6 +23,8 @@ playerAmountChoose();
 mainReset();
 
 function defaultBoardRender (){
+  mainResetButton.classList.add('hidden');
+  undoButton.classList.add('hidden');
 
   renderedD = true;
   renderedB = false;
@@ -182,6 +190,10 @@ function switchToNextActiontButton(pattern) {
 }
 
 function handleActionButtonClick(styleLink) {
+
+  mainResetButton.classList.remove('hidden');
+  undoButton.classList.remove('hidden');
+
   if (styleLink === 'MF') {
     if (actionCount === 2) {
       renderActionCount();
@@ -218,6 +230,7 @@ function handleActionButtonClick(styleLink) {
       gfCount = 1;
       renderActionCount();
       switchToNextActiontButton(styleLink);
+      checkActionCount();
     } else if (gfCount === 1 && actionCount < 2 && actionCount > 0) {
       alert('In this round you already used this move, please try another!');
     } else {
@@ -240,6 +253,8 @@ function handleActionButtonClick(styleLink) {
 function switchToNextButton() {
   const eventButtons = document.querySelectorAll('.event-button');
   const totalButtons = eventButtons.length;
+  mainResetButton.classList.remove('hidden');
+  undoButton.classList.remove('hidden');
 
   eventButtons[activeButtonIndex].classList.remove('on');
 
@@ -347,10 +362,8 @@ function renderActionCount (amount) {
   displayActionCount();
 }
 
-function mainReset () {
-  const reset = document.querySelector('.reset');
-  
-  reset.addEventListener('click', () => {
+function mainReset () { 
+  mainResetButton.addEventListener('click', () => {
     activeButtonIndex = 0; 
     activeActionButtonIndices = {};
     actionCount = 2;
@@ -359,7 +372,10 @@ function mainReset () {
     gfCount;
     actionCountReset.classList.add('hidden')
     displayActionCount();
+    toggleBoard();
+    renderActionBoard();
     
+    downArrowSection.classList.remove('hidden');
 
     if (renderedB = true && renderedD === false) {
 
