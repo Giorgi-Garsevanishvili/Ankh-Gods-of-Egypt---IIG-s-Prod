@@ -41,7 +41,6 @@ function defaultBoardRender (){
 function playerAmountChoose (){
   const defaultAmounts = actionBoardData.map(item => item.amount);
   const playerSelect = document.querySelector('#player');
- 
 
   playerSelect.addEventListener('change', () => {
     const selectedValue = parseInt(playerSelect.value, 10);
@@ -368,6 +367,8 @@ function mainReset () {
       boardSwitchers.forEach((button) => {
         button.classList.add('hidden');
       });
+      const playerSelect = document.querySelector('#player');
+      playerSelect.value = 0;
       defaultBoardRender();
     } 
   })
