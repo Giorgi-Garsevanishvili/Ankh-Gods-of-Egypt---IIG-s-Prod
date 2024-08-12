@@ -63,13 +63,13 @@ function playerAmountChoose (){
       item.amount = defaultAmounts[index];
 
       if (selectedValue === 3) {
-        item.amount--;
-      } else if (selectedValue === 4) {
         item.amount -= 2;
+      } else if (selectedValue === 4) {
+        item.amount--;
       } else if (selectedValue === 5) {
-        item.amount -= 3;
-      } else if (selectedValue === 2) {
         item.amount = defaultAmounts[index];
+      } else if (selectedValue === 2) {
+        item.amount -= 3;
       } 
     });
 
@@ -90,6 +90,10 @@ function playerAmountChoose (){
 }
 
 function renderActionBoard() {
+
+  if (actionHistory.length === 0) {
+    undoButton.classList.add('hidden');
+  }
 
   renderedD = false;
   renderedB = true;
@@ -148,7 +152,7 @@ function renderActionBoard() {
 
 function checkActionCount() {
   if (actionCount === 0) {
-    displayMessage('Your Action Registered!');
+    displayMessage('Your Action Registered!', 1000);
     ResetActionCount();
   }
 }
@@ -190,7 +194,7 @@ function switchToNextActiontButton(pattern) {
       actionButtons[currentIndex + totalButtons].classList.remove('opacity');
     }, 4000);
     ResetActionCount();
-    displayMessage('Current Action Row Reset!');
+    displayMessage('Current Action Row Reset!', 1000);
   }
 }
 
@@ -215,9 +219,9 @@ function handleActionButtonClick(styleLink) {
       switchToNextActiontButton(styleLink);
       mfCount = 1;
     } else if (actionCount === 1) {
-      displayMessage('In this round you can’t use this action anymore, please try another!');
+      displayMessage('In this round you can’t use this action anymore, please try another!', 3000);
     } else {
-      displayMessage('Action Count Reset! Next Player!');
+      displayMessage('Action Count Reset! Next Player!', 2000);
       ResetActionCount();
     }
   }
@@ -229,9 +233,9 @@ function handleActionButtonClick(styleLink) {
       switchToNextActiontButton(styleLink);
       checkActionCount();
     } else if (sfCount === 1 && actionCount === 2 && actionCount > 0) {
-      displayMessage('In this round you already used this move, please try another!');
+      displayMessage('In this round you already used this move, please try another!', 3000);
     } else if (sfCount === 1 || actionCount === 1) {
-      displayMessage('In this round you can’t use this action anymore, please try another!');
+      displayMessage('In this round you can’t use this action anymore, please try another!', 3000);
     }
   }
 
@@ -247,7 +251,7 @@ function handleActionButtonClick(styleLink) {
       switchToNextActiontButton(styleLink);
       checkActionCount();
     } else if (gfCount === 1 && actionCount < 2 && actionCount > 0) {
-      displayMessage('In this round you already used this move, please try another!');
+      displayMessage('In this round you already used this move, please try another!', 3000);
     } else {
       ResetActionCount();
     }
@@ -257,10 +261,10 @@ function handleActionButtonClick(styleLink) {
     if (actionCount <= 2 && actionCount > 0) {
       renderActionCount();
       switchToNextActiontButton(styleLink);
-      displayMessage('Your action Registered!');
+      displayMessage('Your action Registered!', 1000);
       ResetActionCount();
     } else {
-      displayMessage('No more actions');
+      displayMessage('No more actions', 1000);
     }
   }
 }
@@ -282,7 +286,7 @@ function switchToNextButton() {
   });
 
   if (activeButtonIndex === totalButtons - 1) {
-    displayMessage('END OF THE MATCH');
+    displayMessage('END OF THE MATCH', 1000);
   }
 }
 
@@ -354,7 +358,7 @@ function ResetActionCount (){
   actionCount = 2;
   actionCountReset.classList.add('hidden')
   displayActionCount();
-  displayMessage('Action Count Reset! Next Playet Please!')
+  displayMessage('Action Count Reset! Next Playet Please!', 3000)
 }
 
 function displayActionCount () {
@@ -371,7 +375,7 @@ function renderActionCount (amount) {
   if (actionCount > 0 && actionCount <=3){
     actionCount --- amount;
   } else if (actionCount === 0) {
-    displayMessage('no more actions')
+    displayMessage('no more actions', 1000)
     ResetActionCount();
   }
   
@@ -405,13 +409,13 @@ function mainReset () {
       playerSelect.value = 0;
       defaultBoardRender();
     } 
-    displayMessage('Board Reset!')
+    displayMessage('Board Reset!', 1000)
   })
 }
 
 function undoLastAction() {
   if (actionHistory.length === 0) {
-      displayMessage('No action to undo!');
+      undoButton.classList.add('hidden');
       renderActionBoard();
       return;
   }
@@ -433,7 +437,7 @@ function undoLastAction() {
   
 }
 
-function displayMessage (messageText) {
+function displayMessage (messageText, timer) {
   const messageBox = document.querySelector('.blur');
   const message = document.querySelector('.message');
 
@@ -442,7 +446,7 @@ function displayMessage (messageText) {
   messageBox.classList.remove('hidden');
   setTimeout(() => {
     messageBox.classList.add('hidden');
-  }, 3000);
+  }, timer);
 }
 
 undoButton.addEventListener('click', undoLastAction);
