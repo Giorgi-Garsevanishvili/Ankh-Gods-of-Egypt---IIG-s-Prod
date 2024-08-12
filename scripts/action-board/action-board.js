@@ -1,4 +1,5 @@
 import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
+import {resetTimer, stopTimer} from "../timer.js"
 
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
@@ -9,9 +10,6 @@ let gfCount;
 let renderedD = true;
 let renderedB;
 
-
-const actionBoardContainer = document.querySelector('.action-board-container');
-const eventBoardContainer = document.querySelector('.event-board-container');
 const downArrowSection = document.querySelector('.down-arrow-section');
 const mainResetButton = document.querySelector('.reset');
 const undoButton = document.querySelector('.undo');
@@ -373,6 +371,8 @@ function mainReset () {
     actionCountReset.classList.add('hidden')
     displayActionCount();
     toggleBoard();
+    stopTimer();
+    resetTimer();
     renderActionBoard();
     
     downArrowSection.classList.remove('hidden');

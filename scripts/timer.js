@@ -32,7 +32,6 @@ document.querySelector('.js-stop-timer').addEventListener('click', () => {
 })
 
 document.querySelector('.js-reset-timer').addEventListener('click', () => {
-  document.querySelector('.js-start-timer').classList.remove('start-active-css');
   stopTimer();
   resetTimer();
 })
@@ -73,7 +72,7 @@ function timerStart() {
   saveTimer();
 }
 
-function stopTimer(){
+export function stopTimer(){
   if (ins === true){
     clearInterval(timerInterval);
     saveTimer();
@@ -84,8 +83,10 @@ function stopTimer(){
 };
 
 
-function resetTimer (){
+export function resetTimer (){
   timeArray = ['00', '00', '00'];
+  document.querySelector('.js-start-timer').classList.remove('hidden');
+  document.querySelector('.js-stop-timer').classList.add('hidden');
   displayTime();
   saveTimer();
 }
