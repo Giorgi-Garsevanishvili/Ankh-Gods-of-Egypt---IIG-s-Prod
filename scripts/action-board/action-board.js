@@ -1,6 +1,10 @@
 import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
 import {resetTimer, stopTimer} from "../timer.js"
 
+
+let actionHistory = [];
+
+
 let activeButtonIndex = 0; 
 let activeActionButtonIndices = {};
 let actionCount = 3;
@@ -51,6 +55,7 @@ function playerAmountChoose (){
   playerSelect.addEventListener('change', () => {
     const selectedValue = parseInt(playerSelect.value, 10);
     const boardContainer = document.querySelector('.action-board-container');
+    mainResetButton.classList.remove('hidden');
 
     actionBoardData.forEach((item, index) => {
       item.amount = defaultAmounts[index];
@@ -188,6 +193,16 @@ function switchToNextActiontButton(pattern) {
 }
 
 function handleActionButtonClick(styleLink) {
+
+  actionHistory.push({
+    styleLink: styleLink,
+    actionCount: actionCount,
+    mfCount: mfCount,
+    sfCount: sfCount,
+    gfCount: gfCount,
+    activeButtonIndex: activeButtonIndex,
+    activeActionButtonIndices: {...activeActionButtonIndices} 
+});
 
   mainResetButton.classList.remove('hidden');
   undoButton.classList.remove('hidden');
@@ -342,6 +357,12 @@ function ResetActionCount (){
 
 function displayActionCount () {
   document.querySelector('.actions-counter-monitor').innerHTML = actionCount;
+
+  if (actionCount <2) {
+    document.querySelector('.action-count-reset').classList.remove('hidden')
+  } else {
+    document.querySelector('.action-count-reset').classList.add('hidden')
+  }
 }
 
 function renderActionCount (amount) {
@@ -351,12 +372,7 @@ function renderActionCount (amount) {
     alert('no more actions')
     ResetActionCount();
   }
-
-  if (actionCount <2) {
-    document.querySelector('.action-count-reset').classList.remove('hidden')
-  }
-
-
+  
   displayActionCount();
 }
 
@@ -390,6 +406,29 @@ function mainReset () {
   })
 }
 
+function undoLastAction() {
+  if (actionHistory.length === 0) {
+      alert('No actions to undo!');
+      renderActionBoard();
+      return;
+  }
+  const lastAction = actionHistory.pop();
+
+  actionCount = lastAction.actionCount;
+  mfCount = lastAction.mfCount;
+  sfCount = lastAction.sfCount;
+  gfCount = lastAction.gfCount;
+  activeButtonIndex = lastAction.activeButtonIndex;
+  activeActionButtonIndices = lastAction.activeActionButtonIndices;
+
+  switchToNextActiontButton(lastAction.styleLink);
+
+  renderActionBoard();
+  displayActionCount();
+  
+}
+
+undoButton.addEventListener('click', undoLastAction);
 
 
 actionCountReset.addEventListener('click', () => {

@@ -5,8 +5,9 @@
   border: 1px solid rgb(246, 221, 156);
   margin-left: 3px;
   width: 120px;
-  height: 415px;
+  height: 385px;
   background-color: rgb(58, 39, 6);
+  border-radius: 15px;
 }
 
 .arrow-container {
@@ -14,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 411px;
+  height: 401px;
   width: 115px;
 }
 
@@ -24,6 +25,7 @@
 }
 
 .actions-count {
+  height: 100px;
   background-color: aqua;
 }
 
@@ -35,7 +37,7 @@
   align-items: center;
   justify-content: start;
   background-color: rgb(93, 83, 66);
-  height: 115px;
+  height: 100px;
   width: 110px;
   border-radius: 7px;
   margin: 3px;
@@ -59,14 +61,18 @@
   font-size: 15px;
 }
 
+.player-selector {
+  height: 85px;
+}
+
 .player-selector-style {
   background-color: rgb(130, 119, 105);
   color: white;
   font-size: 17px;
   padding-top: 5px;
-  padding-left: 20px;
-  height: 52px;
-  width: 52px;
+  padding-left: 13px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   border: 2px solid goldenrod;
   -webkit-appearance: none;
@@ -80,6 +86,7 @@
 }
 
 .actions-count {
+  height: 115px;
   padding-top: 3px;
 }
 .actions-counter-monitor {
@@ -88,8 +95,8 @@
   justify-content: center;
   margin-top: 7px;
   font-size: 40px;
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   background-color: black;
   border-radius: 20px;
   border: 2px solid snow;
