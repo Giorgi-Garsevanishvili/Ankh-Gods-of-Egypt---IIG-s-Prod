@@ -91,9 +91,9 @@ function playerAmountChoose (){
 
 function renderActionBoard() {
 
-  if (actionHistory.length === 0) {
+  if (actionHistory.length === 0 && activeButtonIndex === 0) {
     undoButton.classList.add('hidden');
-  }
+  } 
 
   renderedD = false;
   renderedB = true;
@@ -269,7 +269,7 @@ function handleActionButtonClick(styleLink) {
   }
 }
 
-function switchToNextButton() {
+function switchToNextButton(switchFormul) {
   const eventButtons = document.querySelectorAll('.event-button');
   const totalButtons = eventButtons.length;
   mainResetButton.classList.remove('hidden');
@@ -277,7 +277,7 @@ function switchToNextButton() {
 
   eventButtons[activeButtonIndex].classList.remove('on');
 
-  activeButtonIndex = (activeButtonIndex + 1) % totalButtons;
+  activeButtonIndex = (switchFormul) % totalButtons;
 
   eventButtons[activeButtonIndex].classList.add('on');
 
@@ -322,7 +322,9 @@ function attachEventListeners() {
   }
 
   eventButtons.forEach(button => {
-    button.addEventListener('click', switchToNextButton);
+    button.addEventListener('click', () => {
+      switchToNextButton(activeButtonIndex + 1);
+    });
   });
 
   actionBoardData.forEach((item) => {
@@ -414,7 +416,8 @@ function mainReset () {
 }
 
 function undoLastAction() {
-  if (actionHistory.length === 0) {
+  if (document.querySelector('.event-board-container').classList.contains('hidden')) {
+    if (actionHistory.length === 0) {
       undoButton.classList.add('hidden');
       renderActionBoard();
       return;
@@ -432,6 +435,16 @@ function undoLastAction() {
 
   renderActionBoard();
   displayActionCount();
+  } else {
+    if (activeButtonIndex > 0) {
+      switchToNextButton(activeButtonIndex - 1);
+      renderActionBoard();
+      toggleBoard();
+      console.log(activeButtonIndex);
+    }
+  }
+
+  
 
  
   
