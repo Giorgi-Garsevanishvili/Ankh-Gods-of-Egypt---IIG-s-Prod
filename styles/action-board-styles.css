@@ -246,7 +246,8 @@
 
 
 .action-board-container,
-.event-board-container {
+.event-board-container,
+.devotion-board-container {
   display: none;
 }
 
@@ -424,6 +425,87 @@
   word-wrap: break-word;
 }
 
-.devotion-board {
-  background-color: aqua;
+
+.devotion-board-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(158, 148, 136);
+  width: 900px;
+  height: 150px;
+  border: 1px solid rgb(117, 66, 4);
+  border-radius: 10px;
+  overflow: scroll;
+  overflow-y: hidden;
 }
+
+
+.devotion-board-container::-webkit-scrollbar {
+  width: auto;  
+  height: 10px; 
+}
+
+.devotion-board-container::-webkit-scrollbar-track {
+  background: #b98b1f4d;
+  border-radius: 50px; 
+}
+
+.devotion-board-container::-webkit-scrollbar-thumb {
+  background: #413108; 
+  border-radius: 50px; 
+  border: 1px solid wheat;
+}
+
+.devotion-board-container::-webkit-scrollbar-horizontal {
+  height: 10px; 
+}
+
+.main-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-arrow-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(246, 221, 156);
+  width: 650px;
+  height: 130px;
+  background-color: rgb(58, 39, 6);
+  border-radius: 15px;
+}
+
+.bottom-arrow-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-player-selector,
+.devotion-register-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(93, 83, 66);
+  height: 100px;
+  padding: 5px 20px;
+  margin: 5px;
+  border-radius: 7px;
+  margin: 5px;
+  font-size: 15px;
+  color: white;
+  border: 1px solid rgb(209, 179, 137);
+}
+
+.player-choose {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+

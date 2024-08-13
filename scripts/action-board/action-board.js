@@ -22,6 +22,7 @@ const undoButton = document.querySelector('.undo');
 const defaultBoard = document.querySelector('.board-html');
 const actionCountReset = document.querySelector('.action-count-reset');
 const boardSwitchers = document.querySelectorAll('.next-button, .prev-button');
+const bottomArrowSection = document.querySelector('.bottom-arrow-section');
 
 playerAmountChoose();
 mainReset();
@@ -29,6 +30,8 @@ mainReset();
 function defaultBoardRender (){
   mainResetButton.classList.add('hidden');
   undoButton.classList.add('hidden');
+  bottomArrowSection.classList.add('hidden');
+
 
   renderedD = true;
   renderedB = false;
@@ -108,16 +111,21 @@ function renderActionBoard() {
 
   devotionBoardData.forEach((item) => {
     devotionBoardHTML += `
-    <div class="devotion-board">${item.name}<div>
+    <div class="devotion-board">
+      <button id="${item.id}" class="event-button event-button-${item.styleLink.primary}" data-id="${item.id}">
+        <img class="icon-button-style" src="${item.icon}" alt="">
+      </button>
+    </div>
+    <img class="icon-button-play-event arrow-" src="./images/action-board/play.png" alt="">
     `
   })
 
   EventBoardData.forEach((item) => {
     eventBoardHTML += `
     <div class="event-board">
-      <div id="${item.id}" class="event-button event-button-${item.styleLink.primary}" data-id="${item.id}">
+      <button id="${item.id}" class="event-button event-button-${item.styleLink.primary}" data-id="${item.id}">
         <img class="icon-button-style" src="${item.icon}" alt="">
-      </div>
+      </button>
     </div>
     <img class="icon-button-play-event arrow-${item.styleLink.secondary}" src="./images/action-board/play.png" alt="">
     `;
@@ -316,24 +324,28 @@ function toggleBoard() {
   const eventBoardContainer = document.querySelector('.event-board-container');
   const devotionBoardContainer = document.querySelector('.devotion-board-container');
   const downArrowSection = document.querySelector('.down-arrow-section');
+  const bottomArrowSection = document.querySelector('.bottom-arrow-section');
 
   if (actionBoardContainer.classList.contains('hidden' ) && eventBoardContainer.classList.contains('hidden')) {
     actionBoardContainer.classList.remove('hidden');
     eventBoardContainer.classList.add('hidden');
     downArrowSection.classList.remove('hidden');
     devotionBoardContainer.classList.add('hidden');
+    bottomArrowSection.classList.add('hidden');
     document.querySelector('.page-title').textContent = 'Action Board';
   } else if (eventBoardContainer.classList.contains('hidden')) {
     actionBoardContainer.classList.add('hidden');
     devotionBoardContainer.classList.add('hidden');
     eventBoardContainer.classList.remove('hidden');
     downArrowSection.classList.add('hidden');
+    bottomArrowSection.classList.add('hidden');
     document.querySelector('.page-title').textContent = 'Event Board';
   } else if (devotionBoardContainer.classList.contains('hidden')){
     devotionBoardContainer.classList.remove('hidden');
     actionBoardContainer.classList.add('hidden');
     eventBoardContainer.classList.add('hidden');
-    downArrowSection.classList.remove('hidden');
+    downArrowSection.classList.add('hidden');
+    bottomArrowSection.classList.remove('hidden');
     document.querySelector('.page-title').textContent = 'Devotion Board';
   }
 }
