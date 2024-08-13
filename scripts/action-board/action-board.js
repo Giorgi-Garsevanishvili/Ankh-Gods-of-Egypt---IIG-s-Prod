@@ -1,4 +1,4 @@
-import { actionBoardData, EventBoardData } from "../../data/action-board-data.js";
+import { actionBoardData, devotionBoardData, EventBoardData } from "../../data/action-board-data.js";
 import {resetTimer, stopTimer} from "../timer.js"
 
 
@@ -104,6 +104,13 @@ function renderActionBoard() {
   let boardHTML = document.querySelector('.board-html');
   let actionBoardHTML = '';
   let eventBoardHTML = '';
+  let devotionBoardHTML = '';
+
+  devotionBoardData.forEach((item) => {
+    devotionBoardHTML += `
+    <div class="devotion-board">${item.name}<div>
+    `
+  })
 
   EventBoardData.forEach((item) => {
     eventBoardHTML += `
@@ -143,6 +150,7 @@ function renderActionBoard() {
   boardHTML.innerHTML = `
   <div class="action-board-container">${actionBoardHTML}</div>
   <div class="event-board-container hidden">${eventBoardHTML}</div>
+  <div class="devotion-board-container hidden">${devotionBoardHTML}</div>
   `;
 
   attachEventListeners();
@@ -270,6 +278,10 @@ function handleActionButtonClick(styleLink) {
 }
 
 function switchToNextButton(switchFormul) {
+
+  const playerSelect = document.querySelector('#player');
+  const selectedValue = parseInt(playerSelect.value, 10);
+
   const buttonData = EventBoardData;
   const eventButtons = document.querySelectorAll('.event-button');
   const totalButtons = eventButtons.length;
@@ -288,10 +300,10 @@ function switchToNextButton(switchFormul) {
 
   console.log(activeButtonIndex);
 
-  if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 12) {
-    displayMessage('first buttle', 1000)
-  } else if (buttonData[activeButtonIndex].styleLink.primary === 'pyramid') {
-   
+  if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 12 && selectedValue === 3) {
+    displayMessage('Merge 2 Gods!', 1000)
+  } else if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 16) {
+    displayMessage('Eliminate Gods in Red!', 1000)
   }
 
   if (activeButtonIndex === totalButtons - 1) {
@@ -302,18 +314,27 @@ function switchToNextButton(switchFormul) {
 function toggleBoard() {
   const actionBoardContainer = document.querySelector('.action-board-container');
   const eventBoardContainer = document.querySelector('.event-board-container');
+  const devotionBoardContainer = document.querySelector('.devotion-board-container');
   const downArrowSection = document.querySelector('.down-arrow-section');
 
-  if (actionBoardContainer.classList.contains('hidden')) {
+  if (actionBoardContainer.classList.contains('hidden' ) && eventBoardContainer.classList.contains('hidden')) {
     actionBoardContainer.classList.remove('hidden');
     eventBoardContainer.classList.add('hidden');
     downArrowSection.classList.remove('hidden');
+    devotionBoardContainer.classList.add('hidden');
     document.querySelector('.page-title').textContent = 'Action Board';
-  } else {
+  } else if (eventBoardContainer.classList.contains('hidden')) {
     actionBoardContainer.classList.add('hidden');
+    devotionBoardContainer.classList.add('hidden');
     eventBoardContainer.classList.remove('hidden');
     downArrowSection.classList.add('hidden');
     document.querySelector('.page-title').textContent = 'Event Board';
+  } else if (devotionBoardContainer.classList.contains('hidden')){
+    devotionBoardContainer.classList.remove('hidden');
+    actionBoardContainer.classList.add('hidden');
+    eventBoardContainer.classList.add('hidden');
+    downArrowSection.classList.remove('hidden');
+    document.querySelector('.page-title').textContent = 'Devotion Board';
   }
 }
 
