@@ -232,7 +232,7 @@ function handleActionButtonClick(styleLink) {
       renderActionCount();
       switchToNextActiontButton(styleLink);
       checkActionCount();
-    } else if (sfCount === 1 && actionCount === 2 && actionCount > 0) {
+    } else if (sfCount === 1 && actionCount === 1 && actionCount > 0) {
       displayMessage('In this round you already used this move, please try another!', 3000);
     } else if (sfCount === 1 || actionCount === 1) {
       displayMessage('In this round you can’t use this action anymore, please try another!', 3000);
@@ -270,6 +270,7 @@ function handleActionButtonClick(styleLink) {
 }
 
 function switchToNextButton(switchFormul) {
+  const buttonData = EventBoardData;
   const eventButtons = document.querySelectorAll('.event-button');
   const totalButtons = eventButtons.length;
   mainResetButton.classList.remove('hidden');
@@ -284,6 +285,14 @@ function switchToNextButton(switchFormul) {
   eventButtons.forEach((button, index) => {
     button.disabled = (index !== activeButtonIndex);
   });
+
+  console.log(activeButtonIndex);
+
+  if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 12) {
+    displayMessage('first buttle', 1000)
+  } else if (buttonData[activeButtonIndex].styleLink.primary === 'pyramid') {
+   
+  }
 
   if (activeButtonIndex === totalButtons - 1) {
     displayMessage('END OF THE MATCH', 1000);
@@ -417,11 +426,11 @@ function mainReset () {
 
 function undoLastAction() {
   if (document.querySelector('.event-board-container').classList.contains('hidden')) {
-    if (actionHistory.length === 0) {
-      undoButton.classList.add('hidden');
-      renderActionBoard();
-      return;
-  }
+    
+    if (activeButtonIndex > 0 && actionHistory.length === 0){
+      displayMessage('No action to undo! Try another Board!', 1500);
+    }
+    
   const lastAction = actionHistory.pop();
 
   actionCount = lastAction.actionCount;
@@ -431,7 +440,6 @@ function undoLastAction() {
   activeButtonIndex = lastAction.activeButtonIndex;
   activeActionButtonIndices = lastAction.activeActionButtonIndices;
 
-  
 
   renderActionBoard();
   displayActionCount();
@@ -440,14 +448,10 @@ function undoLastAction() {
       switchToNextButton(activeButtonIndex - 1);
       renderActionBoard();
       toggleBoard();
-      console.log(activeButtonIndex);
+    } else if (activeButtonIndex === 0 && actionHistory.length > 0){
+      displayMessage('No action to undo! Try another Board!', 1500);
     }
-  }
-
-  
-
- 
-  
+  }  
 }
 
 function displayMessage (messageText, timer) {
