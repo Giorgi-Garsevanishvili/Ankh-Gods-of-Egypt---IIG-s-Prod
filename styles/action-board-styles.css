@@ -509,3 +509,46 @@
   justify-content: center;
 }
 
+.player-amount-chooser {
+  display: flex;
+  height: 60px;
+  width: 60px;
+  background-color: rgb(255, 255, 255, 0.8);
+  border: 2px solid goldenrod;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+}
+
+.chooser-image {
+  height: 45px;
+}
+
+.player-choose-buttons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.chooser-section-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+  width: 100%;
+}
+
+.info {
+ margin-top: 2px;
+ display: flex;
+ justify-self: center;
+ align-items: center;
+ width: 45px;
+ background-color: transparent;
+ border: none;
+}
+
+.info-img {
+  width: 25px;
+}
