@@ -1,0 +1,26 @@
+.go-back {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 150px;
+  width: 150px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(209, 167, 60);
+  background-color: gray;
+  border-radius: 50%;
+  border: 2px solid rgb(162, 125, 30);
+  cursor: pointer;
+  transition: 0.5s;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.go-back:hover {
+  border: 5px solid rgb(162, 125, 30);
+  font-size: 19px;
+  transition: 0.5s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  
+}

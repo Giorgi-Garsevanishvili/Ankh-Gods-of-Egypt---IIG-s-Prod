@@ -1,4 +1,5 @@
 import { actionBoardData, devotionBoardData, EventBoardData } from "../../data/action-board-data.js";
+import { displayMessage } from "../../tools/display-message.js";
 import {resetTimer, stopTimer} from "../timer.js"
 
 
@@ -328,19 +329,19 @@ function toggleBoard() {
 
   if (actionBoardContainer.classList.contains('hidden' ) && eventBoardContainer.classList.contains('hidden')) {
     actionBoardContainer.classList.remove('hidden');
-    eventBoardContainer.classList.add('hidden');
     downArrowSection.classList.remove('hidden');
+    eventBoardContainer.classList.add('hidden');
     devotionBoardContainer.classList.add('hidden');
     bottomArrowSection.classList.add('hidden');
     document.querySelector('.page-title').textContent = 'Action Board';
-  } else if (eventBoardContainer.classList.contains('hidden')) {
+  } else if (eventBoardContainer.classList.contains('hidden') && devotionBoardContainer.classList.contains('hidden')) {
     actionBoardContainer.classList.add('hidden');
     devotionBoardContainer.classList.add('hidden');
     eventBoardContainer.classList.remove('hidden');
     downArrowSection.classList.add('hidden');
     bottomArrowSection.classList.add('hidden');
     document.querySelector('.page-title').textContent = 'Event Board';
-  } else if (devotionBoardContainer.classList.contains('hidden')){
+  } else if (devotionBoardContainer.classList.contains('hidden') && actionBoardContainer.classList.contains('hidden')){
     devotionBoardContainer.classList.remove('hidden');
     actionBoardContainer.classList.add('hidden');
     eventBoardContainer.classList.add('hidden');
@@ -487,17 +488,6 @@ function undoLastAction() {
   }  
 }
 
-function displayMessage (messageText, timer) {
-  const messageBox = document.querySelector('.blur');
-  const message = document.querySelector('.message');
-
-  message.textContent = messageText;
-  
-  messageBox.classList.remove('hidden');
-  setTimeout(() => {
-    messageBox.classList.add('hidden');
-  }, timer);
-}
 
 undoButton.addEventListener('click', undoLastAction);
 

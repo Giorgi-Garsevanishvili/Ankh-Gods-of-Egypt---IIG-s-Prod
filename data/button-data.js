@@ -1,3 +1,5 @@
+import { displayMessage } from "../tools/display-message.js";
+
 export const buttonList = [
   {
   id: '3f2323rv23rv23rvdsraf',
@@ -9,7 +11,7 @@ export const buttonList = [
   id: '3v989dsfvhsd7rvsdr',
   image: './images/buttons/anubis.png',
   text: 'God`s Board',
-  url: ''
+  url: `./gods-board.html`
 },
 {
   id: '098sd9v8fsd7vsd9fv',
