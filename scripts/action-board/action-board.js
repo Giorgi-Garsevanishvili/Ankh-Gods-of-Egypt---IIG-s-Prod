@@ -113,13 +113,13 @@ function renderActionBoard() {
   devotionBoardData.forEach((item) => {
     devotionBoardHTML += `
     <div class="devotion-board">
-      <button id="${item.id}" class="event-button event-button-${item.styleLink.primary}" data-id="${item.id}">
+      <button id="${item.id}" class="devotion-button event-button-${item.styleLink.primary}" data-id="${item.id}">
         <img class="icon-button-style" src="${item.icon}" alt="">
       </button>
     </div>
     <img class="icon-button-play-event arrow-" src="./images/action-board/play.png" alt="">
     `
-  })
+  });
 
   EventBoardData.forEach((item) => {
     eventBoardHTML += `
@@ -291,11 +291,14 @@ function switchToNextButton(switchFormul) {
   const playerSelect = document.querySelector('#player');
   const selectedValue = parseInt(playerSelect.value, 10);
 
+
   const buttonData = EventBoardData;
   const eventButtons = document.querySelectorAll('.event-button');
   const totalButtons = eventButtons.length;
   mainResetButton.classList.remove('hidden');
   undoButton.classList.remove('hidden');
+
+  console.log(eventButtons);
 
   eventButtons[activeButtonIndex].classList.remove('on');
 
@@ -307,13 +310,15 @@ function switchToNextButton(switchFormul) {
     button.disabled = (index !== activeButtonIndex);
   });
 
-  console.log(activeButtonIndex);
 
   if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 12 && selectedValue === 3) {
     displayMessage('Merge 2 Gods!', 1000)
   } else if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 16) {
     displayMessage('Eliminate Gods in Red!', 1000)
   }
+
+  console.log(activeButtonIndex);
+  
 
   if (activeButtonIndex === totalButtons - 1) {
     displayMessage('END OF THE MATCH', 1000);

@@ -183,7 +183,7 @@ export const EventBoardData = [
     },
     id: 18
   }
-]
+];
 
 export const devotionBoardData = [
   {
