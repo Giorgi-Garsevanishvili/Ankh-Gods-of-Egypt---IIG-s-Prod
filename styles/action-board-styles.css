@@ -612,3 +612,35 @@
   background-color: green;
 }
 
+.board-switch-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.board-switcher-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: bisque;
+  margin:3px;
+  padding: 20px;
+  height: 50px;
+  width: auto;
+  border: 1px solid goldenrod;
+  border-radius: 10px;
+  border-bottom: none;
+  border: 1px solid rgb(220, 220, 220);
+  background-color: rgb(65, 55, 31);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.board-switcher-button:hover {
+  height: 45px;
+  width: auto;
+  border: 2px solid rgb(183, 137, 20);
+  background-color: #4f2b0f;
+  transition: 0.2s;
+}
