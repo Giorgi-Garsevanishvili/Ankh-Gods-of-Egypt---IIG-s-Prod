@@ -24,6 +24,7 @@ const defaultBoard = document.querySelector('.board-html');
 const actionCountReset = document.querySelector('.action-count-reset');
 const boardSwitchers = document.querySelectorAll('.next-button, .prev-button');
 const bottomArrowSection = document.querySelector('.bottom-arrow-section');
+const boardSwitcher = document.querySelector('.board-switch-section');
 
 playerAmountChoose();
 mainReset();
@@ -32,6 +33,7 @@ function defaultBoardRender (){
   mainResetButton.classList.add('hidden');
   undoButton.classList.add('hidden');
   bottomArrowSection.classList.add('hidden');
+  
 
 
   renderedD = true;
@@ -52,6 +54,7 @@ function defaultBoardRender (){
   boardSwitchers.forEach((button) => {
     button.classList.add('hidden');
   });
+  boardSwitcher.classList.add('hidden');
 }
 
 function playerAmountChoose (){
@@ -82,11 +85,13 @@ function playerAmountChoose (){
       boardSwitchers.forEach((button) => {
         button.classList.add('hidden');
       });
+      boardSwitcher.classList.add('hidden');
       defaultBoardRender();
     } else {
       boardSwitchers.forEach((button) => {
         button.classList.remove('hidden');
       });
+      boardSwitcher.classList.remove('hidden');
       renderActionBoard();
     }
   });
@@ -455,6 +460,7 @@ function mainReset () {
       boardSwitchers.forEach((button) => {
         button.classList.add('hidden');
       });
+      boardSwitcher.classList.add('hidden');
       const playerSelect = document.querySelector('#player');
       playerSelect.value = 0;
       defaultBoardRender();
