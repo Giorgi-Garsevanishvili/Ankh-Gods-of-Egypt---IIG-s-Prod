@@ -384,7 +384,7 @@ function toggleBoard() {
 }
 
 function attachEventListeners() {
-  const buttons = document.querySelectorAll('.next-button, .prev-button');
+  const buttons = document.querySelectorAll('.next-button');
   const eventButtons = document.querySelectorAll('.event-button');
 
   buttons.forEach(button => button.addEventListener('click', toggleBoard));
