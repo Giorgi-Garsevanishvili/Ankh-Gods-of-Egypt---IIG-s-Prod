@@ -664,4 +664,8 @@
   .header-right {
     display: none;
   }
+
+  .blur {
+    height: 100%;
+  }
 }
