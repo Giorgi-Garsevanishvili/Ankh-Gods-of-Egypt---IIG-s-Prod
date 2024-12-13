@@ -651,7 +651,9 @@
 
 @media (max-width: 768px) {
   .mobile-warning {
-    display:inherit;
+    display:flex;
+    align-items: center;
+    justify-content: center;
   }
   .main {
     display: none;
@@ -663,6 +665,29 @@
   
   .header-right {
     display: none;
+  }
+
+  .message-text {
+    margin-bottom: 15px;
+  }
+
+  .go-back {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 130px;
+    width: 130px;
+    
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(238, 232, 215);
+    background-color: rgb(50, 39, 13);
+    border-radius: 50%;
+    border: 2px solid rgb(162, 125, 30);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .link {
+    text-decoration: none;
   }
 
 }
