@@ -644,3 +644,24 @@
   background-color: #4f2b0f;
   transition: 0.2s;
 }
+
+.mobile-warning  {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-warning {
+    display:inherit;
+  }
+  .main {
+    display: none;
+  }
+
+  .header-container{
+    width: auto;
+  }
+  
+  .header-right {
+    display: none;
+  }
+}
