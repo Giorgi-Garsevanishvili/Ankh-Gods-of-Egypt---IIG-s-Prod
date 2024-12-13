@@ -25,9 +25,15 @@ const actionCountReset = document.querySelector('.action-count-reset');
 const boardSwitchers = document.querySelectorAll('.next-button, .prev-button');
 const bottomArrowSection = document.querySelector('.bottom-arrow-section');
 const boardSwitcher = document.querySelector('.board-switch-section');
+const actionBoardButton = document.querySelector('.action-board-button');
+const eventBoardButton = document.querySelector('.event-board-button');
+const devotionBoardButton = document.querySelector('.devotion-board-button');
 
 playerAmountChoose();
 mainReset();
+
+
+
 
 function defaultBoardRender (){
   mainResetButton.classList.add('hidden');
@@ -166,6 +172,8 @@ function renderActionBoard() {
   <div class="event-board-container hidden">${eventBoardHTML}</div>
   <div class="devotion-board-container hidden">${devotionBoardHTML}</div>
   `;
+
+  actionBoardButton.classList.add('visible');  
 
   attachEventListeners();
   displayActionCount();
@@ -330,6 +338,9 @@ function switchToNextButton(switchFormul) {
   }
 }
 
+
+
+
 function toggleBoard() {
   const actionBoardContainer = document.querySelector('.action-board-container');
   const eventBoardContainer = document.querySelector('.event-board-container');
@@ -343,6 +354,9 @@ function toggleBoard() {
     eventBoardContainer.classList.add('hidden');
     devotionBoardContainer.classList.add('hidden');
     bottomArrowSection.classList.add('hidden');
+    actionBoardButton.classList.add('visible');
+    eventBoardButton.classList.remove('visible');
+    devotionBoardButton.classList.remove('visible');
     document.querySelector('.page-title').textContent = 'Action Board';
   } else if (eventBoardContainer.classList.contains('hidden') && devotionBoardContainer.classList.contains('hidden')) {
     actionBoardContainer.classList.add('hidden');
@@ -350,6 +364,9 @@ function toggleBoard() {
     eventBoardContainer.classList.remove('hidden');
     downArrowSection.classList.add('hidden');
     bottomArrowSection.classList.add('hidden');
+    actionBoardButton.classList.remove('visible');
+    eventBoardButton.classList.add('visible');
+    devotionBoardButton.classList.remove('visible');
     document.querySelector('.page-title').textContent = 'Event Board';
   } else if (devotionBoardContainer.classList.contains('hidden') && actionBoardContainer.classList.contains('hidden')){
     devotionBoardContainer.classList.remove('hidden');
@@ -357,8 +374,13 @@ function toggleBoard() {
     eventBoardContainer.classList.add('hidden');
     downArrowSection.classList.add('hidden');
     bottomArrowSection.classList.remove('hidden');
+    actionBoardButton.classList.remove('visible');
+    eventBoardButton.classList.remove('visible');
+    devotionBoardButton.classList.add('visible');
     document.querySelector('.page-title').textContent = 'Devotion Board';
   }
+
+  attachEventListeners;
 }
 
 function attachEventListeners() {
@@ -366,6 +388,54 @@ function attachEventListeners() {
   const eventButtons = document.querySelectorAll('.event-button');
 
   buttons.forEach(button => button.addEventListener('click', toggleBoard));
+
+  
+  const actionBoardContainer = document.querySelector('.action-board-container');
+  const eventBoardContainer = document.querySelector('.event-board-container');
+  const devotionBoardContainer = document.querySelector('.devotion-board-container');
+  const downArrowSection = document.querySelector('.down-arrow-section');
+  const bottomArrowSection = document.querySelector('.bottom-arrow-section');
+  const actionBoardButton = document.querySelector('.action-board-button');
+  const eventBoardButton = document.querySelector('.event-board-button');
+  const devotionBoardButton = document.querySelector('.devotion-board-button');
+  
+    document.querySelector('.action-board-button').addEventListener('click', () => {
+      actionBoardContainer.classList.remove('hidden');
+      downArrowSection.classList.remove('hidden');
+      eventBoardContainer.classList.add('hidden');
+      devotionBoardContainer.classList.add('hidden');
+      bottomArrowSection.classList.add('hidden');
+      actionBoardButton.classList.add('visible');
+      eventBoardButton.classList.remove('visible');
+      devotionBoardButton.classList.remove('visible');
+      document.querySelector('.page-title').textContent = 'Action Board';
+    })
+
+    document.querySelector('.event-board-button').addEventListener('click', () => {
+      actionBoardContainer.classList.add('hidden');
+      devotionBoardContainer.classList.add('hidden');
+      eventBoardContainer.classList.remove('hidden');
+      downArrowSection.classList.add('hidden');
+      bottomArrowSection.classList.add('hidden');
+      actionBoardButton.classList.remove('visible')
+      devotionBoardButton.classList.remove('visible')
+      eventBoardButton.classList.add('visible')
+      document.querySelector('.page-title').textContent = 'Event Board';
+    })
+
+    document.querySelector('.devotion-board-button').addEventListener('click', () => {
+      actionBoardContainer.classList.add('hidden');
+      devotionBoardContainer.classList.remove('hidden');
+      eventBoardContainer.classList.add('hidden');
+      downArrowSection.classList.add('hidden');
+      bottomArrowSection.classList.remove('hidden');
+      actionBoardButton.classList.remove('visible')
+      devotionBoardButton.classList.add('visible')
+      eventBoardButton.classList.remove('visible')
+      document.querySelector('.page-title').textContent = 'Devotion Board';
+    })
+  
+  
 
   if (eventButtons.length > 0) {
     eventButtons[activeButtonIndex].classList.add('on');
