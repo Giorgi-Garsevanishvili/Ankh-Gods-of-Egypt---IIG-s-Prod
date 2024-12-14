@@ -729,4 +729,8 @@
   opacity: 0.5;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent; /* Remove blue background on tap */
+  outline: none; /* Remove focus outline */
+}
 
