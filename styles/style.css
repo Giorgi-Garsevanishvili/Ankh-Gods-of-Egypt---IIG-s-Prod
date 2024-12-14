@@ -1,3 +1,19 @@
+/* 1. Global pointer cursor for all clickable or interactive elements (links, buttons, divs, etc.)
+* {
+  cursor: url('../Egyptian/Egyptian--cursor--SweezyCursors.cur') 16 16, auto; /* Global cursor for pointer elements */
+
+
+/* 2. Custom pointer cursor for links and buttons specifically */
+/* a, button {
+  cursor: url('../Egyptian/Egyptian--pointer--SweezyCursors.cur') 16 16, pointer; /* Pointer cursor for links & buttons */
+
+
+/* 3. Custom text cursor for input fields, textareas, and elements requiring text selection */
+/* input, textarea, .text {
+  cursor: url('../Egyptian/Egyptian--pointer--SweezyCursors.cur') 8 8, text; /* Text cursor for input & textareas */
+
+
+
 body {
   margin: 0px; 
   padding: 0px;
@@ -7,7 +23,6 @@ body {
   flex-direction: column;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
 
 
 .main {
