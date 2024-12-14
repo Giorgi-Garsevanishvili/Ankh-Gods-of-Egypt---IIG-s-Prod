@@ -47,6 +47,7 @@
 }
 
 .arrow-container-title {
+  cursor: default;
   width: 110px;
   height: 45px;
   font-size: 20px;
@@ -62,10 +63,12 @@
 }
 
 .player-selector {
+  cursor: default;
   height: 85px;
 }
 
 .player-selector-style {
+  cursor: pointer;
   background-color: rgb(130, 119, 105);
   color: white;
   font-size: 17px;
@@ -86,6 +89,7 @@
 }
 
 .actions-count {
+  cursor: default;
   height: 115px;
   padding-top: 3px;
 }

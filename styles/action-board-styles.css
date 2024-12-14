@@ -403,6 +403,7 @@
 }
 
 .start-board {
+  cursor: default;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -490,6 +491,7 @@
   margin: 5px;
   font-size: 15px;
   color: white;
+  cursor: pointer;
   border: 1px solid rgb(209, 179, 137);
 }
 
@@ -568,6 +570,10 @@
   justify-content: center;
   width: 25px;
   height: 25px;
+  cursor: pointer;
+}
+
+.player-amount-chooser{
   cursor: pointer;
 }
 
