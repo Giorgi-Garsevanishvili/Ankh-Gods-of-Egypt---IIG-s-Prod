@@ -351,9 +351,15 @@ body {
    }
 }
 
+.screen-rotate {
+  width: 40px;
+  height: 40px;
+  padding: 20px;
+}
 
 
-button {
+
+button, img, div {
   -webkit-tap-highlight-color: transparent; /* Remove blue background on tap */
   outline: none; /* Remove focus outline */
 }
