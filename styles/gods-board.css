@@ -8,7 +8,6 @@
   background-color: gray;
   border-radius: 50%;
   border: 2px solid rgb(162, 125, 30);
-  cursor: pointer;
   transition: 0.5s;
   text-decoration: none;
 }

@@ -1,17 +1,17 @@
-/* 1. Global pointer cursor for all clickable or interactive elements (links, buttons, divs, etc.)
-* {
-  cursor: url('../Egyptian/Egyptian--cursor--SweezyCursors.cur') 16 16, auto; /* Global cursor for pointer elements */
+/* Universal cursor rule */
+*, .left-image, .horus-eye, .icon-button-play, .icon-button-play-event {
+  cursor: url('../Egyptian-cursor-SweezyCursors.png/04cb26aba4e24358e5d6105fd903d611kaakUPMhgRF4x4aW-3.png'), auto; 
 
+}
 
-/* 2. Custom pointer cursor for links and buttons specifically */
-/* a, button {
-  cursor: url('../Egyptian/Egyptian--pointer--SweezyCursors.cur') 16 16, pointer; /* Pointer cursor for links & buttons */
+/* Specific rules for interactive elements */
+a, button, img, select, option, .player-amount-chooser, .left-title {
+  cursor: url('../Egyptian-pointer-SweezyCursors.png/5a3d424e967e40098595a6a5cdc9b766BEqENKlgsV0DJKcP-3.png'), pointer;
+}
 
-
-/* 3. Custom text cursor for input fields, textareas, and elements requiring text selection */
-/* input, textarea, .text {
-  cursor: url('../Egyptian/Egyptian--pointer--SweezyCursors.cur') 8 8, text; /* Text cursor for input & textareas */
-
+textarea, input, [contenteditable="true"] {
+  cursor: url('../Egyptian-pointer-SweezyCursors.png/5a3d424e967e40098595a6a5cdc9b766BEqENKlgsV0DJKcP-3.png'), text;
+}
 
 
 body {
@@ -77,7 +77,8 @@ body {
   font-weight: bold;
   align-items: center;
   margin-left: 5px;
-  cursor: pointer;
+  
+
   text-decoration: none;
   white-space: nowrap;
 }
@@ -107,7 +108,7 @@ body {
   width: 30px;
   height: 20px;
   margin-right: -50px;
-  cursor: pointer;
+  
 }
 
 .options-box {
@@ -173,7 +174,7 @@ body {
  background-color: transparent;
  border-radius: 100%;
  border: none;
- cursor: pointer;
+ 
  z-index: 10000;
 }
 
@@ -196,7 +197,7 @@ body {
   height: 50px;
   margin-top: 15px;
   margin-left: 10px;
-  cursor: default;
+  
   color: rgb(138, 65, 20); /* Default color for button titles */
   opacity: 1; 
   border-radius: 20px;
@@ -232,7 +233,7 @@ body {
   border: none;
   color: wheat;
   z-index: 5;
-  cursor: pointer;
+  
   transition: 0.5s;
   margin: 5px;
   padding: 10px;
@@ -288,7 +289,7 @@ body {
     background-color: transparent;
     border-radius: 100%;
     border: none;
-    cursor: pointer;
+    
     z-index: 10000;
    }
 
@@ -340,7 +341,7 @@ body {
     background-color: transparent;
     border-radius: 100%;
     border: none;
-    cursor: pointer;
+    
     z-index: 10000;
    }
 
