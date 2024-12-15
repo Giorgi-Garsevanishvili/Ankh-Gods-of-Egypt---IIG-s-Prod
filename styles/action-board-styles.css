@@ -11,7 +11,6 @@
   width: 45px;
   border-radius: 50%;
   background-color: rgb(253, 213, 183);
-  
   opacity: 0.6;
   transition: 0.5s;
 }
@@ -83,7 +82,6 @@
   color: rgb(217, 190, 128);
   border: 1px solid goldenrod;
   border-radius: 10px;
-  
 }
 
 .header-right {
@@ -190,7 +188,6 @@
   margin-right: 7px;
   margin-left: 15px;
   border-radius: 50%;
-  
   opacity: 0.3;
   transition: 0.5s;
 }
@@ -284,7 +281,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
   opacity: 0.1;
   transition: 0.5s;
 }
@@ -304,7 +300,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
   opacity: 0.1;
   transition: 0.5s;
 }
@@ -365,7 +360,6 @@
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 50%;
-  
 }
 
 .reset {
@@ -386,7 +380,6 @@
   border-bottom: none;
   border: 1px solid rgb(220, 220, 220);
   background-color: rgb(78, 60, 14);
-  
   transition: 0.5s;
 }
 
@@ -491,7 +484,6 @@
   margin: 5px;
   font-size: 15px;
   color: white;
-  
   border: 1px solid rgb(209, 179, 137);
 }
 
@@ -561,7 +553,6 @@
   justify-content: center;
   width: 95%;
   padding-left: 30px;
-  
 }
 
 .info-section {
@@ -575,7 +566,6 @@
 
 
 .player-amount-chooser:active {
-  
   transition: 0.5s;
   background-color: rgb(0, 0, 0, 0.7);
 }
@@ -604,7 +594,6 @@
   text-align: center;
   border: 2px solid silver;
   color: wheat;
-  
 }
 
 .decrease {
@@ -636,7 +625,6 @@
   border-bottom: none;
   border: 1px solid rgb(220, 220, 220);
   background-color: rgb(65, 55, 31);
-  
   transition: 0.2s;
 }
 
@@ -711,7 +699,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 130px;
     width: 130px;
-    
     font-size: 16px;
     font-weight: bold;
     color: rgb(238, 232, 215);

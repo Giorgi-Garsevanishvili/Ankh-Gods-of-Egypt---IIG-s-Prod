@@ -17,6 +17,6 @@ export const buttonList = [
   id: '098sd9v8fsd7vsd9fv',
   image: './images/buttons/papyrus.png',
   text: 'Rule Book',
-  url: './pdf/Ankh_Rulebook.pdf'
+  url: './rule-book.html'
 }
 ];
