@@ -119,7 +119,7 @@
   transition: 0.5s;
 }
 
-.action-count-reset:hover {
+.action-count-reset:active {
   background-color: wheat;
   color: brown;
   border: 1px solid black;
