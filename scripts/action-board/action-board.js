@@ -21,6 +21,7 @@ const downArrowSection = document.querySelector('.down-arrow-section');
 const mainResetButton = document.querySelector('.reset');
 const undoButton = document.querySelector('.undo');
 const defaultBoard = document.querySelector('.board-html');
+const devotionPlayerHTML = document.querySelector('.player-choose-buttons');
 const actionCountReset = document.querySelector('.action-count-reset');
 const boardSwitchers = document.querySelectorAll('.next-button, .prev-button');
 const bottomArrowSection = document.querySelector('.bottom-arrow-section');
@@ -30,10 +31,19 @@ const eventBoardButton = document.querySelector('.event-board-button');
 const devotionBoardButton = document.querySelector('.devotion-board-button');
 
 playerAmountChoose();
+renderDevotionPlayer();
 mainReset();
 
 
+function renderDevotionPlayer () {
+  let devotionPlayerSelect = `<button class="player-amount-chooser player-amount-chooser-1"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (3).png" alt=""></button>
+  <button class="player-amount-chooser player-amount-chooser-2"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (4).png" alt=""></button>
+  <button class="player-amount-chooser  player-amount-chooser-3"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (5).png" alt=""></button>
+  <button class="player-amount-chooser player-amount-chooser-4"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (6).png" alt=""></button>
+  <button class="player-amount-chooser  player-amount-chooser-5"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (7).png" alt=""></button>`;
 
+  devotionPlayerHTML.innerHTML += devotionPlayerSelect;
+}
 
 function defaultBoardRender (){
   mainResetButton.classList.add('hidden');
@@ -100,6 +110,7 @@ function playerAmountChoose (){
       boardSwitcher.classList.remove('hidden');
       renderActionBoard();
     }
+
   });
  defaultBoardRender(); 
 }
@@ -337,9 +348,6 @@ function switchToNextButton(switchFormul) {
     displayMessage('END OF THE MATCH', 1000);
   }
 }
-
-
-
 
 function toggleBoard() {
   const actionBoardContainer = document.querySelector('.action-board-container');
@@ -580,6 +588,7 @@ actionCountReset.addEventListener('click', () => {
   ResetActionCount();
   }
 })
+
 
 
 renderActionCount();
