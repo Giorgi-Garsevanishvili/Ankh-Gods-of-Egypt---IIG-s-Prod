@@ -78,22 +78,75 @@ function playerAmountChoose (){
   const playerSelect = document.querySelector('#player');
 
   playerSelect.addEventListener('change', () => {
-    const selectedValue = parseInt(playerSelect.value, 10);
+    const selectedValue = parseInt(playerSelect.value, 10); //parseInt with 10, returns decimal number (just reminder for me :))
     const boardContainer = document.querySelector('.action-board-container');
     mainResetButton.classList.remove('hidden');
 
     actionBoardData.forEach((item, index) => {
       item.amount = defaultAmounts[index];
 
-      if (selectedValue === 3) {
-        item.amount -= 2;
-      } else if (selectedValue === 4) {
-        item.amount--;
-      } else if (selectedValue === 5) {
+
+// Code down below is simplify version of code which is commented below this one. idea and the logic is the same.
+    // Define the states for each selectedValue
+    const states = {
+      3: { amount: -2, hidden: [5, 4], visible: [3, 2, 1] },
+      4: { amount: -1, hidden: [5], visible: [4, 3, 2, 1] },
+      5: { amount: "reset", hidden: [], visible: [5, 4, 3, 2, 1] },
+      2: { amount: -3, hidden: [3, 2, 1], visible: [5, 4] }
+    };
+
+    // Apply changes based on the selected value
+    if (states[selectedValue]) {
+      const state = states[selectedValue];
+
+      // Update amount
+      if (state.amount === "reset") {
         item.amount = defaultAmounts[index];
-      } else if (selectedValue === 2) {
-        item.amount -= 3;
-      } 
+      } else {
+        item.amount += state.amount;
+      }
+
+      // Toggle visibility of elements
+      [1, 2, 3, 4, 5].forEach(num => {
+        const selector = `.player-amount-chooser-${num}`;
+        if (state.hidden.includes(num)) {
+          document.querySelector(selector).classList.add('hidden');
+        } else if (state.visible.includes(num)) {
+          document.querySelector(selector).classList.remove('hidden');
+        }
+      });
+    }
+
+
+      // if (selectedValue === 3) {
+      //   item.amount -= 2;
+      //   document.querySelector('.player-amount-chooser-5').classList.add('hidden');
+      //   document.querySelector('.player-amount-chooser-4').classList.add('hidden');
+      //   document.querySelector('.player-amount-chooser-3').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-2').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-1').classList.remove('hidden');
+      // } else if (selectedValue === 4) {
+      //   item.amount--;
+      //   document.querySelector('.player-amount-chooser-5').classList.add('hidden');
+      //   document.querySelector('.player-amount-chooser-4').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-3').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-2').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-1').classList.remove('hidden');
+      // } else if (selectedValue === 5) {
+      //   item.amount = defaultAmounts[index];
+      //   document.querySelector('.player-amount-chooser-5').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-4').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-3').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-2').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-1').classList.remove('hidden');
+      // } else if (selectedValue === 2) {
+      //   item.amount -= 3;
+      //   document.querySelector('.player-amount-chooser-5').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-4').classList.remove('hidden');
+      //   document.querySelector('.player-amount-chooser-3').classList.add('hidden');
+      //   document.querySelector('.player-amount-chooser-2').classList.add('hidden');
+      //   document.querySelector('.player-amount-chooser-1').classList.add('hidden');
+      // } 
     });
 
     if (selectedValue === 0) {
