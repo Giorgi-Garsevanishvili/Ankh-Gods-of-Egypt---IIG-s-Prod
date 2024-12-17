@@ -241,6 +241,7 @@ function renderActionBoard() {
 
   actionBoardButton.classList.add('visible');  
 
+  renderDefaultMessage();
   attachEventListeners();
   displayActionCount();
   devotionFuntion();
@@ -265,27 +266,34 @@ function renderDevotionBoard() {
 
   // Update the devotion board container's inner HTML
   devotionBoardContainer.innerHTML = `
-    <div class="default-devotion-message hidden">Please Select Player and enter devotion amount.</div>
+    <div class="default-devotion-message">Please Select Player and enter devotion amount.</div>
     ${devotionBoardHTML}
   `;
+  console.log(devotionBoardData.length)
+  renderDefaultMessage();
 }
+
+function renderDefaultMessage () {
+  if (devotionBoardData.length === 0) {
+    document.querySelector('.default-devotion-message').classList.remove('hidden');
+  } else {
+    document.querySelector('.default-devotion-message').classList.add('hidden');
+  }
+}
+
 
 
 function devotionFuntion(){
 
   const devotionInput = document.querySelector('.devotion-input');
-
-  if (devotionBoardData.length <= 0) {
-  document.querySelector('.default-devotion-message').classList.remove('hidden');
-} else {
-  document.querySelector('.default-devotion-message').classList.add('hidden');
-}
-
+  
+  
+  
 document.querySelector('.decrease').addEventListener('click', () => {
   if (devotionInput.value) {
     const numEntries = parseInt(devotionInput.value, 10);
 
-    if (devotionBoardData.length >= numEntries) {
+    if (devotionBoardData.length >= numEntries ) {
       // Remove from the end of the array
       devotionBoardData.splice(devotionBoardData.length - numEntries, numEntries);
       devotionInput.value = ''; // Clear input
@@ -295,7 +303,7 @@ document.querySelector('.decrease').addEventListener('click', () => {
       devotionInput.value = ''; // Clear input
       devotionInput.focus(); // Focus on input after clearing
       renderDevotionBoard(); // Render the updated board
-      console.log("Not enough entries to remove");
+      displayMessage(`Not enough devotion to remove, you have ${devotionBoardData.length} Devotion!`, 4000)
     }
   }
 });
@@ -303,9 +311,12 @@ document.querySelector('.decrease').addEventListener('click', () => {
   document.querySelector('.increase').addEventListener('click', () => {
     if (devotionInput.value) {
       // Convert devotionInput.value to a number (in case it's a string)
-      const numEntries = parseInt(devotionInput.value, 10);
+      const numEntries = parseInt(devotionInput.value);
     
+      const remainSpace = 32 - devotionBoardData.length;
+
       // Add the object to the array the specified number of times
+      if (numEntries <= remainSpace) {
       for (let i = 0; i < numEntries; i++) {
         devotionBoardData.push({
           icon: './images/action-board/fan.png',
@@ -319,9 +330,16 @@ document.querySelector('.decrease').addEventListener('click', () => {
       devotionInput.value = ''; // Clear input
       devotionInput.focus(); // Focus on input after clearing
       renderDevotionBoard(); // Render the updated board
+    } else {
+      displayMessage (`Maximum Devotion amount is 32, you have ${devotionBoardData.length}. Currently you can add only ${32 - devotionBoardData.length}`, 5000);
+      devotionInput.value = ''; // Clear input
+      devotionInput.focus(); // Focus on input after clearing
+      renderDevotionBoard(); // Render the updated board
     }
-    
+  }
   });
+
+  
 }
   
 
@@ -725,7 +743,7 @@ actionCountReset.addEventListener('click', () => {
   }
 })
 
-
+console.log (devotionBoardData.length)
 
 renderActionCount();
 displayActionCount();
