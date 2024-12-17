@@ -14,4 +14,3 @@ Ankh Tools is a web-based project for managing and tracking actions on a board. 
 - CSS
 - JavaScript
 
-## Setup
