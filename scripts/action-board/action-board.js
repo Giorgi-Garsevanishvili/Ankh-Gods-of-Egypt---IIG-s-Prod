@@ -236,7 +236,10 @@ function renderActionBoard() {
   <div class="event-board-container hidden">${eventBoardHTML}</div>
   <div class="devotion-board-container hidden">
   <div class="default-devotion-message hidden">Please Select Player and enter devotion amount.</div>
-  ${devotionBoardHTML}</div>
+  <div>${devotionBoardHTML}<div>
+  <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData.length}</p></div>
+  </div>
+  
   `;
 
   actionBoardButton.classList.add('visible');  
@@ -253,6 +256,8 @@ function renderDevotionBoard() {
   const devotionBoardContainer = document.querySelector('.devotion-board-container');
   let devotionBoardHTML = '';
 
+  
+
   devotionBoardData.forEach((item) => {
     devotionBoardHTML += `
     <div class="devotion-board">
@@ -260,7 +265,7 @@ function renderDevotionBoard() {
         <img class="icon-button-style" src="${item.icon}" alt="">
       </button>
     </div>
-    <img class="icon-button-play-event arrow-" src="./images/action-board/play.png" alt="">
+    <img class="icon-button-play-event arrow-" src="./images/left-arrow.png" alt="">
     `;
   });
 
@@ -268,7 +273,9 @@ function renderDevotionBoard() {
   devotionBoardContainer.innerHTML = `
     <div class="default-devotion-message">Please Select Player and enter devotion amount.</div>
     ${devotionBoardHTML}
+    <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData.length}</p></div>
   `;
+  
   console.log(devotionBoardData.length)
   renderDefaultMessage();
 }
@@ -276,8 +283,10 @@ function renderDevotionBoard() {
 function renderDefaultMessage () {
   if (devotionBoardData.length === 0) {
     document.querySelector('.default-devotion-message').classList.remove('hidden');
+    document.querySelector('.dev-amount-display').classList.add('hidden');
   } else {
     document.querySelector('.default-devotion-message').classList.add('hidden');
+    document.querySelector('.dev-amount-display').classList.remove('hidden');
   }
 }
 
