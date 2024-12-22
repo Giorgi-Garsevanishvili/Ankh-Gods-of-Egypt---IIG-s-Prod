@@ -1,5 +1,5 @@
 /* Universal cursor rule */
-*, .left-image, .horus-eye, .icon-button-play, .icon-button-play-event {
+*, .left-image, .horus-eye, .icon-button-play, .icon-button-play-event, .devotion-button {
   cursor: url('../Egyptian-cursor-SweezyCursors.png/04cb26aba4e24358e5d6105fd903d611kaakUPMhgRF4x4aW-3.png'), auto; 
 
 }
@@ -363,3 +363,19 @@ button, img, div {
   -webkit-tap-highlight-color: transparent; /* Remove blue background on tap */
   outline: none; /* Remove focus outline */
 }
+
+.development {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(58, 53, 53);
+  color: white;
+  font-family: "Macondo", cursive;
+  font-size: 16px;
+  padding: 7px;
+  margin: 7px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
