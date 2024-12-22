@@ -1,4 +1,4 @@
-import { actionBoardData, devotionBoardData, EventBoardData } from "../../data/action-board-data.js";
+import { actionBoardData, devotionBoardData1, EventBoardData } from "../../data/action-board-data.js";
 import { displayMessage } from "../../tools/display-message.js";
 import {resetTimer, stopTimer} from "../timer.js"
 
@@ -36,11 +36,11 @@ mainReset();
 
 
 function renderDevotionPlayer () {
-  let devotionPlayerSelect = `<button class="player-amount-chooser player-amount-chooser-1"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (3).png" alt=""></button>
-  <button class="player-amount-chooser player-amount-chooser-2"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (4).png" alt=""></button>
-  <button class="player-amount-chooser  player-amount-chooser-3"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (5).png" alt=""></button>
-  <button class="player-amount-chooser player-amount-chooser-4"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (6).png" alt=""></button>
-  <button class="player-amount-chooser  player-amount-chooser-5"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (7).png" alt=""></button>`;
+  let devotionPlayerSelect = `<button class="player-amount-chooser player-amount-chooser-1 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (3).png" alt=""></button>
+  <button class="player-amount-chooser player-amount-chooser-2 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (4).png" alt=""></button>
+  <button class="player-amount-chooser  player-amount-chooser-3 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (5).png" alt=""></button>
+  <button class="player-amount-chooser player-amount-chooser-4 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (6).png" alt=""></button>
+  <button class="player-amount-chooser  player-amount-chooser-5 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (7).png" alt=""></button>`;
 
   devotionPlayerHTML.innerHTML += devotionPlayerSelect;
 }
@@ -165,6 +165,7 @@ function playerAmountChoose (){
     }
 
   });
+  switchDevotionPlayer();
  defaultBoardRender(); 
 }
 
@@ -185,7 +186,7 @@ function renderActionBoard() {
   let eventBoardHTML = '';
   let devotionBoardHTML = '';
 
-  devotionBoardData.forEach((item) => {
+  devotionBoardData1.forEach((item) => {
     devotionBoardHTML += `
     <div class="devotion-board">
       <button id="${item.id}" class="devotion-button event-button-${item.styleLink.primary}" data-id="${item.id}">
@@ -237,7 +238,7 @@ function renderActionBoard() {
   <div class="devotion-board-container hidden">
   <div class="default-devotion-message hidden">Please Select Player and enter devotion amount.</div>
   <div>${devotionBoardHTML}<div>
-  <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData.length}</p></div>
+  <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData1.length}</p></div>
   </div>
   
   `;
@@ -249,16 +250,32 @@ function renderActionBoard() {
   displayActionCount();
   devotionFuntion();
   mainReset();
+  switchDevotionPlayer();
 }
 
-// Function to render devotion board only
+function switchDevotionPlayer() {
+  document.querySelectorAll('.player-amount-chooser').forEach((button) => {
+    button.addEventListener('click', () => {
+      // Remove 'active' class from all buttons
+      document.querySelectorAll('.player-amount-chooser').forEach((btn) => {
+        btn.classList.remove('active');
+        btn.classList.add('inactive');
+      });
+      // Add 'active' class to the clicked button
+      button.classList.add('active');
+      button.classList.remove('inactive');
+    });
+  });
+}
+
+
 function renderDevotionBoard() {
   const devotionBoardContainer = document.querySelector('.devotion-board-container');
   let devotionBoardHTML = '';
 
   
 
-  devotionBoardData.forEach((item) => {
+  devotionBoardData1.forEach((item) => {
     devotionBoardHTML += `
     <div class="devotion-board">
       <button id="${item.id}" class="devotion-button event-button-${item.styleLink.primary}" data-id="${item.id}">
@@ -273,15 +290,15 @@ function renderDevotionBoard() {
   devotionBoardContainer.innerHTML = `
     <div class="default-devotion-message">Please Select Player and enter devotion amount.</div>
     ${devotionBoardHTML}
-    <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData.length}</p></div>
+    <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData1.length}</p></div>
   `;
   
-  console.log(devotionBoardData.length)
+  console.log(devotionBoardData1.length)
   renderDefaultMessage();
 }
 
 function renderDefaultMessage () {
-  if (devotionBoardData.length === 0) {
+  if (devotionBoardData1.length === 0) {
     document.querySelector('.default-devotion-message').classList.remove('hidden');
     document.querySelector('.dev-amount-display').classList.add('hidden');
   } else {
@@ -290,68 +307,72 @@ function renderDefaultMessage () {
   }
 }
 
-
-
-function devotionFuntion(){
-
+function devotionFuntion() {
   const devotionInput = document.querySelector('.devotion-input');
-  
-  
-  
-document.querySelector('.decrease').addEventListener('click', () => {
-  if (devotionInput.value) {
-    const numEntries = parseInt(devotionInput.value, 10);
+  const devotionPlayerSelect1 = document.querySelector('.player-amount-chooser-1');
+  const devotionPlayerSelect2 = document.querySelector('.player-amount-chooser-2');
+  const devotionPlayerSelect3 = document.querySelector('.player-amount-chooser-3');
+  const devotionPlayerSelect4 = document.querySelector('.player-amount-chooser-4');
+  const devotionPlayerSelect5 = document.querySelector('.player-amount-chooser-5');
 
-    if (devotionBoardData.length >= numEntries ) {
-      // Remove from the end of the array
-      devotionBoardData.splice(devotionBoardData.length - numEntries, numEntries);
-      devotionInput.value = ''; // Clear input
-      devotionInput.focus(); // Focus on input after clearing
-      renderDevotionBoard(); // Render the updated board
-    } else {
-      devotionInput.value = ''; // Clear input
-      devotionInput.focus(); // Focus on input after clearing
-      renderDevotionBoard(); // Render the updated board
-      displayMessage(`Not enough devotion to remove, you have ${devotionBoardData.length} Devotion!`, 4000)
+  document.querySelector('.decrease').addEventListener('click', () => {
+    if (devotionInput.value) {
+      const numEntries = parseInt(devotionInput.value, 10);
+
+      if (devotionBoardData1.length >= numEntries && devotionPlayerSelect1.classList.contains('active')) {
+        // Remove from the end of the array
+        devotionBoardData1.splice(devotionBoardData1.length - numEntries, numEntries);
+        devotionInput.value = ''; // Clear input
+        devotionInput.focus(); // Focus on input after clearing
+        renderDevotionBoard(); // Render the updated board
+      } else {
+        devotionInput.value = ''; // Clear input
+        devotionInput.focus(); // Focus on input after clearing
+        renderDevotionBoard(); // Render the updated board
+        displayMessage(`Not enough devotion to remove, you have ${devotionBoardData1.length} Devotion!`, 4000);
+      }
     }
-  }
-});
+  });
 
   document.querySelector('.increase').addEventListener('click', () => {
     if (devotionInput.value) {
       // Convert devotionInput.value to a number (in case it's a string)
-      const numEntries = parseInt(devotionInput.value);
-    
-      const remainSpace = 32 - devotionBoardData.length;
+      const numEntries = parseInt(devotionInput.value, 10);
 
-      // Add the object to the array the specified number of times
-      if (numEntries <= remainSpace) {
-      for (let i = 0; i < numEntries; i++) {
-        devotionBoardData.push({
-          icon: './images/action-board/fan.png',
-          styleLink: {
-            primary: 'fan',
-            secondary: 'last'
-          },
-          id: i // You can adjust the id to make it unique, here it's using `i`
-        });
+      if (devotionPlayerSelect1.classList.contains('active')) {
+        const remainSpace = 32 - devotionBoardData1.length;
+
+        // Add the object to the array the specified number of times
+        if (numEntries <= remainSpace) {
+          for (let i = 0; i < numEntries; i++) {
+            devotionBoardData1.push({
+              icon: './images/action-board/fan.png',
+              styleLink: {
+                primary: 'fan',
+                secondary: 'last'
+              },
+              id: i + devotionBoardData1.length
+            });
+            console.log(devotionBoardData1);
+          }
+          devotionInput.value = ''; 
+          devotionInput.focus(); 
+          renderDevotionBoard(); 
+        } else {
+          displayMessage(`Maximum Devotion amount is 32, you have ${devotionBoardData1.length}. Currently you can add only ${32 - devotionBoardData1.length}`, 5000);
+          devotionInput.value = ''; 
+          devotionInput.focus(); 
+          renderDevotionBoard(); 
+        }
+      } else {
+        displayMessage('Please select an active player to add devotion!', 4000);
+        devotionInput.value = ''; 
+        devotionInput.focus(); 
       }
-      devotionInput.value = ''; // Clear input
-      devotionInput.focus(); // Focus on input after clearing
-      renderDevotionBoard(); // Render the updated board
-    } else {
-      displayMessage (`Maximum Devotion amount is 32, you have ${devotionBoardData.length}. Currently you can add only ${32 - devotionBoardData.length}`, 5000);
-      devotionInput.value = ''; // Clear input
-      devotionInput.focus(); // Focus on input after clearing
-      renderDevotionBoard(); // Render the updated board
     }
-  }
   });
-
-  
 }
   
-
 function checkActionCount() {
   if (actionCount === 0) {
     displayMessage('Your Action Registered!', 1000);
@@ -678,7 +699,7 @@ function renderActionCount (amount) {
 
 function mainReset () { 
   mainResetButton.addEventListener('click', () => {
-    devotionBoardData.length = 0 ;
+    devotionBoardData1.length = 0 ;
     activeButtonIndex = 0; 
     activeActionButtonIndices = {};
     actionCount = 2;
@@ -752,7 +773,7 @@ actionCountReset.addEventListener('click', () => {
   }
 })
 
-console.log (devotionBoardData.length)
+console.log (devotionBoardData1.length)
 
 renderActionCount();
 displayActionCount();
