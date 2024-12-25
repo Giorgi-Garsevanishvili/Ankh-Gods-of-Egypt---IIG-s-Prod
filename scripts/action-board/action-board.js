@@ -14,7 +14,7 @@ let sfCount;
 let gfCount;
 let renderedD = true;
 let renderedB;
-
+let messageSend = false;
 
 
 const downArrowSection = document.querySelector('.down-arrow-section');
@@ -29,6 +29,10 @@ const boardSwitcher = document.querySelector('.board-switch-section');
 const actionBoardButton = document.querySelector('.action-board-button');
 const eventBoardButton = document.querySelector('.event-board-button');
 const devotionBoardButton = document.querySelector('.devotion-board-button');
+const sound = document.getElementById('notification-sound');
+const audioButton = document.querySelector('.sound-button');
+
+
 
 playerAmountChoose();
 renderDevotionPlayer();
@@ -175,6 +179,11 @@ function renderActionBoard() {
     undoButton.classList.add('hidden');
   } 
 
+  if (messageSend === false) {
+    displayMessage('Welcome to the Game!', 3000);
+    messageSend = true;
+    };
+
   renderedD = false;
   renderedB = true;
 
@@ -244,6 +253,7 @@ function renderActionBoard() {
   `;
 
   actionBoardButton.classList.add('visible');  
+  audioButton.classList.remove('hidden');
 
   renderDefaultMessage();
   attachEventListeners();
@@ -251,6 +261,28 @@ function renderActionBoard() {
   devotionFuntion();
   mainReset();
   switchDevotionPlayer();
+  sound.play();
+
+  if (!sound.paused) {
+    audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/volume.png" alt="">';
+    sound.play(); 
+    sound.loop = true;
+    sound.volume = 0.2;
+  }
+
+  audioButton.addEventListener('click', () => {
+    if (!sound.paused) {
+      sound.pause();
+      console.log('sound is on');
+      audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
+    } else {
+      sound.play();
+      console.log('sound is off');
+      audioButton.innerHTML = '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">';
+    }
+
+}
+  );
 }
 
 function switchDevotionPlayer() {
@@ -706,6 +738,7 @@ function mainReset () {
     mfCount;
     sfCount;
     gfCount;
+    
    
     actionCountReset.classList.add('hidden')
     displayActionCount();
@@ -713,6 +746,9 @@ function mainReset () {
     stopTimer();
     resetTimer();
     renderActionBoard();
+    sound.pause();
+    audioButton.classList.add('hidden');
+    messageSend = false;
     
     downArrowSection.classList.remove('hidden');
 
@@ -727,7 +763,7 @@ function mainReset () {
       playerSelect.value = 0;
       defaultBoardRender();
     } 
-    displayMessage('Board Reset!', 1000)
+    displayMessage('Board Reset!', 2000)
   })
 }
 

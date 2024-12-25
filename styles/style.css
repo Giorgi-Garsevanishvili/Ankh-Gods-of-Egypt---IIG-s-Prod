@@ -386,3 +386,22 @@ button, img, div {
 .inactive {
   opacity: 0.3;
 }
+
+.sound-button{
+  border: none;
+  background-color: transparent;
+}
+.sound-img, .sound-img-pause {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(237, 183, 108);
+  width: auto;
+  max-width: 20px;
+  margin-top: 8px;
+  padding: 5px;
+  border-radius: 30px;
+  border: 1px solid rgb(0, 0, 0); 
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
