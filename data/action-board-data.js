@@ -186,5 +186,9 @@ export const EventBoardData = [
 ];
 
 export let devotionBoardData1 = [];
+export let devotionBoardData2 = [];
+export let devotionBoardData3 = [];
+export let devotionBoardData4 = [];
+export let devotionBoardData5 = [];
 
  

@@ -1,4 +1,4 @@
-import { actionBoardData, devotionBoardData1, EventBoardData } from "../../data/action-board-data.js";
+import { actionBoardData, devotionBoardData1,devotionBoardData2,devotionBoardData3,devotionBoardData4,devotionBoardData5, EventBoardData } from "../../data/action-board-data.js";
 import { displayMessage } from "../../tools/display-message.js";
 import {resetTimer, stopTimer} from "../timer.js"
 
@@ -15,6 +15,8 @@ let gfCount;
 let renderedD = true;
 let renderedB;
 let messageSend = false;
+let data = [];
+let selectedPlayer;
 
 
 const downArrowSection = document.querySelector('.down-arrow-section');
@@ -31,13 +33,18 @@ const eventBoardButton = document.querySelector('.event-board-button');
 const devotionBoardButton = document.querySelector('.devotion-board-button');
 const sound = document.getElementById('notification-sound');
 const audioButton = document.querySelector('.sound-button');
+const amountChooserDevotion = document.querySelector('.player-amount-chooser');
+
+
 
 
 // playSound('off');
 toggleSound('off');
 playerAmountChoose();
 renderDevotionPlayer();
-mainReset();
+// mainReset();
+// Attach the event listener initially
+mainResetButton.addEventListener('click', mainReset);
 
 
 function renderDevotionPlayer () {
@@ -60,8 +67,6 @@ function defaultBoardRender (){
   renderedD = true;
   renderedB = false;
 
-  console.log(renderedB);
-  console.log(renderedD);
 
   let startingBoard = `
   <div class="start-board">Choose player amount to display the board!<div>
@@ -188,15 +193,12 @@ function renderActionBoard() {
   renderedD = false;
   renderedB = true;
 
-  console.log(renderedB);
-  console.log(renderedD);
-
   let boardHTML = document.querySelector('.board-html');
   let actionBoardHTML = '';
   let eventBoardHTML = '';
   let devotionBoardHTML = '';
 
-  devotionBoardData1.forEach((item) => {
+  data.forEach((item) => {
     devotionBoardHTML += `
     <div class="devotion-board">
       <button id="${item.id}" class="devotion-button event-button-${item.styleLink.primary}" data-id="${item.id}">
@@ -248,7 +250,7 @@ function renderActionBoard() {
   <div class="devotion-board-container hidden">
   <div class="default-devotion-message hidden">Please Select Player and enter devotion amount.</div>
   <div>${devotionBoardHTML}<div>
-  <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData1.length}</p></div>
+  <div class="dev-amount-display"><p class="amount-dev">${data.length}</p></div>
   </div>
 
   `;
@@ -260,7 +262,9 @@ function renderActionBoard() {
   attachEventListeners();
   displayActionCount();
   devotionFuntion();
-  mainReset();
+  // mainReset();
+  // Attach the event listener initially
+mainResetButton.addEventListener('click', mainReset);
   switchDevotionPlayer();
 }
 
@@ -275,6 +279,8 @@ function switchDevotionPlayer() {
       // Add 'active' class to the clicked button
       button.classList.add('active');
       button.classList.remove('inactive');
+      dataStatus();
+      renderDevotionBoard();
     });
   });
 }
@@ -286,7 +292,7 @@ function renderDevotionBoard() {
 
 
 
-  devotionBoardData1.forEach((item) => {
+  data.forEach((item) => {
     devotionBoardHTML += `
     <div class="devotion-board">
       <button id="${item.id}" class="devotion-button event-button-${item.styleLink.primary}" data-id="${item.id}">
@@ -301,15 +307,16 @@ function renderDevotionBoard() {
   devotionBoardContainer.innerHTML = `
     <div class="default-devotion-message">Please Select Player and enter devotion amount.</div>
     ${devotionBoardHTML}
-    <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData1.length}</p></div>
+    <div class="dev-amount-display"><p class="amount-dev">${data.length}</p></div>
   `;
-
-  console.log(devotionBoardData1.length)
   renderDefaultMessage();
+  // mainReset();
+  // Attach the event listener initially
+mainResetButton.addEventListener('click', mainReset);
 }
 
 function renderDefaultMessage () {
-  if (devotionBoardData1.length === 0) {
+  if (data.length === 0) {
     document.querySelector('.default-devotion-message').classList.remove('hidden');
     document.querySelector('.dev-amount-display').classList.add('hidden');
   } else {
@@ -318,21 +325,47 @@ function renderDefaultMessage () {
   }
 }
 
+function dataStatus(){
+const devotionPlayerSelect1 = document.querySelector('.player-amount-chooser-1');
+const devotionPlayerSelect2 = document.querySelector('.player-amount-chooser-2');
+const devotionPlayerSelect3 = document.querySelector('.player-amount-chooser-3');
+const devotionPlayerSelect4 = document.querySelector('.player-amount-chooser-4');
+const devotionPlayerSelect5 = document.querySelector('.player-amount-chooser-5');
+
+  if (devotionPlayerSelect1.classList.contains('active')) {
+    data = devotionBoardData1;
+    selectedPlayer = devotionPlayerSelect1;
+    return data, selectedPlayer;
+
+  } else if (devotionPlayerSelect2.classList.contains('active')) {
+    data = devotionBoardData2;
+    selectedPlayer = devotionPlayerSelect2;
+    return data, selectedPlayer;
+  } else if (devotionPlayerSelect3.classList.contains('active')) {  
+    data = devotionBoardData3;
+    selectedPlayer = devotionPlayerSelect3;
+    return data, selectedPlayer;
+  } else if (devotionPlayerSelect4.classList.contains('active')) {
+    data = devotionBoardData4;
+    selectedPlayer = devotionPlayerSelect4;
+    return data, selectedPlayer;
+  } else if (devotionPlayerSelect5.classList.contains('active')) {
+    data = devotionBoardData5;
+    selectedPlayer = devotionPlayerSelect5;
+    return data, selectedPlayer;
+  }
+};  
+
 function devotionFuntion() {
   const devotionInput = document.querySelector('.devotion-input');
-  const devotionPlayerSelect1 = document.querySelector('.player-amount-chooser-1');
-  const devotionPlayerSelect2 = document.querySelector('.player-amount-chooser-2');
-  const devotionPlayerSelect3 = document.querySelector('.player-amount-chooser-3');
-  const devotionPlayerSelect4 = document.querySelector('.player-amount-chooser-4');
-  const devotionPlayerSelect5 = document.querySelector('.player-amount-chooser-5');
 
   document.querySelector('.decrease').addEventListener('click', () => {
     if (devotionInput.value) {
       const numEntries = parseInt(devotionInput.value, 10);
 
-      if (devotionBoardData1.length >= numEntries && devotionPlayerSelect1.classList.contains('active')) {
+      if (data.length >= numEntries && selectedPlayer.classList.contains('active')) {
         // Remove from the end of the array
-        devotionBoardData1.splice(devotionBoardData1.length - numEntries, numEntries);
+        data.splice(data.length - numEntries, numEntries);
         devotionInput.value = ''; // Clear input
         devotionInput.focus(); // Focus on input after clearing
         renderDevotionBoard(); // Render the updated board
@@ -340,7 +373,7 @@ function devotionFuntion() {
         devotionInput.value = ''; // Clear input
         devotionInput.focus(); // Focus on input after clearing
         renderDevotionBoard(); // Render the updated board
-        displayMessage(`Not enough devotion to remove, you have ${devotionBoardData1.length} Devotion!`, 4000);
+        displayMessage(`Not enough devotion to remove, you have ${data.length} Devotion!`, 4000);
       }
     }
   });
@@ -350,27 +383,26 @@ function devotionFuntion() {
       // Convert devotionInput.value to a number (in case it's a string)
       const numEntries = parseInt(devotionInput.value, 10);
 
-      if (devotionPlayerSelect1.classList.contains('active')) {
-        const remainSpace = 32 - devotionBoardData1.length;
+      if (selectedPlayer.classList.contains('active')) {
+        const remainSpace = 32 - data.length;
 
         // Add the object to the array the specified number of times
         if (numEntries <= remainSpace) {
           for (let i = 0; i < numEntries; i++) {
-            devotionBoardData1.push({
+            data.push({
               icon: './images/action-board/fan.png',
               styleLink: {
                 primary: 'fan',
                 secondary: 'last'
               },
-              id: i + devotionBoardData1.length
+              id: i + data.length
             });
-            console.log(devotionBoardData1);
           }
           devotionInput.value = '';
           devotionInput.focus();
           renderDevotionBoard();
         } else {
-          displayMessage(`Maximum Devotion amount is 32, you have ${devotionBoardData1.length}. Currently you can add only ${32 - devotionBoardData1.length}`, 5000);
+          displayMessage(`Maximum Devotion amount is 32, you have ${data.length}. Currently you can add only ${32 - data.length}`, 5000);
           devotionInput.value = '';
           devotionInput.focus();
           renderDevotionBoard();
@@ -382,6 +414,7 @@ function devotionFuntion() {
       }
     }
   });
+  
 }
 
 function checkActionCount() {
@@ -515,7 +548,7 @@ function switchToNextButton(switchFormul) {
   mainResetButton.classList.remove('hidden');
   undoButton.classList.remove('hidden');
 
-  console.log(eventButtons);
+  
 
   eventButtons[activeButtonIndex].classList.remove('on');
 
@@ -534,7 +567,7 @@ function switchToNextButton(switchFormul) {
     displayMessage('Eliminate Gods in Red!', 1000)
   }
 
-  console.log(activeButtonIndex);
+ 
 
 
   if (activeButtonIndex === totalButtons - 1) {
@@ -581,7 +614,7 @@ function toggleBoard() {
     document.querySelector('.page-title').textContent = 'Devotion Board';
   }
 
-  attachEventListeners;
+  attachEventListeners();
 }
 
 // function playSound(status) {
@@ -599,14 +632,14 @@ function toggleBoard() {
 //     if (status === 'on') {
 //       sound.pause();
 //       status = 'off';
-//       console.log('sound is off');
+//       
 //       audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
 //     } else if (status === 'off') {
 //       sound.play();
 //       sound.loop = true;
 //       status = 'on';
 //       sound.volume = 0.2;
-//       console.log('sound is on');
+//       
 //       audioButton.innerHTML = '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">';
 //     }
 // }
@@ -626,7 +659,6 @@ function toggleSound(status) {
 
   audioButton.addEventListener('click', () => {
     toggleSound(isOn ? 'off' : 'on'); // Toggle between 'on' and 'off'
-    console.log(`sound is ${isOn ? 'off' : 'on'}`);
   });
 }
 
@@ -755,43 +787,123 @@ function renderActionCount (amount) {
   displayActionCount();
 }
 
-function mainReset () {
-  mainResetButton.addEventListener('click', () => {
-    devotionBoardData1.length = 0 ;
-    activeButtonIndex = 0;
-    activeActionButtonIndices = {};
-    actionCount = 2;
-    mfCount;
-    sfCount;
-    gfCount;
+// function mainReset () {
+//   mainResetButton.addEventListener('click', () => {
+//     if (selectedPlayer) {
+//       selectedPlayer.classList.remove('active');
+//       selectedPlayer.classList.add('inactive');
+//     }
+//     data.length = 0 ;
+//     activeButtonIndex = 0;
+//     activeActionButtonIndices = {};
+//     actionCount = 2;
+//     mfCount;
+//     sfCount;
+//     gfCount;
+//     selectedPlayer;
+//     devotionBoardData1.length = 0;
+//     devotionBoardData2.length = 0;
+//     devotionBoardData3.length = 0;
+//     devotionBoardData4.length = 0;
+//     devotionBoardData5.length = 0;
+    
 
 
-    actionCountReset.classList.add('hidden')
-    displayActionCount();
-    toggleBoard();
-    stopTimer();
-    resetTimer();
-    renderActionBoard();
-    // playSound('off');
-    toggleSound('off');
-    messageSend = false;
+//     actionCountReset.classList.add('hidden')
+//     displayActionCount();
+//     toggleBoard();
+//     stopTimer();
+//     resetTimer();
+//     renderActionBoard();
+//     // playSound('off');
+//     toggleSound('off');
+//     messageSend = false;
 
-    downArrowSection.classList.remove('hidden');
+//     downArrowSection.classList.remove('hidden');
 
-    if (renderedB = true && renderedD === false) {
+//     if (renderedB = true && renderedD === false) {
 
-      document.querySelector('.action-board-container').classList.add('hidden');
-      boardSwitchers.forEach((button) => {
-        button.classList.add('hidden');
-      });
-      boardSwitcher.classList.add('hidden');
-      const playerSelect = document.querySelector('#player');
-      playerSelect.value = 0;
-      defaultBoardRender();
-    }
-    displayMessage('Board Reset!', 2000)
-  })
+//       document.querySelector('.action-board-container').classList.add('hidden');
+//       boardSwitchers.forEach((button) => {
+//         button.classList.add('hidden');
+//       });
+//       boardSwitcher.classList.add('hidden');
+//       const playerSelect = document.querySelector('#player');
+//       playerSelect.value = 0;
+//       defaultBoardRender();
+//     }
+//     displayMessage('Board Reset!', 2000)
+//   })
+// }
+
+function mainReset() {
+  // Remove event listeners if necessary
+  mainResetButton.removeEventListener('click', mainReset);
+
+  // Reset player selection
+  if (selectedPlayer) {
+    selectedPlayer.classList.remove('active');
+    selectedPlayer.classList.add('inactive');
+  }
+
+  // Clear data arrays
+  data.length = 0;
+  devotionBoardData1.length = 0;
+  devotionBoardData2.length = 0;
+  devotionBoardData3.length = 0;
+  devotionBoardData4.length = 0;
+  devotionBoardData5.length = 0;
+
+  // Reset action counts
+  actionCount = 2;
+  mfCount = 0;
+  sfCount = 0;
+  gfCount = 0;
+  activeButtonIndex = 0;
+  activeActionButtonIndices = {};
+  selectedPlayer = null;
+
+  // Hide reset button
+  actionCountReset.classList.add('hidden');
+
+  // Update action count display
+  displayActionCount();
+
+  // Toggle board and reset timer
+  toggleBoard();
+  stopTimer();
+  resetTimer();
+
+  // Render action board
+  renderActionBoard();
+
+  // Toggle sound
+  toggleSound('off');
+  messageSend = false;
+
+  // Show down arrow section
+  downArrowSection.classList.remove('hidden');
+
+  // Check rendered states and update DOM accordingly
+  if (renderedB === true && renderedD === false) {
+    document.querySelector('.action-board-container').classList.add('hidden');
+    boardSwitchers.forEach((button) => {
+      button.classList.add('hidden');
+    });
+    boardSwitcher.classList.add('hidden');
+    const playerSelect = document.querySelector('#player');
+    playerSelect.value = 0;
+    defaultBoardRender();
+  }
+
+  // Display reset message
+  displayMessage('Board Reset!', 2000);
+
+  // Re-attach event listener
+  mainResetButton.addEventListener('click', mainReset);
 }
+
+
 
 function undoLastAction() {
   if (document.querySelector('.event-board-container').classList.contains('hidden')) {
@@ -835,7 +947,6 @@ actionCountReset.addEventListener('click', () => {
   }
 })
 
-console.log (devotionBoardData1.length)
 
 renderActionCount();
 displayActionCount();
