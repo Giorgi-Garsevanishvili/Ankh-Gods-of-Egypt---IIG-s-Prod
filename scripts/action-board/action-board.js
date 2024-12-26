@@ -6,7 +6,7 @@ import {resetTimer, stopTimer} from "../timer.js"
 let actionHistory = [];
 
 
-let activeButtonIndex = 0; 
+let activeButtonIndex = 0;
 let activeActionButtonIndices = {};
 let actionCount = 3;
 let mfCount;
@@ -33,7 +33,8 @@ const sound = document.getElementById('notification-sound');
 const audioButton = document.querySelector('.sound-button');
 
 
-
+// playSound('off');
+toggleSound('off');
 playerAmountChoose();
 renderDevotionPlayer();
 mainReset();
@@ -53,7 +54,7 @@ function defaultBoardRender (){
   mainResetButton.classList.add('hidden');
   undoButton.classList.add('hidden');
   bottomArrowSection.classList.add('hidden');
-  
+
 
 
   renderedD = true;
@@ -67,9 +68,9 @@ function defaultBoardRender (){
   <div class="rules"></div>
   `;
 
-  
 
-  
+
+
   defaultBoard.innerHTML += startingBoard;
   boardSwitchers.forEach((button) => {
     button.classList.add('hidden');
@@ -150,7 +151,7 @@ function playerAmountChoose (){
       //   document.querySelector('.player-amount-chooser-3').classList.add('hidden');
       //   document.querySelector('.player-amount-chooser-2').classList.add('hidden');
       //   document.querySelector('.player-amount-chooser-1').classList.add('hidden');
-      // } 
+      // }
     });
 
     if (selectedValue === 0) {
@@ -170,14 +171,14 @@ function playerAmountChoose (){
 
   });
   switchDevotionPlayer();
- defaultBoardRender(); 
+ defaultBoardRender();
 }
 
 function renderActionBoard() {
 
   if (actionHistory.length === 0 && activeButtonIndex === 0) {
     undoButton.classList.add('hidden');
-  } 
+  }
 
   if (messageSend === false) {
     displayMessage('Welcome to the Game!', 3000);
@@ -249,40 +250,18 @@ function renderActionBoard() {
   <div>${devotionBoardHTML}<div>
   <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData1.length}</p></div>
   </div>
-  
+
   `;
 
-  actionBoardButton.classList.add('visible');  
-  audioButton.classList.remove('hidden');
-
+  actionBoardButton.classList.add('visible');
+  // playSound('on');
+  toggleSound('on');
   renderDefaultMessage();
   attachEventListeners();
   displayActionCount();
   devotionFuntion();
   mainReset();
   switchDevotionPlayer();
-  sound.play();
-
-  if (!sound.paused) {
-    audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/volume.png" alt="">';
-    sound.play(); 
-    sound.loop = true;
-    sound.volume = 0.2;
-  }
-
-  audioButton.addEventListener('click', () => {
-    if (!sound.paused) {
-      sound.pause();
-      console.log('sound is on');
-      audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
-    } else {
-      sound.play();
-      console.log('sound is off');
-      audioButton.innerHTML = '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">';
-    }
-
-}
-  );
 }
 
 function switchDevotionPlayer() {
@@ -305,7 +284,7 @@ function renderDevotionBoard() {
   const devotionBoardContainer = document.querySelector('.devotion-board-container');
   let devotionBoardHTML = '';
 
-  
+
 
   devotionBoardData1.forEach((item) => {
     devotionBoardHTML += `
@@ -324,7 +303,7 @@ function renderDevotionBoard() {
     ${devotionBoardHTML}
     <div class="dev-amount-display"><p class="amount-dev">${devotionBoardData1.length}</p></div>
   `;
-  
+
   console.log(devotionBoardData1.length)
   renderDefaultMessage();
 }
@@ -387,24 +366,24 @@ function devotionFuntion() {
             });
             console.log(devotionBoardData1);
           }
-          devotionInput.value = ''; 
-          devotionInput.focus(); 
-          renderDevotionBoard(); 
+          devotionInput.value = '';
+          devotionInput.focus();
+          renderDevotionBoard();
         } else {
           displayMessage(`Maximum Devotion amount is 32, you have ${devotionBoardData1.length}. Currently you can add only ${32 - devotionBoardData1.length}`, 5000);
-          devotionInput.value = ''; 
-          devotionInput.focus(); 
-          renderDevotionBoard(); 
+          devotionInput.value = '';
+          devotionInput.focus();
+          renderDevotionBoard();
         }
       } else {
         displayMessage('Please select an active player to add devotion!', 4000);
-        devotionInput.value = ''; 
-        devotionInput.focus(); 
+        devotionInput.value = '';
+        devotionInput.focus();
       }
     }
   });
 }
-  
+
 function checkActionCount() {
   if (actionCount === 0) {
     displayMessage('Your Action Registered!', 1000);
@@ -462,7 +441,7 @@ function handleActionButtonClick(styleLink) {
     sfCount: sfCount,
     gfCount: gfCount,
     activeButtonIndex: activeButtonIndex,
-    activeActionButtonIndices: {...activeActionButtonIndices} 
+    activeActionButtonIndices: {...activeActionButtonIndices}
 });
 
   mainResetButton.classList.remove('hidden');
@@ -556,7 +535,7 @@ function switchToNextButton(switchFormul) {
   }
 
   console.log(activeButtonIndex);
-  
+
 
   if (activeButtonIndex === totalButtons - 1) {
     displayMessage('END OF THE MATCH', 1000);
@@ -605,13 +584,60 @@ function toggleBoard() {
   attachEventListeners;
 }
 
+// function playSound(status) {
+//   if (status === 'on') {
+//     sound.play();
+//     sound.loop = true;
+//     sound.volume = 0.2;
+//     audioButton.innerHTML = '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">';
+//   } else if (status === 'off') {
+//     sound.pause();
+//     audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
+//   }
+
+//   audioButton.addEventListener('click', () => {
+//     if (status === 'on') {
+//       sound.pause();
+//       status = 'off';
+//       console.log('sound is off');
+//       audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
+//     } else if (status === 'off') {
+//       sound.play();
+//       sound.loop = true;
+//       status = 'on';
+//       sound.volume = 0.2;
+//       console.log('sound is on');
+//       audioButton.innerHTML = '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">';
+//     }
+// }
+//   );
+// }
+
+function toggleSound(status) {
+  const isOn = status === 'on';
+
+  sound[isOn ? 'play' : 'pause'](); // Play or pause based on the status
+  sound.loop = isOn;
+  sound.volume = isOn ? 0.2 : 0; // Volume only relevant when playing
+
+  audioButton.innerHTML = isOn
+    ? '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">'
+    : '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
+
+  audioButton.addEventListener('click', () => {
+    toggleSound(isOn ? 'off' : 'on'); // Toggle between 'on' and 'off'
+    console.log(`sound is ${isOn ? 'off' : 'on'}`);
+  });
+}
+
+
 function attachEventListeners() {
   const buttons = document.querySelectorAll('.next-button');
   const eventButtons = document.querySelectorAll('.event-button');
 
   buttons.forEach(button => button.addEventListener('click', toggleBoard));
 
-  
+
   const actionBoardContainer = document.querySelector('.action-board-container');
   const eventBoardContainer = document.querySelector('.event-board-container');
   const devotionBoardContainer = document.querySelector('.devotion-board-container');
@@ -620,7 +646,7 @@ function attachEventListeners() {
   const actionBoardButton = document.querySelector('.action-board-button');
   const eventBoardButton = document.querySelector('.event-board-button');
   const devotionBoardButton = document.querySelector('.devotion-board-button');
-  
+
     document.querySelector('.action-board-button').addEventListener('click', () => {
       actionBoardContainer.classList.remove('hidden');
       downArrowSection.classList.remove('hidden');
@@ -656,8 +682,8 @@ function attachEventListeners() {
       eventBoardButton.classList.remove('visible')
       document.querySelector('.page-title').textContent = 'Devotion Board';
     })
-  
-  
+
+
 
   if (eventButtons.length > 0) {
     eventButtons[activeButtonIndex].classList.add('on');
@@ -725,31 +751,31 @@ function renderActionCount (amount) {
     displayMessage('no more actions', 1000)
     ResetActionCount();
   }
-  
+
   displayActionCount();
 }
 
-function mainReset () { 
+function mainReset () {
   mainResetButton.addEventListener('click', () => {
     devotionBoardData1.length = 0 ;
-    activeButtonIndex = 0; 
+    activeButtonIndex = 0;
     activeActionButtonIndices = {};
     actionCount = 2;
     mfCount;
     sfCount;
     gfCount;
-    
-   
+
+
     actionCountReset.classList.add('hidden')
     displayActionCount();
     toggleBoard();
     stopTimer();
     resetTimer();
     renderActionBoard();
-    sound.pause();
-    audioButton.classList.add('hidden');
+    // playSound('off');
+    toggleSound('off');
     messageSend = false;
-    
+
     downArrowSection.classList.remove('hidden');
 
     if (renderedB = true && renderedD === false) {
@@ -762,18 +788,18 @@ function mainReset () {
       const playerSelect = document.querySelector('#player');
       playerSelect.value = 0;
       defaultBoardRender();
-    } 
+    }
     displayMessage('Board Reset!', 2000)
   })
 }
 
 function undoLastAction() {
   if (document.querySelector('.event-board-container').classList.contains('hidden')) {
-    
+
     if (activeButtonIndex > 0 && actionHistory.length === 0){
       displayMessage('No action to undo! Try another Board!', 1500);
     }
-    
+
   const lastAction = actionHistory.pop();
 
   actionCount = lastAction.actionCount;
@@ -794,7 +820,7 @@ function undoLastAction() {
     } else if (activeButtonIndex === 0 && actionHistory.length > 0){
       displayMessage('No action to undo! Try another Board!', 1500);
     }
-  }  
+  }
 }
 
 
