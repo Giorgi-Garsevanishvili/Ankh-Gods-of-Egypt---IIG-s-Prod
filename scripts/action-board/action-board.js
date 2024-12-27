@@ -957,6 +957,12 @@ function mainReset() {
     defaultBoardRender();
   }
 
+  selectPlayerAmount.disabled = false;
+  if (!selectPlayerAmount.disabled) {
+    document.querySelector('.player-selector-style').classList.add('active');
+    document.querySelector('.player-selector-style').classList.remove('inactive');
+  };
+
   // Display reset message
   displayMessage('Board Reset!', 2000);
 
