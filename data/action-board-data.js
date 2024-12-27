@@ -191,4 +191,8 @@ export let devotionBoardData3 = [];
 export let devotionBoardData4 = [];
 export let devotionBoardData5 = [];
 
- 
+export let playerNameData1 = [];
+export let playerNameData2 = [];
+export let playerNameData3 = [];
+export let playerNameData4 = [];
+export let playerNameData5 = [];

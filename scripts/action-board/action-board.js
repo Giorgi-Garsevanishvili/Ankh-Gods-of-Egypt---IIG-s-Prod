@@ -1,4 +1,4 @@
-import { actionBoardData, devotionBoardData1,devotionBoardData2,devotionBoardData3,devotionBoardData4,devotionBoardData5, EventBoardData } from "../../data/action-board-data.js";
+import { actionBoardData, devotionBoardData1,devotionBoardData2,devotionBoardData3,devotionBoardData4,devotionBoardData5, EventBoardData,playerNameData1, playerNameData2,playerNameData3,playerNameData4,playerNameData5 } from "../../data/action-board-data.js";
 import { displayMessage } from "../../tools/display-message.js";
 import {resetTimer, stopTimer} from "../timer.js"
 
@@ -17,7 +17,7 @@ let renderedB;
 let messageSend = false;
 let data = [];
 let selectedPlayer;
-
+let playerName;
 
 const downArrowSection = document.querySelector('.down-arrow-section');
 const mainResetButton = document.querySelector('.reset');
@@ -38,6 +38,8 @@ const registerButton = document.querySelector('.player-name-register');
 
 // addPlayerName();
 // playSound('off');
+
+addPlayerName();
 toggleSound('off');
 playerAmountChoose();
 renderDevotionPlayer();
@@ -49,6 +51,7 @@ registerButton.addEventListener('click', () => {
 });
 
 function renderDevotionPlayer () {
+  addPlayerName();
   let devotionPlayerSelect = `
   <button class="player-amount-chooser player-amount-chooser-1 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (3).png" alt=""></button>
   <button class="player-amount-chooser player-amount-chooser-2 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (4).png" alt=""></button>
@@ -63,7 +66,6 @@ function defaultBoardRender (){
   mainResetButton.classList.add('hidden');
   undoButton.classList.add('hidden');
   bottomArrowSection.classList.add('hidden');
-
 
 
   renderedD = true;
@@ -85,57 +87,54 @@ function defaultBoardRender (){
   boardSwitcher.classList.add('hidden');
 }
 
-// function addPlayerName () {
-//   const playerName1 = document.querySelector('.player-name-input-1');
-//   const playerName2 = document.querySelector('.player-name-input-2');
-//   const playerName3 = document.querySelector('.player-name-input-3');
-//   const playerName4 = document.querySelector('.player-name-input-4');
-//   const playerName5 = document.querySelector('.player-name-input-5');
+function addPlayerName () {
+  const playerName1 = document.querySelector('.player-name-input-1');
+  const playerName2 = document.querySelector('.player-name-input-2');
+  const playerName3 = document.querySelector('.player-name-input-3');
+  const playerName4 = document.querySelector('.player-name-input-4');
+  const playerName5 = document.querySelector('.player-name-input-5');
 
-//   const playerNameRegister = document.querySelector('.player-name-register');
-
-
-//   playerNameRegister.addEventListener('click', () => {
-//     if (playerNameData) {
-//       playerNameData.length = 0; // Clear existing data
-//     }
-
-//   if (playerName1.value) {
-//     playerNameData.push({ name: playerName1.value });
-//   } else {
-//     playerNameData.push({ name: '' });
-//   }
-
-//   if (playerName2.value) {
-//     playerNameData.push({ name: playerName2.value });
-//   } else {
-//     playerNameData.push({ name: '' });
-//   }
-
-//   if (playerName3.value) {
-//     playerNameData.push({ name: playerName3.value });
-//   } else {
-//     playerNameData.push({ name: '' });
-//   }
-
-//   if (playerName4.value) {
-//     playerNameData.push({ name: playerName4.value });
-//   } else {
-//     playerNameData.push({ name: '' });
-//   }
-
-//   if (playerName5.value) {
-//     playerNameData.push({ name: playerName5.value });
-//   } else {
-//     playerNameData.push({ name: '' });
-//   }
+  const playerNameRegister = document.querySelector('.player-name-register');
 
 
-//     console.log(playerNameData);
-//     document.querySelector('.blur-player-name').classList.add('hidden');
+  playerNameRegister.addEventListener('click', () => {
+
+  if (playerName1.value) {
+    playerNameData1.push({ name: playerName1.value });
+  } else {
+    playerNameData1.push({ name: '' });
+  }
+
+  if (playerName2.value) {
+    playerNameData2.push({ name: playerName2.value });
+  } else {
+    playerNameData2.push({ name: '' });
+  }
+
+  if (playerName3.value) {
+    playerNameData3.push({ name: playerName3.value });
+  } else {
+    playerNameData3.push({ name: '' });
+  }
+
+  if (playerName4.value) {
+    playerNameData4.push({ name: playerName4.value });
+  } else {
+    playerNameData4.push({ name: '' });
+  }
+
+  if (playerName5.value) {
+    playerNameData5.push({ name: playerName5.value });
+  } else {
+    playerNameData6.push({ name: '' });
+  }
+
+
+    console.log(playerNameData1, playerNameData2, playerNameData3, playerNameData4, playerNameData5);
+    document.querySelector('.blur-player-name').classList.add('hidden');
     
-//   });
-// }
+  });
+}
 
 function playerAmountChoose (){
   const defaultAmounts = actionBoardData.map(item => item.amount);
@@ -229,6 +228,7 @@ function playerAmountChoose (){
     }
 
   });
+  addPlayerName();
   switchDevotionPlayer();
  defaultBoardRender();
 }
@@ -340,6 +340,7 @@ function switchDevotionPlayer() {
       // Add 'active' class to the clicked button
       button.classList.add('active');
       button.classList.remove('inactive');
+      document.querySelector('.player-choose-title').innerHTML = `Add Devotion For, ${playerName}`;
       dataStatus();
       renderDevotionBoard();
     });
@@ -396,24 +397,28 @@ const devotionPlayerSelect5 = document.querySelector('.player-amount-chooser-5')
   if (devotionPlayerSelect1.classList.contains('active')) {
     data = devotionBoardData1;
     selectedPlayer = devotionPlayerSelect1;
-    return { data, selectedPlayer };
-
+    playerName = playerNameData1[0].name;
+    return { data, selectedPlayer, playerName };
   } else if (devotionPlayerSelect2.classList.contains('active')) {
     data = devotionBoardData2;
     selectedPlayer = devotionPlayerSelect2;
-    return { data, selectedPlayer };
+    playerName = playerNameData2[0].name;
+    return { data, selectedPlayer, playerName };
   } else if (devotionPlayerSelect3.classList.contains('active')) {  
     data = devotionBoardData3;
     selectedPlayer = devotionPlayerSelect3;
-    return { data, selectedPlayer };
+    playerName = playerNameData3[0].name;
+    return { data, selectedPlayer, playerName };
   } else if (devotionPlayerSelect4.classList.contains('active')) {
     data = devotionBoardData4;
     selectedPlayer = devotionPlayerSelect4;
-    return { data, selectedPlayer };
+    playerName = playerNameData4[0].name;
+    return { data, selectedPlayer, playerName };
   } else if (devotionPlayerSelect5.classList.contains('active')) {
     data = devotionBoardData5;
     selectedPlayer = devotionPlayerSelect5;
-    return { data, selectedPlayer };
+    playerName = playerNameData5[0].name;
+    return { data, selectedPlayer, playerName };
   }
 };  
 
