@@ -527,7 +527,7 @@
 }
 
 .player-choose-buttons {
-  margin-top: 10px;
+ 
   display: flex;
   flex-direction: row;
 }
@@ -824,3 +824,25 @@ button {
   padding: 10px;
   border: 1px solid rgb(163, 104, 44);
 } 
+
+.nameStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: burlywood;
+  font-size: 20px;
+  padding: 5px;
+  font-weight: bold;
+  color: rgb(20, 19, 19);
+  border: 1px solid rgb(163, 104, 44);
+  border-radius: 40px;
+  margin: 5px;
+}
+.player-choose-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;  
+  margin: 0px;
+}

@@ -16,7 +16,7 @@ let renderedD = true;
 let renderedB;
 let messageSend = false;
 let data = [];
-let selectedPlayer;
+let selectedPlayer = null;
 let playerName;
 
 const downArrowSection = document.querySelector('.down-arrow-section');
@@ -51,7 +51,6 @@ registerButton.addEventListener('click', () => {
 });
 
 function renderDevotionPlayer () {
-  addPlayerName();
   let devotionPlayerSelect = `
   <button class="player-amount-chooser player-amount-chooser-1 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (3).png" alt=""></button>
   <button class="player-amount-chooser player-amount-chooser-2 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (4).png" alt=""></button>
@@ -126,13 +125,13 @@ function addPlayerName () {
   if (playerName5.value) {
     playerNameData5.push({ name: playerName5.value });
   } else {
-    playerNameData6.push({ name: '' });
+    playerNameData5.push({ name: '' });
   }
 
-
+    
     console.log(playerNameData1, playerNameData2, playerNameData3, playerNameData4, playerNameData5);
     document.querySelector('.blur-player-name').classList.add('hidden');
-    
+    switchDevotionPlayer();
   });
 }
 
@@ -228,9 +227,8 @@ function playerAmountChoose (){
     }
 
   });
-  addPlayerName();
   switchDevotionPlayer();
- defaultBoardRender();
+  defaultBoardRender();
 }
 
 function renderActionBoard() {
@@ -340,7 +338,7 @@ function switchDevotionPlayer() {
       // Add 'active' class to the clicked button
       button.classList.add('active');
       button.classList.remove('inactive');
-      document.querySelector('.player-choose-title').innerHTML = `Add Devotion For, ${playerName}`;
+      document.querySelector('.player-choose-title').innerHTML = `<h5 class="nameStyle">${playerName}'s</h5> Devotion Status`;
       dataStatus();
       renderDevotionBoard();
     });
@@ -420,6 +418,7 @@ const devotionPlayerSelect5 = document.querySelector('.player-amount-chooser-5')
     playerName = playerNameData5[0].name;
     return { data, selectedPlayer, playerName };
   }
+  renderActionBoard();
 };  
 
 function devotionFuntion() {
@@ -962,6 +961,8 @@ function mainReset() {
     defaultBoardRender();
   }
 
+  document.querySelector('.player-choose-title').innerHTML = `Choose Player`;
+
   selectPlayerAmount.disabled = false;
   if (!selectPlayerAmount.disabled) {
     document.querySelector('.player-selector-style').classList.add('active');
@@ -972,6 +973,7 @@ function mainReset() {
   displayMessage('Board Reset!', 2000);
 
   // Re-attach event listener
+  
   mainResetButton.addEventListener('click', mainReset);
 }
 
