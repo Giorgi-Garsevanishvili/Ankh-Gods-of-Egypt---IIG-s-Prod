@@ -33,11 +33,10 @@ const eventBoardButton = document.querySelector('.event-board-button');
 const devotionBoardButton = document.querySelector('.devotion-board-button');
 const sound = document.getElementById('notification-sound');
 const audioButton = document.querySelector('.sound-button');
-const amountChooserDevotion = document.querySelector('.player-amount-chooser');
+const selectPlayerAmount = document.getElementById('player');
+const registerButton = document.querySelector('.player-name-register');
 
-
-
-
+// addPlayerName();
 // playSound('off');
 toggleSound('off');
 playerAmountChoose();
@@ -45,10 +44,13 @@ renderDevotionPlayer();
 // mainReset();
 // Attach the event listener initially
 mainResetButton.addEventListener('click', mainReset);
-
+registerButton.addEventListener('click', () => { 
+  document.querySelector('.blur-player-name').classList.add('hidden');
+});
 
 function renderDevotionPlayer () {
-  let devotionPlayerSelect = `<button class="player-amount-chooser player-amount-chooser-1 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (3).png" alt=""></button>
+  let devotionPlayerSelect = `
+  <button class="player-amount-chooser player-amount-chooser-1 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (3).png" alt=""></button>
   <button class="player-amount-chooser player-amount-chooser-2 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (4).png" alt=""></button>
   <button class="player-amount-chooser  player-amount-chooser-3 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (5).png" alt=""></button>
   <button class="player-amount-chooser player-amount-chooser-4 inactive"><img class="chooser-image" src="./images/chooser-buttons-img/ankh (6).png" alt=""></button>
@@ -83,12 +85,64 @@ function defaultBoardRender (){
   boardSwitcher.classList.add('hidden');
 }
 
+// function addPlayerName () {
+//   const playerName1 = document.querySelector('.player-name-input-1');
+//   const playerName2 = document.querySelector('.player-name-input-2');
+//   const playerName3 = document.querySelector('.player-name-input-3');
+//   const playerName4 = document.querySelector('.player-name-input-4');
+//   const playerName5 = document.querySelector('.player-name-input-5');
+
+//   const playerNameRegister = document.querySelector('.player-name-register');
+
+
+//   playerNameRegister.addEventListener('click', () => {
+//     if (playerNameData) {
+//       playerNameData.length = 0; // Clear existing data
+//     }
+
+//   if (playerName1.value) {
+//     playerNameData.push({ name: playerName1.value });
+//   } else {
+//     playerNameData.push({ name: '' });
+//   }
+
+//   if (playerName2.value) {
+//     playerNameData.push({ name: playerName2.value });
+//   } else {
+//     playerNameData.push({ name: '' });
+//   }
+
+//   if (playerName3.value) {
+//     playerNameData.push({ name: playerName3.value });
+//   } else {
+//     playerNameData.push({ name: '' });
+//   }
+
+//   if (playerName4.value) {
+//     playerNameData.push({ name: playerName4.value });
+//   } else {
+//     playerNameData.push({ name: '' });
+//   }
+
+//   if (playerName5.value) {
+//     playerNameData.push({ name: playerName5.value });
+//   } else {
+//     playerNameData.push({ name: '' });
+//   }
+
+
+//     console.log(playerNameData);
+//     document.querySelector('.blur-player-name').classList.add('hidden');
+    
+//   });
+// }
+
 function playerAmountChoose (){
   const defaultAmounts = actionBoardData.map(item => item.amount);
   const playerSelect = document.querySelector('#player');
 
   playerSelect.addEventListener('change', () => {
-    const selectedValue = parseInt(playerSelect.value, 10); //parseInt with 10, returns decimal number (just reminder for me :))
+    const selectedValue = parseInt(playerSelect.value, 10);
     const boardContainer = document.querySelector('.action-board-container');
     mainResetButton.classList.remove('hidden');
 
@@ -255,6 +309,13 @@ function renderActionBoard() {
 
   `;
 
+  selectPlayerAmount.disabled = true;
+
+  if (selectPlayerAmount.disabled) {
+    document.querySelector('.player-selector-style').classList.add('inactive');
+    document.querySelector('.player-selector-style').classList.remove('active');
+  }
+
   actionBoardButton.classList.add('visible');
   // playSound('on');
   toggleSound('on');
@@ -335,24 +396,24 @@ const devotionPlayerSelect5 = document.querySelector('.player-amount-chooser-5')
   if (devotionPlayerSelect1.classList.contains('active')) {
     data = devotionBoardData1;
     selectedPlayer = devotionPlayerSelect1;
-    return data, selectedPlayer;
+    return { data, selectedPlayer };
 
   } else if (devotionPlayerSelect2.classList.contains('active')) {
     data = devotionBoardData2;
     selectedPlayer = devotionPlayerSelect2;
-    return data, selectedPlayer;
+    return { data, selectedPlayer };
   } else if (devotionPlayerSelect3.classList.contains('active')) {  
     data = devotionBoardData3;
     selectedPlayer = devotionPlayerSelect3;
-    return data, selectedPlayer;
+    return { data, selectedPlayer };
   } else if (devotionPlayerSelect4.classList.contains('active')) {
     data = devotionBoardData4;
     selectedPlayer = devotionPlayerSelect4;
-    return data, selectedPlayer;
+    return { data, selectedPlayer };
   } else if (devotionPlayerSelect5.classList.contains('active')) {
     data = devotionBoardData5;
     selectedPlayer = devotionPlayerSelect5;
-    return data, selectedPlayer;
+    return { data, selectedPlayer };
   }
 };  
 
@@ -763,7 +824,7 @@ function ResetActionCount (){
   actionCount = 2;
   actionCountReset.classList.add('hidden')
   displayActionCount();
-  displayMessage('Action Count Reset! Next Playet Please!', 3000)
+  displayMessage('Action Count Reset! Next Player Please!', 3000)
 }
 
 function displayActionCount () {
