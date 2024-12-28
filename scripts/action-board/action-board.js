@@ -85,31 +85,31 @@ function updateNames () {
     if (playerName1.value) {
       playerNameData1[0].name = playerName1.value;
     } else {
-      playerNameData1[0].name = '';
+      playerNameData1[0].name = 'No Player';
     }
   
     if (playerName2.value) {
       playerNameData2[0].name = playerName2.value ;
     } else {
-      playerNameData2[0].name = '' ;
+      playerNameData2[0].name = 'No Player' ;
     }
   
     if (playerName3.value) {
       playerNameData3[0].name = playerName3.value;
     } else {
-      playerNameData3[0].name = '';
+      playerNameData3[0].name = 'No Player';
     }
   
     if (playerName4.value) {
       playerNameData4[0].name = playerName4.value ;
     } else {
-      playerNameData4[0].name = '';
+      playerNameData4[0].name = 'No Player';
     }
   
     if (playerName5.value) {
       playerNameData5[0].name = playerName5.value;
     } else {
-      playerNameData5[0].name = '' ;
+      playerNameData5[0].name = 'No Player' ;
     }
   
       
@@ -211,31 +211,31 @@ function addPlayerName () {
   if (playerName1.value) {
     playerNameData1.push({ name: playerName1.value });
   } else {
-    playerNameData1.push({ name: '' });
+    playerNameData1.push({ name: 'No Player' });
   }
 
   if (playerName2.value) {
     playerNameData2.push({ name: playerName2.value });
   } else {
-    playerNameData2.push({ name: '' });
+    playerNameData2.push({ name: 'No Player' });
   }
 
   if (playerName3.value) {
     playerNameData3.push({ name: playerName3.value });
   } else {
-    playerNameData3.push({ name: '' });
+    playerNameData3.push({ name: 'No Player' });
   }
 
   if (playerName4.value) {
     playerNameData4.push({ name: playerName4.value });
   } else {
-    playerNameData4.push({ name: '' });
+    playerNameData4.push({ name: 'No Player' });
   }
 
   if (playerName5.value) {
     playerNameData5.push({ name: playerName5.value });
   } else {
-    playerNameData5.push({ name: '' });
+    playerNameData5.push({ name: 'No Player' });
   }
 
     document.querySelector('.blur-player-name').classList.add('hidden');
