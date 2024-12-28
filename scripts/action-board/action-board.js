@@ -41,21 +41,35 @@ const playerName2 = document.querySelector('.player-name-input-2');
 const playerName3 = document.querySelector('.player-name-input-3');
 const playerName4 = document.querySelector('.player-name-input-4');
 const playerName5 = document.querySelector('.player-name-input-5');
+const playerInputs = [
+  document.querySelector('.player-name-input-1'),
+  document.querySelector('.player-name-input-2'),
+  document.querySelector('.player-name-input-3'),
+  document.querySelector('.player-name-input-4'),
+  document.querySelector('.player-name-input-5'),
+];
 
+playerInputs[0].disabled = false;
+playerInputs[1].disabled = false;
 
 addPlayerName();
 toggleSound('off');
 playerAmountChoose();
 renderDevotionPlayer();
+updateInputs();
+
 
 playerNameRegister.disabled = true; 
-playerName2.disabled = true;
 playerName3.disabled = true;
 playerName4.disabled = true; 
 playerName5.disabled = true;
 mainResetButton.addEventListener('click', mainReset);
 registerButton.addEventListener('click', () => { 
   document.querySelector('.blur-player-name').classList.add('hidden');
+});
+
+playerInputs.forEach(input => {
+  input.addEventListener('input', updateInputs);
 });
 
 function renderDevotionPlayer () {
@@ -94,42 +108,42 @@ function defaultBoardRender (){
   boardSwitcher.classList.add('hidden');
 }
 
+function updateInputs() {
+  const firstInputFilled = playerInputs[0].value.trim();
+  const secondInputFilled = playerInputs[1].value.trim();
+
+  // If either 1st or 2nd input is empty, reset all subsequent inputs
+  if (!firstInputFilled || !secondInputFilled) {
+    for (let i = 2; i < playerInputs.length; i++) {
+      const input = playerInputs[i];
+      input.value = '';
+      input.disabled = true;
+      input.setAttribute('placeholder', `Player ${i + 1} - Unavailable`);
+    }
+    playerNameRegister.disabled = true;
+    return; // Exit the function early
+  }
+
+  // If both 1st and 2nd inputs are filled, continue enabling subsequent inputs
+  for (let i = 2; i < playerInputs.length; i++) {
+    const currentInput = playerInputs[i - 1];
+    const nextInput = playerInputs[i];
+
+    if (currentInput.value.trim()) {
+      nextInput.disabled = false;
+      nextInput.setAttribute('placeholder', `Player ${i + 1} - Available`);
+    } else {
+      nextInput.value = '';
+      nextInput.disabled = true;
+      nextInput.setAttribute('placeholder', `Player ${i + 1} - Unavailable`);
+    }
+  }
+
+  // Enable the register button if Player 1 and Player 2 are filled
+  playerNameRegister.disabled = !(firstInputFilled && secondInputFilled);
+}
+
 function addPlayerName () {
-
-  playerName1.addEventListener('input', () => {
-    if (playerName1.value) { // Check if there's any value after trimming
-      playerNameRegister.disabled = false; // Enable the button
-      playerName2.disabled = false;
-    } else {
-      playerNameRegister.disabled = true; 
-      playerName2.disabled = true;
-    }
-  });
-
-  playerName2.addEventListener('input', () => {
-    if (playerName2.value) {
-      playerName3.disabled = false;
-    } else {
-      playerName3.disabled = true;
-    }
-  });
-
-  playerName3.addEventListener('input', () => {
-    if (playerName3.value) {
-      playerName4.disabled = false;
-    } else {
-      playerName4.disabled = true; 
-    }
-  });
-
-  playerName4.addEventListener('input', () => {
-    if (playerName4.value) {
-      playerName5.disabled = false;
-    } else {
-      playerName5.disabled = true;
-    }
-  });
-
   playerNameRegister.addEventListener('click', () => {
 
   if (playerName1.value) {
@@ -162,8 +176,6 @@ function addPlayerName () {
     playerNameData5.push({ name: '' });
   }
 
-    
-    console.log(playerNameData1, playerNameData2, playerNameData3, playerNameData4, playerNameData5);
     document.querySelector('.blur-player-name').classList.add('hidden');
     switchDevotionPlayer();
   });
@@ -185,10 +197,10 @@ function playerAmountChoose (){
 // Code down below is simplify version of code which is commented below this one. idea and the logic is the same.
     // Define the states for each selectedValue
     const states = {
+      2: { amount: -3, hidden: [3, 4, 5], visible: [1, 2] },
       3: { amount: -2, hidden: [5, 4], visible: [3, 2, 1] },
       4: { amount: -1, hidden: [5], visible: [4, 3, 2, 1] },
-      5: { amount: "reset", hidden: [], visible: [5, 4, 3, 2, 1] },
-      2: { amount: -3, hidden: [3, 4, 5], visible: [1, 2] }
+      5: { amount: "reset", hidden: [], visible: [5, 4, 3, 2, 1] }
     };
 
     // Apply changes based on the selected value
@@ -348,7 +360,6 @@ function switchDevotionPlayer() {
     });
   });
 }
-
 
 function renderDevotionBoard() {
   const devotionBoardContainer = document.querySelector('.devotion-board-container');
@@ -702,7 +713,6 @@ function toggleSound(status) {
   });
 }
 
-
 function attachEventListeners() {
   const buttons = document.querySelectorAll('.next-button');
   const eventButtons = document.querySelectorAll('.event-button');
@@ -903,8 +913,6 @@ function mainReset() {
   mainResetButton.addEventListener('click', mainReset);
 }
 
-
-
 function undoLastAction() {
   if (document.querySelector('.event-board-container').classList.contains('hidden')) {
 
@@ -934,7 +942,6 @@ function undoLastAction() {
     }
   }
 }
-
 
 undoButton.addEventListener('click', undoLastAction);
 
