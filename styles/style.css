@@ -390,6 +390,7 @@ button, img, div {
 .sound-button{
   border: none;
   background-color: transparent;
+  transition: 0.5s;
 }
 .sound-img, .sound-img-pause {
   display: flex;
@@ -404,4 +405,5 @@ button, img, div {
   border-radius: 30px;
   border: 1px solid rgb(0, 0, 0); 
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 0.5s;
 }
