@@ -35,16 +35,24 @@ const sound = document.getElementById('notification-sound');
 const audioButton = document.querySelector('.sound-button');
 const selectPlayerAmount = document.getElementById('player');
 const registerButton = document.querySelector('.player-name-register');
+const playerNameRegister = document.querySelector('.player-name-register');
+const playerName1 = document.querySelector('.player-name-input-1');
+const playerName2 = document.querySelector('.player-name-input-2');
+const playerName3 = document.querySelector('.player-name-input-3');
+const playerName4 = document.querySelector('.player-name-input-4');
+const playerName5 = document.querySelector('.player-name-input-5');
 
-// addPlayerName();
-// playSound('off');
 
 addPlayerName();
 toggleSound('off');
 playerAmountChoose();
 renderDevotionPlayer();
-// mainReset();
-// Attach the event listener initially
+
+playerNameRegister.disabled = true; 
+playerName2.disabled = true;
+playerName3.disabled = true;
+playerName4.disabled = true; 
+playerName5.disabled = true;
 mainResetButton.addEventListener('click', mainReset);
 registerButton.addEventListener('click', () => { 
   document.querySelector('.blur-player-name').classList.add('hidden');
@@ -87,14 +95,40 @@ function defaultBoardRender (){
 }
 
 function addPlayerName () {
-  const playerName1 = document.querySelector('.player-name-input-1');
-  const playerName2 = document.querySelector('.player-name-input-2');
-  const playerName3 = document.querySelector('.player-name-input-3');
-  const playerName4 = document.querySelector('.player-name-input-4');
-  const playerName5 = document.querySelector('.player-name-input-5');
 
-  const playerNameRegister = document.querySelector('.player-name-register');
+  playerName1.addEventListener('input', () => {
+    if (playerName1.value) { // Check if there's any value after trimming
+      playerNameRegister.disabled = false; // Enable the button
+      playerName2.disabled = false;
+    } else {
+      playerNameRegister.disabled = true; 
+      playerName2.disabled = true;
+    }
+  });
 
+  playerName2.addEventListener('input', () => {
+    if (playerName2.value) {
+      playerName3.disabled = false;
+    } else {
+      playerName3.disabled = true;
+    }
+  });
+
+  playerName3.addEventListener('input', () => {
+    if (playerName3.value) {
+      playerName4.disabled = false;
+    } else {
+      playerName4.disabled = true; 
+    }
+  });
+
+  playerName4.addEventListener('input', () => {
+    if (playerName4.value) {
+      playerName5.disabled = false;
+    } else {
+      playerName5.disabled = true;
+    }
+  });
 
   playerNameRegister.addEventListener('click', () => {
 
@@ -154,7 +188,7 @@ function playerAmountChoose (){
       3: { amount: -2, hidden: [5, 4], visible: [3, 2, 1] },
       4: { amount: -1, hidden: [5], visible: [4, 3, 2, 1] },
       5: { amount: "reset", hidden: [], visible: [5, 4, 3, 2, 1] },
-      2: { amount: -3, hidden: [3, 2, 1], visible: [5, 4] }
+      2: { amount: -3, hidden: [3, 4, 5], visible: [1, 2] }
     };
 
     // Apply changes based on the selected value
@@ -179,36 +213,6 @@ function playerAmountChoose (){
       });
     }
 
-
-      // if (selectedValue === 3) {
-      //   item.amount -= 2;
-      //   document.querySelector('.player-amount-chooser-5').classList.add('hidden');
-      //   document.querySelector('.player-amount-chooser-4').classList.add('hidden');
-      //   document.querySelector('.player-amount-chooser-3').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-2').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-1').classList.remove('hidden');
-      // } else if (selectedValue === 4) {
-      //   item.amount--;
-      //   document.querySelector('.player-amount-chooser-5').classList.add('hidden');
-      //   document.querySelector('.player-amount-chooser-4').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-3').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-2').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-1').classList.remove('hidden');
-      // } else if (selectedValue === 5) {
-      //   item.amount = defaultAmounts[index];
-      //   document.querySelector('.player-amount-chooser-5').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-4').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-3').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-2').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-1').classList.remove('hidden');
-      // } else if (selectedValue === 2) {
-      //   item.amount -= 3;
-      //   document.querySelector('.player-amount-chooser-5').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-4').classList.remove('hidden');
-      //   document.querySelector('.player-amount-chooser-3').classList.add('hidden');
-      //   document.querySelector('.player-amount-chooser-2').classList.add('hidden');
-      //   document.querySelector('.player-amount-chooser-1').classList.add('hidden');
-      // }
     });
 
     if (selectedValue === 0) {
@@ -682,35 +686,6 @@ function toggleBoard() {
   attachEventListeners();
 }
 
-// function playSound(status) {
-//   if (status === 'on') {
-//     sound.play();
-//     sound.loop = true;
-//     sound.volume = 0.2;
-//     audioButton.innerHTML = '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">';
-//   } else if (status === 'off') {
-//     sound.pause();
-//     audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
-//   }
-
-//   audioButton.addEventListener('click', () => {
-//     if (status === 'on') {
-//       sound.pause();
-//       status = 'off';
-//       
-//       audioButton.innerHTML = '<img class="sound-img" src="./sound-efects/mute.png" alt="">';
-//     } else if (status === 'off') {
-//       sound.play();
-//       sound.loop = true;
-//       status = 'on';
-//       sound.volume = 0.2;
-//       
-//       audioButton.innerHTML = '<img class="sound-img-pause" src="./sound-efects/volume.png" alt="">';
-//     }
-// }
-//   );
-// }
-
 function toggleSound(status) {
   const isOn = status === 'on';
 
@@ -851,55 +826,6 @@ function renderActionCount (amount) {
 
   displayActionCount();
 }
-
-// function mainReset () {
-//   mainResetButton.addEventListener('click', () => {
-//     if (selectedPlayer) {
-//       selectedPlayer.classList.remove('active');
-//       selectedPlayer.classList.add('inactive');
-//     }
-//     data.length = 0 ;
-//     activeButtonIndex = 0;
-//     activeActionButtonIndices = {};
-//     actionCount = 2;
-//     mfCount;
-//     sfCount;
-//     gfCount;
-//     selectedPlayer;
-//     devotionBoardData1.length = 0;
-//     devotionBoardData2.length = 0;
-//     devotionBoardData3.length = 0;
-//     devotionBoardData4.length = 0;
-//     devotionBoardData5.length = 0;
-    
-
-
-//     actionCountReset.classList.add('hidden')
-//     displayActionCount();
-//     toggleBoard();
-//     stopTimer();
-//     resetTimer();
-//     renderActionBoard();
-//     // playSound('off');
-//     toggleSound('off');
-//     messageSend = false;
-
-//     downArrowSection.classList.remove('hidden');
-
-//     if (renderedB = true && renderedD === false) {
-
-//       document.querySelector('.action-board-container').classList.add('hidden');
-//       boardSwitchers.forEach((button) => {
-//         button.classList.add('hidden');
-//       });
-//       boardSwitcher.classList.add('hidden');
-//       const playerSelect = document.querySelector('#player');
-//       playerSelect.value = 0;
-//       defaultBoardRender();
-//     }
-//     displayMessage('Board Reset!', 2000)
-//   })
-// }
 
 function mainReset() {
   // Remove event listeners if necessary
