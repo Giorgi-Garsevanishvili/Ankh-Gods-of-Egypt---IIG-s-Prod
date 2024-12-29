@@ -54,12 +54,14 @@ const playerInputs = [
 playerInputs[0].disabled = false;
 playerInputs[1].disabled = false;
 
+
 addPlayerName();
 toggleSound('off');
 playerAmountChoose();
 renderDevotionPlayer();
 updateInputs();
 updateNames();
+randomFactDisplay();
 
 
 playerNameRegister.disabled = true; 
@@ -74,6 +76,12 @@ registerButton.addEventListener('click', () => {
 playerInputs.forEach(input => {
   input.addEventListener('input', updateInputs);
 });
+
+function randomFactDisplay() { 
+  document.querySelector('.facts-button').addEventListener('click', () => {
+    fact();
+  });
+} 
 
 function updateNames () {
  updateNameButton.addEventListener('click', () => {
@@ -316,7 +324,7 @@ function renderActionBoard() {
   }
 
   if (messageSend === false) {
-    displayMessage('Welcome to the Game!', 3000);
+    displayMessage('Welcome to the Game!', 3000, 'no');
     messageSend = true;
     };
 
@@ -514,7 +522,7 @@ function devotionFuntion() {
         devotionInput.value = ''; // Clear input
         devotionInput.focus(); // Focus on input after clearing
         renderDevotionBoard(); // Render the updated board
-        displayMessage(`Not enough devotion to remove, you have ${data.length} Devotion!`, 4000);
+        displayMessage(`Not enough devotion to remove, you have ${data.length} Devotion!`, 4000, 'no');
       }
     }
   });
@@ -543,13 +551,13 @@ function devotionFuntion() {
           devotionInput.focus();
           renderDevotionBoard();
         } else {
-          displayMessage(`Maximum Devotion amount is 32, you have ${data.length}. Currently you can add only ${32 - data.length}`, 5000);
+          displayMessage(`Maximum Devotion amount is 32, you have ${data.length}. Currently you can add only ${32 - data.length}`, 5000, 'no');
           devotionInput.value = '';
           devotionInput.focus();
           renderDevotionBoard();
         }
       } else {
-        displayMessage('Please select an active player to add devotion!', 4000);
+        displayMessage('Please select an active player to add devotion!', 4000, 'no');
         devotionInput.value = '';
         devotionInput.focus();
       }
@@ -560,7 +568,7 @@ function devotionFuntion() {
 
 function checkActionCount() {
   if (actionCount === 0) {
-    displayMessage('Your Action Registered!', 1000);
+    displayMessage('Your Action Registered!', 1000, 'no');
     ResetActionCount();
   }
 }
@@ -602,7 +610,7 @@ function switchToNextActiontButton(pattern) {
       actionButtons[currentIndex + totalButtons].classList.remove('opacity');
     }, 4000);
     ResetActionCount();
-    displayMessage('Current Action Row Reset!', 1000);
+    displayMessage('Current Action Row Reset!', 1000, 'no');
   }
 }
 
@@ -627,9 +635,9 @@ function handleActionButtonClick(styleLink) {
       switchToNextActiontButton(styleLink);
       mfCount = 1;
     } else if (actionCount === 1) {
-      displayMessage('In this round you can’t use this action anymore, please try another!', 3000);
+      displayMessage('In this round you can’t use this action anymore, please try another!', 3000, 'no');
     } else {
-      displayMessage('Action Count Reset! Next Player!', 2000);
+      displayMessage('Action Count Reset! Next Player!', 2000, 'no');
       ResetActionCount();
     }
   }
@@ -641,9 +649,9 @@ function handleActionButtonClick(styleLink) {
       switchToNextActiontButton(styleLink);
       checkActionCount();
     } else if (sfCount === 1 && actionCount === 1 && actionCount > 0) {
-      displayMessage('In this round you already used this move, please try another!', 3000);
+      displayMessage('In this round you already used this move, please try another!', 3000, 'no');
     } else if (sfCount === 1 || actionCount === 1) {
-      displayMessage('In this round you can’t use this action anymore, please try another!', 3000);
+      displayMessage('In this round you can’t use this action anymore, please try another!', 3000, 'no');
     }
   }
 
@@ -659,7 +667,7 @@ function handleActionButtonClick(styleLink) {
       switchToNextActiontButton(styleLink);
       checkActionCount();
     } else if (gfCount === 1 && actionCount < 2 && actionCount > 0) {
-      displayMessage('In this round you already used this move, please try another!', 3000);
+      displayMessage('In this round you already used this move, please try another!', 3000, 'no');
     } else {
       ResetActionCount();
     }
@@ -669,10 +677,10 @@ function handleActionButtonClick(styleLink) {
     if (actionCount <= 2 && actionCount > 0) {
       renderActionCount();
       switchToNextActiontButton(styleLink);
-      displayMessage('Your action Registered!', 1000);
+      displayMessage('Your action Registered!', 1000, 'no');
       ResetActionCount();
     } else {
-      displayMessage('No more actions', 1000);
+      displayMessage('No more actions', 1000, 'no');
     }
   }
 }
@@ -703,16 +711,16 @@ function switchToNextButton(switchFormul) {
 
 
   if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 12 && selectedValue === 3) {
-    displayMessage('Merge 2 Gods!', 1000)
+    displayMessage('Merge 2 Gods!', 1000, 'no')
   } else if (buttonData[activeButtonIndex].styleLink.primary === 'fan' && activeButtonIndex === 16) {
-    displayMessage('Eliminate Gods in Red!', 1000)
+    displayMessage('Eliminate Gods in Red!', 1000, 'no')
   }
 
  
 
 
   if (activeButtonIndex === totalButtons - 1) {
-    displayMessage('END OF THE MATCH', 1000);
+    displayMessage('END OF THE MATCH', 1000, 'no');
   }
 }
 
@@ -874,7 +882,7 @@ function ResetActionCount (){
   actionCount = 2;
   actionCountReset.classList.add('hidden')
   displayActionCount();
-  displayMessage('Action Count Reset! Next Player Please!', 3000)
+  displayMessage('Action Count Reset! Next Player Please!', 3000, 'no')
 }
 
 function displayActionCount () {
@@ -891,7 +899,7 @@ function renderActionCount (amount) {
   if (actionCount > 0 && actionCount <=3){
     actionCount --- amount;
   } else if (actionCount === 0) {
-    displayMessage('no more actions', 1000)
+    displayMessage('no more actions', 1000, 'no')
     ResetActionCount();
   }
 
@@ -968,7 +976,7 @@ function mainReset() {
 
 
   // Display reset message
-  displayMessage('Board Reset!', 2000);
+  displayMessage('Board Reset!', 2000, 'no');
 
   // Re-attach event listener
   
@@ -979,7 +987,7 @@ function undoLastAction() {
   if (document.querySelector('.event-board-container').classList.contains('hidden')) {
 
     if (activeButtonIndex > 0 && actionHistory.length === 0){
-      displayMessage('No action to undo! Try another Board!', 1500);
+      displayMessage('No action to undo! Try another Board!', 1500, 'no');
     }
 
   const lastAction = actionHistory.pop();
@@ -1000,7 +1008,7 @@ function undoLastAction() {
       renderActionBoard();
       toggleBoard();
     } else if (activeButtonIndex === 0 && actionHistory.length > 0){
-      displayMessage('No action to undo! Try another Board!', 1500);
+      displayMessage('No action to undo! Try another Board!', 1500, 'no');
     }
   }
 }
@@ -1016,6 +1024,18 @@ actionCountReset.addEventListener('click', () => {
   }
 })
 
+async function fact() {
+  const request = new Request(' https://uselessfacts.jsph.pl/api/v2/facts/random?language=en', {
+    method: 'GET',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  });
+  const response = await fetch(request);
+  const data = await response.json();
+  const fact = data.text;
+  displayMessage(fact, 2147483647, 'yes');
+}
 
 renderActionCount();
 displayActionCount();
