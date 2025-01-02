@@ -7,9 +7,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  position: absolute;
   align-items: center;
   justify-content: center;
+  position: absolute;
   z-index: 111;
   background-color: gray;
   background-color: rgba(128, 128, 128, 0.6);
@@ -21,6 +21,7 @@
   font-weight: 500;
   border-radius: 20px;
   width: auto;
+  position: relative;
   max-width: 800px;
   height: auto;
   padding: 55px 55px;
@@ -50,7 +51,7 @@
 
 
 .blur-warn {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   position: absolute;
