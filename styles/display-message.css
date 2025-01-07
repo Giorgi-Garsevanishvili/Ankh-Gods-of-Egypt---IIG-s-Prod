@@ -35,7 +35,6 @@
 
 .close-button-img {
   width: 40px;
-
 }
 
 .close-button {
@@ -46,9 +45,7 @@
 
 .close-text {
   margin: 0px;
-
 }
-
 
 .blur-warn {
   height: 100%;
@@ -78,6 +75,6 @@
   word-wrap: break-word;
 }
 
-.mobile-warning  {
+.mobile-warning {
   display: none;
 }

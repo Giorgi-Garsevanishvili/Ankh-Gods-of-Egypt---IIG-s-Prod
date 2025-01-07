@@ -23,8 +23,6 @@
   border: 2px solid rgb(20, 19, 19);
 }
 
-
-
 .arrow-button-style {
   height: 45px;
 }
@@ -70,9 +68,8 @@
   height: 40px;
 }
 
-
 .page-title {
-  display:flex ;
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 0, 0);
@@ -86,7 +83,7 @@
 }
 
 .header-right {
-  margin-left: 5%; 
+  margin-left: 5%;
 }
 
 .header-middle {
@@ -113,22 +110,19 @@
   flex-direction: column;
   align-items: center;
   margin: 2px 1px;
-  background-color:rgb(60, 42, 16);
+  background-color: rgb(60, 42, 16);
   border: 2px solid rgb(131, 77, 8);
   height: 87px;
   width: 97%;
   border-radius: 18px;
 }
 
-
-
-
 .action-square {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg');
+  background-image: url("../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg");
   margin-right: 2px;
   margin-bottom: 4px;
   border-radius: 25px;
@@ -142,25 +136,24 @@
 }
 
 .title {
-  display: flex; 
+  display: flex;
   color: white;
   margin-top: -20px;
   font-size: 12px;
 }
-
 
 .icon-items {
   display: flex;
   align-items: center;
   margin-right: 7px;
   margin-left: 7px;
-  margin-bottom: 7px
+  margin-bottom: 7px;
 }
 
 .title-image {
   height: 10px;
   margin-bottom: 5px;
-  background-image: url('../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg');
+  background-image: url("../images/pngtree-vintage-egyptian-hieroglyph-seamless-pattern-retro-vector-illustration-of-ancient-egypt-symbols-repeated-vector-png-image_39381462.jpg");
   opacity: 0.3;
   border: 2px solid black;
   border-radius: 50px;
@@ -207,10 +200,9 @@
   transition: 0.5s;
 }
 
-
 .icon-button-style {
- padding: 0px;
- margin-left: 2px;
+  padding: 0px;
+  margin-left: 2px;
 }
 
 .icon-button-play {
@@ -240,9 +232,6 @@
   width: 62px;
 }
 
-
-
-
 .action-board-container,
 .event-board-container,
 .devotion-board-container {
@@ -251,7 +240,7 @@
 
 .action-board-container {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 .event-board-container {
@@ -305,9 +294,6 @@
   transition: 0.5s;
 }
 
-
-
-
 .event-button-first {
   background-color: rgb(242, 228, 190);
   border: 3px solid goldenrod;
@@ -341,13 +327,12 @@
   display: none;
 }
 
-
 .on {
   opacity: 1;
 }
 
 .reset,
-.undo{
+.undo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -358,8 +343,6 @@
   margin-left: 5px;
   border-radius: 50%;
 }
-
-
 
 .reset-button,
 .undo-button {
@@ -391,7 +374,6 @@
 }
 
 .start-board {
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -405,7 +387,6 @@
   border: 1px solid rgb(246, 221, 156);
   border-radius: 20px;
 }
-
 
 .devotion-board-container {
   display: flex;
@@ -421,25 +402,24 @@
   overflow-y: hidden;
 }
 
-
 .devotion-board-container::-webkit-scrollbar {
-  width: auto;  
-  height: 10px; 
+  width: auto;
+  height: 10px;
 }
 
 .devotion-board-container::-webkit-scrollbar-track {
   background: #b98b1f4d;
-  border-radius: 50px; 
+  border-radius: 50px;
 }
 
 .devotion-board-container::-webkit-scrollbar-thumb {
-  background: #413108; 
-  border-radius: 50px; 
+  background: #413108;
+  border-radius: 50px;
   border: 1px solid wheat;
 }
 
 .devotion-board-container::-webkit-scrollbar-horizontal {
-  height: 10px; 
+  height: 10px;
 }
 
 .main-bottom {
@@ -525,7 +505,6 @@
 }
 
 .player-choose-buttons {
- 
   display: flex;
   flex-direction: row;
 }
@@ -534,7 +513,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -557,9 +536,7 @@
   justify-content: center;
   width: 25px;
   height: 25px;
-  
 }
-
 
 .player-amount-chooser:active {
   transition: 0.5s;
@@ -613,7 +590,7 @@
   align-items: center;
   justify-content: center;
   color: bisque;
-  margin:2px;
+  margin: 2px;
   padding: 20px;
   height: 50px;
   width: auto;
@@ -633,15 +610,13 @@
   transition: 0.2s;
 }
 
-
 .hidden {
   display: none;
 }
 
-
 @media (max-width: 768px) {
   .mobile-warning {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
@@ -649,10 +624,10 @@
     display: none;
   }
 
-  .header-container{
+  .header-container {
     width: auto;
   }
-  
+
   .header-right {
     display: none;
   }
@@ -662,7 +637,7 @@
   }
 
   .go-back {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     height: 100px;
     width: 100px;
     font-size: 16px;
@@ -671,14 +646,13 @@
     background-color: rgb(50, 39, 13);
     border-radius: 50%;
     border: 2px solid rgb(162, 125, 30);
-    
-    text-decoration: none;
-  }
-  
-  .link {
+
     text-decoration: none;
   }
 
+  .link {
+    text-decoration: none;
+  }
 }
 
 .visible {
@@ -695,21 +669,22 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 16px;
   font-weight: bold;
   width: 95%;
   height: 95%;
 }
 
-.devotion-board-view{
+.devotion-board-view {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.dev-amount-display, .amount-dev {
+.dev-amount-display,
+.amount-dev {
   display: flex;
   position: absolute;
   font-size: 25px;
@@ -718,20 +693,19 @@ button {
   width: 6%;
   height: 15%;
   border-radius: 30px;
-  background-color: rgb(177, 127, 45, 0.7) ;
+  background-color: rgb(177, 127, 45, 0.7);
   border: 2px solid rgb(78, 44, 6);
   justify-content: center;
   align-items: center;
 }
 
 .amount-dev {
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   padding: 5px;
   background-color: rgb(214, 197, 161);
   border: 2px solid rgb(232, 221, 190);
   width: 55%;
   height: 55%;
- 
 }
 
 .blur-player-name {
@@ -765,7 +739,6 @@ button {
   justify-content: center;
   background-color: aliceblue;
   word-wrap: break-word;
-  
 }
 
 .img-player-name {
@@ -785,10 +758,10 @@ button {
 }
 
 .player-box {
- display: flex; 
- flex-direction: column;
- justify-content: center;
- align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .player-name-register {
@@ -796,7 +769,7 @@ button {
   border-radius: 20%;
   padding: 10px;
   border: 1px solid rgb(163, 104, 44);
-} 
+}
 
 .nameStyle {
   display: flex;
@@ -816,7 +789,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0px;  
+  padding: 0px;
   margin: 0px;
 }
 

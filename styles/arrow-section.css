@@ -19,7 +19,6 @@
   width: 115px;
 }
 
-
 .player-selector {
   background-color: antiquewhite;
 }
@@ -47,7 +46,6 @@
 }
 
 .arrow-container-title {
-  
   width: 110px;
   height: 45px;
   font-size: 20px;
@@ -63,12 +61,10 @@
 }
 
 .player-selector {
-  
   height: 85px;
 }
 
 .player-selector-style {
-  
   background-color: rgb(130, 119, 105);
   color: white;
   font-size: 17px;
@@ -83,13 +79,11 @@
   appearance: none;
 }
 
-
 .hidden {
   display: none;
 }
 
 .actions-count {
-  
   height: 115px;
   padding-top: 3px;
 }
